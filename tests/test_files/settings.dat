@@ -1,0 +1,10 @@
+settings = scm.pyzacros.Settings()
+settings.random_seed = 8949321 
+settings.temperature = 900.0 
+settings.pressure = 1.0
+settings.molar_fraction.O2 = 0.5
+settings.molar_fraction.CO = 0.5
+settings.max_time = 200.0 
+settings.snapshots = ('time', 0.0005)
+settings.process_statistics = ('time', 0.0005)
+settings.species_numbers = ('time', dt)

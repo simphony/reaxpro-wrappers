@@ -1,0 +1,8 @@
+---
+identifier: crystallography
+ontology_file: 'crystallography.ttl'
+reference_by_label: True
+format: ttl
+namespaces:
+    crystallography: http://emmo.info/domain-crystallography/crystallography
+active_relationships: []

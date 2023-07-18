@@ -1,0 +1,42 @@
+# Dictionary containing defaults for AMS driver. 
+# For head entries, it follows names from the engine and NOT from the ontology.
+AMS:
+    LOW: 
+        GeometryOptimization: 
+             BasisSet:       SZ
+             ExchangeCorrelationFunctional:   VWN 
+        BindingSites:
+             BasisSet:       SZ
+             ExchangeCorrelationFunctional:   VWN 
+        PESExploration:
+             BasisSet:       DZP
+             ExchangeCorrelationFunctional:   VWN 
+        WavefunctionOptimization: 
+             BasisSet:       SZ
+             ExchangeCorrelationFunctional:   VWN 
+    MEDIUM: 
+        GeometryOptimization: 
+             BasisSet:       DZP
+             ExchangeCorrelationFunctional:   PBE 
+        BindingSites:
+             BasisSet:       DZ
+             ExchangeCorrelationFunctional:   VWN 
+        PESExploration:
+             BasisSet:       DZP
+             ExchangeCorrelationFunctional:   VWN 
+        WavefunctionOptimization: 
+             BasisSet:       DZP
+             ExchangeCorrelationFunctional:   PBE 
+    HIGH: 
+        GeometryOptimization: 
+             BasisSet:       TZ2P 
+             ExchangeCorrelationFunctional:   PBE0 
+        BindingSites:
+             BasisSet:       TZP 
+             ExchangeCorrelationFunctional:   VWN 
+        PESExploration:
+             BasisSet:       DZP
+             ExchangeCorrelationFunctional:   VWN 
+        WavefunctionOptimization: 
+             BasisSet:       TZ2P 
+             ExchangeCorrelationFunctional:   PBE0 

@@ -1,0 +1,1359 @@
+@prefix crystallography: <http://emmo.info/domain-crystallography/crystallography#> .
+@prefix emmo: <http://emmo.info/emmo#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://www.osp-core.com/cuds#006f1bbf-1f7b-40ae-979e-c170f2059b37> a emmo:EMMO_2781c835_f883_4aa2_bf5d_cf27949c07a0 ;
+    emmo:EMMO_23b579e1_8088_45b5_9975_064014026c42 "surface"^^xsd:string ;
+    emmo:INVERSE_OF_hasProperty <http://www.osp-core.com/cuds#9f8cb7d4-0d5b-4b4e-a42a-4f4982958915> .
+
+<http://www.osp-core.com/cuds#0074d593-040e-43f1-97d0-e49a11e0c690> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "10.6266313" ;
+    emmo:INVERSE_OF_hasSpatialFirst <http://www.osp-core.com/cuds#8846f334-31b7-44d9-b8c2-bac186e83389> .
+
+<http://www.osp-core.com/cuds#0088484f-da18-4d4c-8566-fd2dba976fd2> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "3.69698485" ;
+    emmo:INVERSE_OF_hasSpatialFirst <http://www.osp-core.com/cuds#0d22e5c7-ee03-4c03-a2eb-bbe7b66a18db> .
+
+<http://www.osp-core.com/cuds#034e9734-33cd-405a-980d-119647fbd86f> a emmo:EMMO_2781c835_f883_4aa2_bf5d_cf27949c07a0 ;
+    emmo:EMMO_23b579e1_8088_45b5_9975_064014026c42 "surface"^^xsd:string ;
+    emmo:INVERSE_OF_hasProperty <http://www.osp-core.com/cuds#747747e5-b6e0-4708-bc35-727de5a7b9c9> .
+
+<http://www.osp-core.com/cuds#07056617-452c-4a78-ad61-4a6067310898> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "7.20149984" ;
+    emmo:INVERSE_OF_hasSpatialNext <http://www.osp-core.com/cuds#eecd261b-f2c7-4cc1-bff7-f48c85a3a884> .
+
+<http://www.osp-core.com/cuds#0847321e-1a15-4c23-a7b1-8e655a5f92e6> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "10.6266313" ;
+    emmo:INVERSE_OF_hasSpatialFirst <http://www.osp-core.com/cuds#27864806-b1b1-4076-8426-bf198e4ea969> .
+
+<http://www.osp-core.com/cuds#08d0b8a8-5d24-4594-9585-39f829046e38> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "5.08420252" ;
+    emmo:INVERSE_OF_hasSpatialFirst <http://www.osp-core.com/cuds#7fd4edcd-dab1-4acb-ae44-a647a410c284> .
+
+<http://www.osp-core.com/cuds#0c1d0ff9-5958-4cf7-b37a-41b492412aa6> a emmo:EMMO_2781c835_f883_4aa2_bf5d_cf27949c07a0 ;
+    emmo:EMMO_23b579e1_8088_45b5_9975_064014026c42 "surface"^^xsd:string ;
+    emmo:INVERSE_OF_hasProperty <http://www.osp-core.com/cuds#adc6ef81-7f08-4372-b78a-758c4de6d410> .
+
+<http://www.osp-core.com/cuds#0df12f6e-8fe4-4e08-a7b4-16982d3714ee> a emmo:EMMO_2781c835_f883_4aa2_bf5d_cf27949c07a0 ;
+    emmo:EMMO_23b579e1_8088_45b5_9975_064014026c42 "surface"^^xsd:string ;
+    emmo:INVERSE_OF_hasProperty <http://www.osp-core.com/cuds#28a17eec-a6e5-4269-8c6b-41fa31b6a892> .
+
+<http://www.osp-core.com/cuds#0ef971df-4bba-478b-83a9-ef9bebe86431> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "8.1" ;
+    emmo:INVERSE_OF_hasSpatialLast <http://www.osp-core.com/cuds#14a6b270-a9ff-4ce8-beba-595e6344b0a7> .
+
+<http://www.osp-core.com/cuds#0f72ac46-9140-426f-9b7c-c15bb1d72a5a> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "4.55477272" ;
+    emmo:INVERSE_OF_hasSpatialNext <http://www.osp-core.com/cuds#8315e6e5-d00c-42b3-a412-fcfa252dac4e> .
+
+<http://www.osp-core.com/cuds#103aa2f7-aad6-48b8-83b3-a5478251e345> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "4.55477272" ;
+    emmo:INVERSE_OF_hasSpatialNext <http://www.osp-core.com/cuds#14a6b270-a9ff-4ce8-beba-595e6344b0a7> .
+
+<http://www.osp-core.com/cuds#12c4292a-98a0-45f6-8b8e-b25a9b5cdeee> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "6.46884343" ;
+    emmo:INVERSE_OF_hasSpatialFirst <http://www.osp-core.com/cuds#9ba733a6-37a6-48cb-9f54-8a0337510bfc> .
+
+<http://www.osp-core.com/cuds#13e3275d-8bb7-431e-bc4c-d2fa9d6666e5> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "3.57357389" ;
+    emmo:INVERSE_OF_hasSpatialLast <http://www.osp-core.com/cuds#27864806-b1b1-4076-8426-bf198e4ea969> .
+
+<http://www.osp-core.com/cuds#16b1c9f4-7f31-45dd-8aac-689b43611f7f> a emmo:EMMO_2781c835_f883_4aa2_bf5d_cf27949c07a0 ;
+    emmo:EMMO_23b579e1_8088_45b5_9975_064014026c42 "surface"^^xsd:string ;
+    emmo:INVERSE_OF_hasProperty <http://www.osp-core.com/cuds#88d59576-e66d-4c82-95ba-ba2667a32416> .
+
+<http://www.osp-core.com/cuds#18b6dc3c-c330-4a67-bc69-60e884e0ab65> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "0.0" ;
+    emmo:INVERSE_OF_hasSpatialLast <http://www.osp-core.com/cuds#eecd261b-f2c7-4cc1-bff7-f48c85a3a884> .
+
+<http://www.osp-core.com/cuds#1c191d5a-177e-4a7f-9b91-de596035d269> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "3.75460607" ;
+    emmo:INVERSE_OF_hasSpatialNext <http://www.osp-core.com/cuds#0d22e5c7-ee03-4c03-a2eb-bbe7b66a18db> .
+
+<http://www.osp-core.com/cuds#1d6821f3-15bb-415b-b1fa-e8640f9c5333> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "8.1" ;
+    emmo:INVERSE_OF_hasSpatialLast <http://www.osp-core.com/cuds#8e8f7c7e-78c9-42c0-b4b6-cf444811aba8> .
+
+<http://www.osp-core.com/cuds#1dc7e8e7-d406-4c94-a402-2951703507f6> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "8.1" ;
+    emmo:INVERSE_OF_hasSpatialLast <http://www.osp-core.com/cuds#c514216b-4ad4-4680-abdc-0ca05c7b2579> .
+
+<http://www.osp-core.com/cuds#1f06d3cb-2dbc-4b19-95d8-006404ec572a> a emmo:EMMO_2781c835_f883_4aa2_bf5d_cf27949c07a0 ;
+    emmo:EMMO_23b579e1_8088_45b5_9975_064014026c42 "surface"^^xsd:string ;
+    emmo:INVERSE_OF_hasProperty <http://www.osp-core.com/cuds#6a1e2b39-68d6-4ed5-9a72-b58451751680> .
+
+<http://www.osp-core.com/cuds#21603e3d-c9fd-4e4d-9dee-07d28b2acb57> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "6.15510602" ;
+    emmo:INVERSE_OF_hasSpatialNext <http://www.osp-core.com/cuds#1fb7f0e6-94c1-4229-8dc2-d5bba1ed08a5> .
+
+<http://www.osp-core.com/cuds#21d73602-aa1c-4d84-87e5-bb3e00dd5382> a emmo:EMMO_4f40def1_3cd7_4067_9596_541e9a5134cf ;
+    emmo:EMMO_23b579e1_8088_45b5_9975_064014026c42 "Pt"^^xsd:string ;
+    emmo:INVERSE_OF_hasProperty <http://www.osp-core.com/cuds#0a2927c9-82d9-41ac-8a8d-cdb4c34bb446> .
+
+<http://www.osp-core.com/cuds#22dd5af7-4ab7-4fd4-9c7b-694ba32556a2> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "9.24070201" ;
+    emmo:INVERSE_OF_hasSpatialFirst <http://www.osp-core.com/cuds#62568cf4-e20f-4acf-9a33-908bed1a4945> .
+
+<http://www.osp-core.com/cuds#251c43bc-6be6-4ba3-9273-19308dea53f6> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "1.31036083" ;
+    emmo:INVERSE_OF_hasSpatialLast <http://www.osp-core.com/cuds#8846f334-31b7-44d9-b8c2-bac186e83389> .
+
+<http://www.osp-core.com/cuds#267d7256-38e2-47ed-a25b-515fc9c8f850> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "1.35410612" ;
+    emmo:INVERSE_OF_hasSpatialNext <http://www.osp-core.com/cuds#953e2b09-9bf1-4523-99ae-79027c6af287> .
+
+<http://www.osp-core.com/cuds#27ff5662-9805-4b3d-9cfb-0999fb791838> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "10.6266313" ;
+    emmo:INVERSE_OF_hasSpatialFirst <http://www.osp-core.com/cuds#32e8588c-a2f4-48a4-a992-99c868a1d518> .
+
+<http://www.osp-core.com/cuds#2806da43-e7e3-49a0-9f8a-633abb307294> a emmo:EMMO_c155bd8a_b044_4760_bdce_4a5f151cd9f6 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "4" ;
+    emmo:INVERSE_OF_hasInput <http://www.osp-core.com/cuds#672b6244-3c8f-4192-b772-366d9f3e4e1c> .
+
+<http://www.osp-core.com/cuds#2a3d4835-1869-4912-9402-81c2794b8846> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "4.15778787" ;
+    emmo:INVERSE_OF_hasSpatialFirst <http://www.osp-core.com/cuds#eecd261b-f2c7-4cc1-bff7-f48c85a3a884> .
+
+<http://www.osp-core.com/cuds#2a9f49b9-7cde-4d77-b534-47cbcd3ab4b8> a emmo:EMMO_2781c835_f883_4aa2_bf5d_cf27949c07a0 ;
+    emmo:EMMO_23b579e1_8088_45b5_9975_064014026c42 "surface"^^xsd:string ;
+    emmo:INVERSE_OF_hasProperty <http://www.osp-core.com/cuds#60ce3bd7-bd3c-44ee-be57-c3adb70fe76c> .
+
+<http://www.osp-core.com/cuds#2b2ac20b-2caa-442d-af37-7dbe976361ee> a emmo:EMMO_4f40def1_3cd7_4067_9596_541e9a5134cf ;
+    emmo:EMMO_23b579e1_8088_45b5_9975_064014026c42 "Pt"^^xsd:string ;
+    emmo:INVERSE_OF_hasProperty <http://www.osp-core.com/cuds#a27dad0d-97f6-4849-a2a8-ddfb6e18f2a4> .
+
+<http://www.osp-core.com/cuds#2d7e3468-4d30-4527-b95c-1756aacb03fe> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "6.95527267" ;
+    emmo:INVERSE_OF_hasSpatialNext <http://www.osp-core.com/cuds#c514216b-4ad4-4680-abdc-0ca05c7b2579> .
+
+<http://www.osp-core.com/cuds#2df7f147-443d-4562-858c-d205e457c06c> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "8.1" ;
+    emmo:INVERSE_OF_hasSpatialLast <http://www.osp-core.com/cuds#2f9458e5-848a-436d-81d3-8e3e380f64cd> .
+
+<http://www.osp-core.com/cuds#2ed441af-f950-4491-ba69-9e436afca579> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "6.46884343" ;
+    emmo:INVERSE_OF_hasSpatialFirst <http://www.osp-core.com/cuds#ee66cf4b-d48d-4a67-9043-909fd7b836b3> .
+
+<http://www.osp-core.com/cuds#33dd3fd6-cbf4-4b3f-a3e7-fbbd91682289> a emmo:EMMO_4f40def1_3cd7_4067_9596_541e9a5134cf ;
+    emmo:EMMO_23b579e1_8088_45b5_9975_064014026c42 "Pt"^^xsd:string ;
+    emmo:INVERSE_OF_hasProperty <http://www.osp-core.com/cuds#a16cc581-d56c-460e-a835-0e0c75e77916> .
+
+<http://www.osp-core.com/cuds#36086597-2cfa-4ba1-854c-f028026d67af> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "2.31105556" ;
+    emmo:INVERSE_OF_hasSpatialFirst <http://www.osp-core.com/cuds#bb51c9b4-b6fc-484a-af85-3ff3d803581d> .
+
+<http://www.osp-core.com/cuds#39fc7081-5276-4ba1-8766-75bb514867a7> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "2.15427277" ;
+    emmo:INVERSE_OF_hasSpatialNext <http://www.osp-core.com/cuds#b4c8541b-0573-4137-93cb-9ce1a992ca02> .
+
+<http://www.osp-core.com/cuds#3c3fe347-c9ed-4d57-b2ff-e34872bd4d50> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "6.46884343" ;
+    emmo:INVERSE_OF_hasSpatialFirst <http://www.osp-core.com/cuds#b2f67f03-6fee-4d5a-9f8a-852da8eef551> .
+
+<http://www.osp-core.com/cuds#3e24bdc5-b59e-4a87-994d-517569f8a731> a emmo:EMMO_2781c835_f883_4aa2_bf5d_cf27949c07a0 ;
+    emmo:EMMO_23b579e1_8088_45b5_9975_064014026c42 "surface"^^xsd:string ;
+    emmo:INVERSE_OF_hasProperty <http://www.osp-core.com/cuds#a796d434-aecb-4c75-b682-941e059e8cee> .
+
+<http://www.osp-core.com/cuds#3e2be417-aef8-4be2-84c8-5342f41ecd8a> a emmo:EMMO_4f40def1_3cd7_4067_9596_541e9a5134cf ;
+    emmo:EMMO_23b579e1_8088_45b5_9975_064014026c42 "Pt"^^xsd:string ;
+    emmo:INVERSE_OF_hasProperty <http://www.osp-core.com/cuds#363431ae-2a85-4803-a438-db8c3079582f> .
+
+<http://www.osp-core.com/cuds#3e94da44-66f1-4da1-ad0b-88f8cd799a02> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "5.08291414" ;
+    emmo:INVERSE_OF_hasSpatialFirst <http://www.osp-core.com/cuds#aebc7981-9223-4fd4-8033-150ce0eda332> .
+
+<http://www.osp-core.com/cuds#3ec578a4-4628-4c85-a103-2338e0d02d40> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "13.39848987" ;
+    emmo:INVERSE_OF_hasSpatialFirst <http://www.osp-core.com/cuds#7414023c-6bea-4774-b3b0-25f863d03be3> .
+
+<http://www.osp-core.com/cuds#3eda3f56-a825-45de-9f1a-c9bce9a5f252> a emmo:EMMO_4f40def1_3cd7_4067_9596_541e9a5134cf ;
+    emmo:EMMO_23b579e1_8088_45b5_9975_064014026c42 "Pt"^^xsd:string ;
+    emmo:INVERSE_OF_hasProperty <http://www.osp-core.com/cuds#7dcb8dad-c58d-4be7-8fd2-6fc84662bf95> .
+
+<http://www.osp-core.com/cuds#401ca6a1-9d4d-45f3-8232-126acef47cc4> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "5.08291414" ;
+    emmo:INVERSE_OF_hasSpatialFirst <http://www.osp-core.com/cuds#1b73ee5c-c5a6-4880-9a2b-40bc5caec594> .
+
+<http://www.osp-core.com/cuds#410f1b41-2882-4f80-ad8d-70ccfc82252c> a emmo:EMMO_4f40def1_3cd7_4067_9596_541e9a5134cf ;
+    emmo:EMMO_23b579e1_8088_45b5_9975_064014026c42 "Pt"^^xsd:string ;
+    emmo:INVERSE_OF_hasProperty <http://www.osp-core.com/cuds#88d59576-e66d-4c82-95ba-ba2667a32416> .
+
+<http://www.osp-core.com/cuds#43a9390f-bd52-4fac-83dd-b87fb2106bfd> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "12.01256059" ;
+    emmo:INVERSE_OF_hasSpatialFirst <http://www.osp-core.com/cuds#c514216b-4ad4-4680-abdc-0ca05c7b2579> .
+
+<http://www.osp-core.com/cuds#43e66837-1526-4906-8317-6b1e0046b625> a emmo:EMMO_4f40def1_3cd7_4067_9596_541e9a5134cf ;
+    emmo:EMMO_23b579e1_8088_45b5_9975_064014026c42 "Pt"^^xsd:string ;
+    emmo:INVERSE_OF_hasProperty <http://www.osp-core.com/cuds#60ce3bd7-bd3c-44ee-be57-c3adb70fe76c> .
+
+<http://www.osp-core.com/cuds#43fa842a-d558-4292-bf76-3d0e6f023b97> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "0.0" ;
+    emmo:INVERSE_OF_hasSpatialLast <http://www.osp-core.com/cuds#4fce973f-03b3-4f0e-9d05-2883aa863fdd> .
+
+<http://www.osp-core.com/cuds#46da9d36-9563-46b2-8b1c-85d3501922be> a emmo:EMMO_2781c835_f883_4aa2_bf5d_cf27949c07a0 ;
+    emmo:EMMO_23b579e1_8088_45b5_9975_064014026c42 "surface"^^xsd:string ;
+    emmo:INVERSE_OF_hasProperty <http://www.osp-core.com/cuds#fbe10449-b1b9-47ee-a13f-8725bace9a82> .
+
+<http://www.osp-core.com/cuds#470194bd-2317-4b9c-82d4-a623e05f867f> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "1.31036083" ;
+    emmo:INVERSE_OF_hasSpatialLast <http://www.osp-core.com/cuds#1b73ee5c-c5a6-4880-9a2b-40bc5caec594> .
+
+<http://www.osp-core.com/cuds#472a5edd-723a-4cbb-a318-99c7e5fca216> a emmo:EMMO_4f40def1_3cd7_4067_9596_541e9a5134cf ;
+    emmo:EMMO_23b579e1_8088_45b5_9975_064014026c42 "Pt"^^xsd:string ;
+    emmo:INVERSE_OF_hasProperty <http://www.osp-core.com/cuds#9f8cb7d4-0d5b-4b4e-a42a-4f4982958915> .
+
+<http://www.osp-core.com/cuds#4866ac1d-35e4-4ffe-a9bb-b14cf0217f08> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "5.83678694" ;
+    emmo:INVERSE_OF_hasSpatialLast <http://www.osp-core.com/cuds#b2f67f03-6fee-4d5a-9f8a-852da8eef551> .
+
+<http://www.osp-core.com/cuds#4b53bffe-c6d4-4c32-bada-28a1d5275b2f> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "6.46884343" ;
+    emmo:INVERSE_OF_hasSpatialFirst <http://www.osp-core.com/cuds#5e6bfd9d-d2c1-402f-bb52-b8587ebd124f> .
+
+<http://www.osp-core.com/cuds#4b61e2ed-5000-4c2b-b387-3bb44cd12f5a> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "7.85477272" ;
+    emmo:INVERSE_OF_hasSpatialFirst <http://www.osp-core.com/cuds#c6ea8247-13f5-4a40-a312-2938b5f85b8e> .
+
+<http://www.osp-core.com/cuds#4ba383b0-8d41-4ae9-b4af-53e8ada13200> a emmo:EMMO_2781c835_f883_4aa2_bf5d_cf27949c07a0 ;
+    emmo:EMMO_23b579e1_8088_45b5_9975_064014026c42 "surface"^^xsd:string ;
+    emmo:INVERSE_OF_hasProperty <http://www.osp-core.com/cuds#41664615-6f39-4612-9eb8-00697a6d4e1a> .
+
+<http://www.osp-core.com/cuds#4e4ba880-af5f-44f7-ba49-2c1467b2b7c2> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "4.55477272" ;
+    emmo:INVERSE_OF_hasSpatialNext <http://www.osp-core.com/cuds#8e4c96b2-9d13-4ae8-8856-6b9662d9e4db> .
+
+<http://www.osp-core.com/cuds#50a324e3-b965-48ef-9de6-3918322ebb36> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "5.08291414" ;
+    emmo:INVERSE_OF_hasSpatialFirst <http://www.osp-core.com/cuds#14a6b270-a9ff-4ce8-beba-595e6344b0a7> .
+
+<http://www.osp-core.com/cuds#5229521f-4e44-4725-af00-04d4a378a65d> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "1.31036083" ;
+    emmo:INVERSE_OF_hasSpatialLast <http://www.osp-core.com/cuds#8e4c96b2-9d13-4ae8-8856-6b9662d9e4db> .
+
+<http://www.osp-core.com/cuds#525fc519-0c4e-4b53-a04f-6a200aa5e691> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "5.08291414" ;
+    emmo:INVERSE_OF_hasSpatialFirst <http://www.osp-core.com/cuds#953e2b09-9bf1-4523-99ae-79027c6af287> .
+
+<http://www.osp-core.com/cuds#52b0f098-e47f-48ca-82e1-e585c416257b> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "4.55477272" ;
+    emmo:INVERSE_OF_hasSpatialNext <http://www.osp-core.com/cuds#8846f334-31b7-44d9-b8c2-bac186e83389> .
+
+<http://www.osp-core.com/cuds#52d8db53-10b7-476b-82e7-065ff1ca92ba> a emmo:EMMO_4f40def1_3cd7_4067_9596_541e9a5134cf ;
+    emmo:EMMO_23b579e1_8088_45b5_9975_064014026c42 "Pt"^^xsd:string ;
+    emmo:INVERSE_OF_hasProperty <http://www.osp-core.com/cuds#474febfa-5237-46c6-bedb-10e70189bef1> .
+
+<http://www.osp-core.com/cuds#53c694bb-17d0-4f4b-b754-3a1bd8abad84> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "9.24070201" ;
+    emmo:INVERSE_OF_hasSpatialFirst <http://www.osp-core.com/cuds#7c56b763-f6ef-4000-8d86-583613b7e373> .
+
+<http://www.osp-core.com/cuds#53e2a66c-871e-4df8-a90a-8745f351616b> a emmo:EMMO_2781c835_f883_4aa2_bf5d_cf27949c07a0 ;
+    emmo:EMMO_23b579e1_8088_45b5_9975_064014026c42 "surface"^^xsd:string ;
+    emmo:INVERSE_OF_hasProperty <http://www.osp-core.com/cuds#26d9be47-0cdb-410d-8b41-a63a440f60e4> .
+
+<http://www.osp-core.com/cuds#547e5b2f-be8f-42b1-b69f-9970359f4d08> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "5.35493937" ;
+    emmo:INVERSE_OF_hasSpatialNext <http://www.osp-core.com/cuds#694fd38b-fabb-434d-916f-db29360c9ee7> .
+
+<http://www.osp-core.com/cuds#556adecf-02a3-4b7d-a684-9ad7cc8d578e> a emmo:EMMO_2781c835_f883_4aa2_bf5d_cf27949c07a0 ;
+    emmo:EMMO_23b579e1_8088_45b5_9975_064014026c42 "surface"^^xsd:string ;
+    emmo:INVERSE_OF_hasProperty <http://www.osp-core.com/cuds#3a573f38-ad5f-4be7-a63d-94f6b5986370> .
+
+<http://www.osp-core.com/cuds#56ed2165-c328-4b19-bd90-c5fce9dd6127> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "8.1" ;
+    emmo:INVERSE_OF_hasSpatialLast <http://www.osp-core.com/cuds#62568cf4-e20f-4acf-9a33-908bed1a4945> .
+
+<http://www.osp-core.com/cuds#5710d0d2-c4c4-4485-bdd5-06da9a66c882> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "5.83678694" ;
+    emmo:INVERSE_OF_hasSpatialLast <http://www.osp-core.com/cuds#694fd38b-fabb-434d-916f-db29360c9ee7> .
+
+<http://www.osp-core.com/cuds#5723691e-6466-47fc-b4ea-9dc9cf6f529f> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "5.83678694" ;
+    emmo:INVERSE_OF_hasSpatialLast <http://www.osp-core.com/cuds#aebc7981-9223-4fd4-8033-150ce0eda332> .
+
+<http://www.osp-core.com/cuds#586fe1f4-c252-47e6-bd25-38c05ff9cf8c> a emmo:EMMO_f91e14da_23be_4b58_8e14_ff40371306a7 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "30" ;
+    emmo:INVERSE_OF_hasInput <http://www.osp-core.com/cuds#672b6244-3c8f-4192-b772-366d9f3e4e1c> .
+
+<http://www.osp-core.com/cuds#5a96db9b-03d7-4a00-924c-fa76a31b9e81> a emmo:EMMO_e29f84db_4c1c_46ae_aa38_c4d47536b972 ;
+    emmo:EMMO_23b579e1_8088_45b5_9975_064014026c42 "eV"^^xsd:string ;
+    emmo:INVERSE_OF_hasReferenceUnit <http://www.osp-core.com/cuds#e81f1bee-0d2c-41d1-9deb-dc42a0332e67> .
+
+<http://www.osp-core.com/cuds#5aace5b3-4703-46ed-93e4-c599d1f61885> a emmo:EMMO_4f40def1_3cd7_4067_9596_541e9a5134cf ;
+    emmo:EMMO_23b579e1_8088_45b5_9975_064014026c42 "Pt"^^xsd:string ;
+    emmo:INVERSE_OF_hasProperty <http://www.osp-core.com/cuds#776a064d-6887-4a9e-bf45-de7e9b06699b> .
+
+<http://www.osp-core.com/cuds#5ae79769-801a-4953-90b2-5130dc0757c5> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "7.85477272" ;
+    emmo:INVERSE_OF_hasSpatialFirst <http://www.osp-core.com/cuds#8e4c96b2-9d13-4ae8-8856-6b9662d9e4db> .
+
+<http://www.osp-core.com/cuds#5bb01b38-8d1b-40ca-aac3-5c4b680d7fa9> a emmo:EMMO_4f40def1_3cd7_4067_9596_541e9a5134cf ;
+    emmo:EMMO_23b579e1_8088_45b5_9975_064014026c42 "Pt"^^xsd:string ;
+    emmo:INVERSE_OF_hasProperty <http://www.osp-core.com/cuds#5e7317e4-a9c3-4ea9-a3aa-b0a917ba01cc> .
+
+<http://www.osp-core.com/cuds#5bdf4e76-f9cf-4570-b1c8-b1e0b237e0dc> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "1.31036083" ;
+    emmo:INVERSE_OF_hasSpatialLast <http://www.osp-core.com/cuds#5e6bfd9d-d2c1-402f-bb52-b8587ebd124f> .
+
+<http://www.osp-core.com/cuds#5d7f046b-ea3a-48ce-9e20-5186f0abdf73> a emmo:EMMO_4f40def1_3cd7_4067_9596_541e9a5134cf ;
+    emmo:EMMO_23b579e1_8088_45b5_9975_064014026c42 "Pt"^^xsd:string ;
+    emmo:INVERSE_OF_hasProperty <http://www.osp-core.com/cuds#6a1e2b39-68d6-4ed5-9a72-b58451751680> .
+
+<http://www.osp-core.com/cuds#5eb4fc4d-3ff1-4d22-9c88-56f81a683c62> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "3.57357389" ;
+    emmo:INVERSE_OF_hasSpatialLast <http://www.osp-core.com/cuds#7c56b763-f6ef-4000-8d86-583613b7e373> .
+
+<http://www.osp-core.com/cuds#60e03476-9842-40f5-aeac-399cebfb0af9> a emmo:EMMO_2781c835_f883_4aa2_bf5d_cf27949c07a0 ;
+    emmo:EMMO_23b579e1_8088_45b5_9975_064014026c42 "surface"^^xsd:string ;
+    emmo:INVERSE_OF_hasProperty <http://www.osp-core.com/cuds#ecc1385e-7707-4d33-a76e-a31e8f7af20a> .
+
+<http://www.osp-core.com/cuds#64518360-c97f-45f7-a999-8704c91b3d71> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "12.01256059" ;
+    emmo:INVERSE_OF_hasSpatialFirst <http://www.osp-core.com/cuds#694fd38b-fabb-434d-916f-db29360c9ee7> .
+
+<http://www.osp-core.com/cuds#647ed5ff-1410-4e32-918a-02c2a9a16233> a emmo:EMMO_4f40def1_3cd7_4067_9596_541e9a5134cf ;
+    emmo:EMMO_23b579e1_8088_45b5_9975_064014026c42 "Pt"^^xsd:string ;
+    emmo:INVERSE_OF_hasProperty <http://www.osp-core.com/cuds#41664615-6f39-4612-9eb8-00697a6d4e1a> .
+
+<http://www.osp-core.com/cuds#65459a83-2f96-4e2e-ad7f-d7da4af6c674> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "2.95443942" ;
+    emmo:INVERSE_OF_hasSpatialNext <http://www.osp-core.com/cuds#56d95101-636c-4497-9ad8-e08b1ed23d20> .
+
+<http://www.osp-core.com/cuds#66b9b319-1de8-49eb-ab28-1ae7b2fb6ca0> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "7.75543932" ;
+    emmo:INVERSE_OF_hasSpatialNext <http://www.osp-core.com/cuds#5cc45b59-9ec2-4453-a086-d30bb71981d4> .
+
+<http://www.osp-core.com/cuds#6934bb9c-89fd-4823-ac23-7bd0238f254f> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "7.85477272" ;
+    emmo:INVERSE_OF_hasSpatialFirst <http://www.osp-core.com/cuds#db95ae1f-c3ee-488a-910f-24ee5f89ae50> .
+
+<http://www.osp-core.com/cuds#6a266cab-1c48-4a82-9c0c-31396ef973bb> a emmo:EMMO_4f40def1_3cd7_4067_9596_541e9a5134cf ;
+    emmo:EMMO_23b579e1_8088_45b5_9975_064014026c42 "Pt"^^xsd:string ;
+    emmo:INVERSE_OF_hasProperty <http://www.osp-core.com/cuds#09d9d350-b303-436b-97d3-79ff27baaa1c> .
+
+<http://www.osp-core.com/cuds#6add4612-09f6-425e-b445-2ea5d793e97a> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "1.31036083" ;
+    emmo:INVERSE_OF_hasSpatialLast <http://www.osp-core.com/cuds#cbeaab92-82e0-4c26-8c9b-dfd20d4e3247> .
+
+<http://www.osp-core.com/cuds#6d37a454-1cde-491f-a69d-e7bab13a2be4> a emmo:EMMO_4f40def1_3cd7_4067_9596_541e9a5134cf ;
+    emmo:EMMO_23b579e1_8088_45b5_9975_064014026c42 "Pt"^^xsd:string ;
+    emmo:INVERSE_OF_hasProperty <http://www.osp-core.com/cuds#a83ed1ae-7947-4c3f-8fe3-c02346efe123> .
+
+<http://www.osp-core.com/cuds#6e0f97eb-b7e5-4af7-abfc-156c070cd332> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "3.57357389" ;
+    emmo:INVERSE_OF_hasSpatialLast <http://www.osp-core.com/cuds#db95ae1f-c3ee-488a-910f-24ee5f89ae50> .
+
+<http://www.osp-core.com/cuds#6fdacaea-4963-41f4-a199-7c651744fa73> a emmo:EMMO_2781c835_f883_4aa2_bf5d_cf27949c07a0 ;
+    emmo:EMMO_23b579e1_8088_45b5_9975_064014026c42 "surface"^^xsd:string ;
+    emmo:INVERSE_OF_hasProperty <http://www.osp-core.com/cuds#363431ae-2a85-4803-a438-db8c3079582f> .
+
+<http://www.osp-core.com/cuds#70bb7ffc-b055-40c2-abc7-2e65f3b3aadc> a emmo:EMMO_2781c835_f883_4aa2_bf5d_cf27949c07a0 ;
+    emmo:EMMO_23b579e1_8088_45b5_9975_064014026c42 "surface"^^xsd:string ;
+    emmo:INVERSE_OF_hasProperty <http://www.osp-core.com/cuds#fb276102-e128-4513-9b02-22c6469c0f4d> .
+
+<http://www.osp-core.com/cuds#72132358-fc0b-4a39-89b7-b63d041fc5dd> a emmo:EMMO_2781c835_f883_4aa2_bf5d_cf27949c07a0 ;
+    emmo:EMMO_23b579e1_8088_45b5_9975_064014026c42 "surface"^^xsd:string ;
+    emmo:INVERSE_OF_hasProperty <http://www.osp-core.com/cuds#bf021187-38f6-4d7d-9110-67a7cd4333be> .
+
+<http://www.osp-core.com/cuds#72c35fdc-e343-4250-9e8a-ff46210eef3a> a emmo:EMMO_2781c835_f883_4aa2_bf5d_cf27949c07a0 ;
+    emmo:EMMO_23b579e1_8088_45b5_9975_064014026c42 "surface"^^xsd:string ;
+    emmo:INVERSE_OF_hasProperty <http://www.osp-core.com/cuds#474febfa-5237-46c6-bedb-10e70189bef1> .
+
+<http://www.osp-core.com/cuds#73da4fd8-8ad5-4acf-b500-1f60fdbaa60c> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "3.75460607" ;
+    emmo:INVERSE_OF_hasSpatialNext <http://www.osp-core.com/cuds#5da82c57-0ea4-4562-af6e-ff6f83147ea7> .
+
+<http://www.osp-core.com/cuds#7406cdd9-79e9-43db-bc5e-e195ec2b4f7b> a emmo:EMMO_2781c835_f883_4aa2_bf5d_cf27949c07a0 ;
+    emmo:EMMO_23b579e1_8088_45b5_9975_064014026c42 "surface"^^xsd:string ;
+    emmo:INVERSE_OF_hasProperty <http://www.osp-core.com/cuds#e2b644d8-1d8e-450b-873c-95ef30f28303> .
+
+<http://www.osp-core.com/cuds#740cb98d-42ca-4614-882f-fc759a5ccfa4> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "1.31036083" ;
+    emmo:INVERSE_OF_hasSpatialLast <http://www.osp-core.com/cuds#d66f0a74-c53e-464b-baa4-7d4e7af97d0c> .
+
+<http://www.osp-core.com/cuds#77f0793a-32d6-4b34-bbc6-d33b7c60d669> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "8.1" ;
+    emmo:INVERSE_OF_hasSpatialLast <http://www.osp-core.com/cuds#9ba733a6-37a6-48cb-9f54-8a0337510bfc> .
+
+<http://www.osp-core.com/cuds#7908f215-fdca-4977-81ac-91b61e87e0b5> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "10.74456106" ;
+    emmo:INVERSE_OF_hasSpatialLast <http://www.osp-core.com/cuds#7fd4edcd-dab1-4acb-ae44-a647a410c284> .
+
+<http://www.osp-core.com/cuds#79310511-9456-410e-98fb-e318be1656b0> a emmo:EMMO_2781c835_f883_4aa2_bf5d_cf27949c07a0 ;
+    emmo:EMMO_23b579e1_8088_45b5_9975_064014026c42 "surface"^^xsd:string ;
+    emmo:INVERSE_OF_hasProperty <http://www.osp-core.com/cuds#09d9d350-b303-436b-97d3-79ff27baaa1c> .
+
+<http://www.osp-core.com/cuds#7a5b1d8b-0116-4afa-9d5d-93192b283e14> a emmo:EMMO_2781c835_f883_4aa2_bf5d_cf27949c07a0 ;
+    emmo:EMMO_23b579e1_8088_45b5_9975_064014026c42 "surface"^^xsd:string ;
+    emmo:INVERSE_OF_hasProperty <http://www.osp-core.com/cuds#01b60d32-58b0-403c-b465-2fcd909245bd> .
+
+<http://www.osp-core.com/cuds#7bc7f764-15cb-4dc7-b39d-d75e4601d786> a emmo:EMMO_2781c835_f883_4aa2_bf5d_cf27949c07a0 ;
+    emmo:EMMO_23b579e1_8088_45b5_9975_064014026c42 "surface"^^xsd:string ;
+    emmo:INVERSE_OF_hasProperty <http://www.osp-core.com/cuds#a83ed1ae-7947-4c3f-8fe3-c02346efe123> .
+
+<http://www.osp-core.com/cuds#7eb4a643-5a61-41aa-b21a-57132f6b62c2> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "7.85477272" ;
+    emmo:INVERSE_OF_hasSpatialFirst <http://www.osp-core.com/cuds#8e8f7c7e-78c9-42c0-b4b6-cf444811aba8> .
+
+<http://www.osp-core.com/cuds#7f30db38-1815-44c9-a2d1-c59d7bc6590a> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "6.15510602" ;
+    emmo:INVERSE_OF_hasSpatialNext <http://www.osp-core.com/cuds#c6ea8247-13f5-4a40-a312-2938b5f85b8e> .
+
+<http://www.osp-core.com/cuds#7fce8070-48d2-4e78-83f5-71d39aa46674> a emmo:EMMO_e34a0117_065d_4a45_8e6e_28e35143836a ;
+    emmo:EMMO_23b579e1_8088_45b5_9975_064014026c42 "CHONSFPtClNi"^^xsd:string ;
+    emmo:INVERSE_OF_hasInput <http://www.osp-core.com/cuds#672b6244-3c8f-4192-b772-366d9f3e4e1c> .
+
+<http://www.osp-core.com/cuds#8099d8ea-0de3-452a-9eb1-499ce8116b4b> a emmo:EMMO_4f40def1_3cd7_4067_9596_541e9a5134cf ;
+    emmo:EMMO_23b579e1_8088_45b5_9975_064014026c42 "Pt"^^xsd:string ;
+    emmo:INVERSE_OF_hasProperty <http://www.osp-core.com/cuds#eaa9e279-4165-496f-b1e3-0886d5ba649d> .
+
+<http://www.osp-core.com/cuds#80d7cdb9-33f3-4db4-bea4-126ec4313b1e> a emmo:EMMO_2781c835_f883_4aa2_bf5d_cf27949c07a0 ;
+    emmo:EMMO_23b579e1_8088_45b5_9975_064014026c42 "surface"^^xsd:string ;
+    emmo:INVERSE_OF_hasProperty <http://www.osp-core.com/cuds#0a7d1545-7afa-4a9f-bcca-9c80592eee8d> .
+
+<http://www.osp-core.com/cuds#80e5741b-0981-467d-91fd-6a51d152109d> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "4.55477272" ;
+    emmo:INVERSE_OF_hasSpatialNext <http://www.osp-core.com/cuds#1b73ee5c-c5a6-4880-9a2b-40bc5caec594> .
+
+<http://www.osp-core.com/cuds#838349a1-a35c-4fe4-bfee-3559d37a7fe5> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "3.57357389" ;
+    emmo:INVERSE_OF_hasSpatialLast <http://www.osp-core.com/cuds#0d22e5c7-ee03-4c03-a2eb-bbe7b66a18db> .
+
+<http://www.osp-core.com/cuds#86acc866-ca84-4c6e-93f0-240ff517e730> a emmo:EMMO_4f40def1_3cd7_4067_9596_541e9a5134cf ;
+    emmo:EMMO_23b579e1_8088_45b5_9975_064014026c42 "Pt"^^xsd:string ;
+    emmo:INVERSE_OF_hasProperty <http://www.osp-core.com/cuds#26d9be47-0cdb-410d-8b41-a63a440f60e4> .
+
+<http://www.osp-core.com/cuds#86b1b54a-2c20-4a98-bb93-6204176390e4> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "5.35493937" ;
+    emmo:INVERSE_OF_hasSpatialNext <http://www.osp-core.com/cuds#b2f67f03-6fee-4d5a-9f8a-852da8eef551> .
+
+<http://www.osp-core.com/cuds#8870c62c-8c07-493d-ae4c-c31f5d8bd1d7> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "4.55477272" ;
+    emmo:INVERSE_OF_hasSpatialNext <http://www.osp-core.com/cuds#8e8f7c7e-78c9-42c0-b4b6-cf444811aba8> .
+
+<http://www.osp-core.com/cuds#8969036c-55b7-4c9c-855d-01bb7e0c720a> a emmo:EMMO_4f40def1_3cd7_4067_9596_541e9a5134cf ;
+    emmo:EMMO_23b579e1_8088_45b5_9975_064014026c42 "Pt"^^xsd:string ;
+    emmo:INVERSE_OF_hasProperty <http://www.osp-core.com/cuds#3a573f38-ad5f-4be7-a63d-94f6b5986370> .
+
+<http://www.osp-core.com/cuds#8b17ede3-aac6-4a5b-9f73-32915ba76bad> a emmo:EMMO_4f40def1_3cd7_4067_9596_541e9a5134cf ;
+    emmo:EMMO_23b579e1_8088_45b5_9975_064014026c42 "Pt"^^xsd:string ;
+    emmo:INVERSE_OF_hasProperty <http://www.osp-core.com/cuds#bf021187-38f6-4d7d-9110-67a7cd4333be> .
+
+<http://www.osp-core.com/cuds#90cd9281-3470-490e-a9dd-67e5a81b97cb> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "6.46884343" ;
+    emmo:INVERSE_OF_hasSpatialFirst <http://www.osp-core.com/cuds#5da82c57-0ea4-4562-af6e-ff6f83147ea7> .
+
+<http://www.osp-core.com/cuds#936756d8-e950-4104-be21-f438df754136> a emmo:EMMO_4f40def1_3cd7_4067_9596_541e9a5134cf ;
+    emmo:EMMO_23b579e1_8088_45b5_9975_064014026c42 "Pt"^^xsd:string ;
+    emmo:INVERSE_OF_hasProperty <http://www.osp-core.com/cuds#0a7d1545-7afa-4a9f-bcca-9c80592eee8d> .
+
+<http://www.osp-core.com/cuds#94877b82-e042-4bbf-a47b-69d1200410be> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "1.31036083" ;
+    emmo:INVERSE_OF_hasSpatialLast <http://www.osp-core.com/cuds#551c1d5a-d51f-4a18-94a1-2e898c699f71> .
+
+<http://www.osp-core.com/cuds#95365a42-ea02-4080-bae1-b75bf5fa0779> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "5.83678694" ;
+    emmo:INVERSE_OF_hasSpatialLast <http://www.osp-core.com/cuds#32e8588c-a2f4-48a4-a992-99c868a1d518> .
+
+<http://www.osp-core.com/cuds#9575d08e-cb57-4d43-9a15-d96198bcb97f> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "6.95527267" ;
+    emmo:INVERSE_OF_hasSpatialNext <http://www.osp-core.com/cuds#cbeaab92-82e0-4c26-8c9b-dfd20d4e3247> .
+
+<http://www.osp-core.com/cuds#9642f76e-6dd0-4bb2-9b8d-3ae992f717c8> a emmo:EMMO_4f40def1_3cd7_4067_9596_541e9a5134cf ;
+    emmo:EMMO_23b579e1_8088_45b5_9975_064014026c42 "Pt"^^xsd:string ;
+    emmo:INVERSE_OF_hasProperty <http://www.osp-core.com/cuds#ecc1385e-7707-4d33-a76e-a31e8f7af20a> .
+
+<http://www.osp-core.com/cuds#98479bfa-41e6-4dd7-93fa-1d3abec4b7da> a emmo:EMMO_4f40def1_3cd7_4067_9596_541e9a5134cf ;
+    emmo:EMMO_23b579e1_8088_45b5_9975_064014026c42 "Pt"^^xsd:string ;
+    emmo:INVERSE_OF_hasProperty <http://www.osp-core.com/cuds#e0a703d7-056a-48b2-80a6-2cb5e88ea7b3> .
+
+<http://www.osp-core.com/cuds#9a762b78-8388-4a70-b17e-950477b692d8> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "7.75543932" ;
+    emmo:INVERSE_OF_hasSpatialNext <http://www.osp-core.com/cuds#7414023c-6bea-4774-b3b0-25f863d03be3> .
+
+<http://www.osp-core.com/cuds#9d638bea-7257-47f1-af04-8894ce05c146> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "9.24070201" ;
+    emmo:INVERSE_OF_hasSpatialFirst <http://www.osp-core.com/cuds#cbeaab92-82e0-4c26-8c9b-dfd20d4e3247> .
+
+<http://www.osp-core.com/cuds#9e2428b8-83c1-447c-b946-cc6ebde959ab> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "8.1" ;
+    emmo:INVERSE_OF_hasSpatialLast <http://www.osp-core.com/cuds#8315e6e5-d00c-42b3-a412-fcfa252dac4e> .
+
+<http://www.osp-core.com/cuds#a2298f80-91d4-4df8-8d5c-ac1e9f6afab4> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "6.46884343" ;
+    emmo:INVERSE_OF_hasSpatialFirst <http://www.osp-core.com/cuds#e0fcd146-552e-4618-b1db-4b44c73168b2> .
+
+<http://www.osp-core.com/cuds#a3421d0f-306e-4c99-8780-40a8a409673f> a emmo:EMMO_2781c835_f883_4aa2_bf5d_cf27949c07a0 ;
+    emmo:EMMO_23b579e1_8088_45b5_9975_064014026c42 "surface"^^xsd:string ;
+    emmo:INVERSE_OF_hasProperty <http://www.osp-core.com/cuds#252d2760-0736-43ef-8c11-a162f6e943ce> .
+
+<http://www.osp-core.com/cuds#a48ad691-3cda-4344-87f8-6b5acd2d71ce> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "3.69698485" ;
+    emmo:INVERSE_OF_hasSpatialFirst <http://www.osp-core.com/cuds#551c1d5a-d51f-4a18-94a1-2e898c699f71> .
+
+<http://www.osp-core.com/cuds#a5c136e0-ac80-4cd3-b299-0b264e5a04dd> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "3.57357389" ;
+    emmo:INVERSE_OF_hasSpatialLast <http://www.osp-core.com/cuds#c6ea8247-13f5-4a40-a312-2938b5f85b8e> .
+
+<http://www.osp-core.com/cuds#a626bfe0-3699-4a97-9631-e440c8f9a39e> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "3.57357389" ;
+    emmo:INVERSE_OF_hasSpatialLast <http://www.osp-core.com/cuds#953e2b09-9bf1-4523-99ae-79027c6af287> .
+
+<http://www.osp-core.com/cuds#a758cb66-8145-4b21-8308-1dbf85466b61> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "7.85477272" ;
+    emmo:INVERSE_OF_hasSpatialFirst <http://www.osp-core.com/cuds#56d95101-636c-4497-9ad8-e08b1ed23d20> .
+
+<http://www.osp-core.com/cuds#a8c7adc4-4901-4897-9a09-caf8af15a302> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "7.85477272" ;
+    emmo:INVERSE_OF_hasSpatialFirst <http://www.osp-core.com/cuds#83482a13-147e-4d11-b8bc-12ef3437c0ed> .
+
+<http://www.osp-core.com/cuds#ab2d151c-1d05-4450-9bee-6f88e2858571> a emmo:EMMO_2781c835_f883_4aa2_bf5d_cf27949c07a0 ;
+    emmo:EMMO_23b579e1_8088_45b5_9975_064014026c42 "adsorbate"^^xsd:string ;
+    emmo:INVERSE_OF_hasProperty <http://www.osp-core.com/cuds#83170aa5-8816-48bb-affc-af484db8e381> .
+
+<http://www.osp-core.com/cuds#abedf3fd-a3c9-41fa-b3df-da19d6823619> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "5.83678694" ;
+    emmo:INVERSE_OF_hasSpatialLast <http://www.osp-core.com/cuds#45da9210-1cd3-4f97-898e-e4000764e5ab> .
+
+<http://www.osp-core.com/cuds#acf47203-6a44-49ab-8d13-450a91807000> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "1.31036083" ;
+    emmo:INVERSE_OF_hasSpatialLast <http://www.osp-core.com/cuds#848e6694-d449-4d3a-908a-d443b25b72bd> .
+
+<http://www.osp-core.com/cuds#ad22a5f3-6be1-4e94-a440-83cba2bd8da2> a emmo:EMMO_4f40def1_3cd7_4067_9596_541e9a5134cf ;
+    emmo:EMMO_23b579e1_8088_45b5_9975_064014026c42 "Pt"^^xsd:string ;
+    emmo:INVERSE_OF_hasProperty <http://www.osp-core.com/cuds#a796d434-aecb-4c75-b682-941e059e8cee> .
+
+<http://www.osp-core.com/cuds#ad5b6b2c-980a-41ca-a462-183cb6c13786> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "2.95701878" ;
+    emmo:INVERSE_OF_hasSpatialNext <http://www.osp-core.com/cuds#7fd4edcd-dab1-4acb-ae44-a647a410c284> .
+
+<http://www.osp-core.com/cuds#adc754a4-bb77-4c65-ba00-dfa18583401a> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "10.6266313" ;
+    emmo:INVERSE_OF_hasSpatialFirst <http://www.osp-core.com/cuds#5cc45b59-9ec2-4453-a086-d30bb71981d4> .
+
+<http://www.osp-core.com/cuds#ae2e0312-6c41-481b-b054-b80f3eb0d03d> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "3.75460607" ;
+    emmo:INVERSE_OF_hasSpatialNext <http://www.osp-core.com/cuds#7c56b763-f6ef-4000-8d86-583613b7e373> .
+
+<http://www.osp-core.com/cuds#b0d32d33-7c4d-46f0-9ee5-edc2254f935b> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "1.31036083" ;
+    emmo:INVERSE_OF_hasSpatialLast <http://www.osp-core.com/cuds#e0fcd146-552e-4618-b1db-4b44c73168b2> .
+
+<http://www.osp-core.com/cuds#b16f524a-7cfe-4710-839b-7245d1c37dda> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "2.15427277" ;
+    emmo:INVERSE_OF_hasSpatialNext <http://www.osp-core.com/cuds#e0fcd146-552e-4618-b1db-4b44c73168b2> .
+
+<http://www.osp-core.com/cuds#b39e8c3d-7223-494b-83df-f1242a27c8c2> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "5.35493937" ;
+    emmo:INVERSE_OF_hasSpatialNext <http://www.osp-core.com/cuds#45da9210-1cd3-4f97-898e-e4000764e5ab> .
+
+<http://www.osp-core.com/cuds#b3cc76d9-0a07-4f45-b689-db51e7bbe215> a emmo:EMMO_2781c835_f883_4aa2_bf5d_cf27949c07a0 ;
+    emmo:EMMO_23b579e1_8088_45b5_9975_064014026c42 "surface"^^xsd:string ;
+    emmo:INVERSE_OF_hasProperty <http://www.osp-core.com/cuds#0a2927c9-82d9-41ac-8a8d-cdb4c34bb446> .
+
+<http://www.osp-core.com/cuds#b3da6ef8-5e32-40f6-b6a4-cb61b58d520b> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "5.83678694" ;
+    emmo:INVERSE_OF_hasSpatialLast <http://www.osp-core.com/cuds#5cc45b59-9ec2-4453-a086-d30bb71981d4> .
+
+<http://www.osp-core.com/cuds#b8ec3a9f-1d50-4409-be31-bbf5231252ad> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "8.1" ;
+    emmo:INVERSE_OF_hasSpatialLast <http://www.osp-core.com/cuds#ee66cf4b-d48d-4a67-9043-909fd7b836b3> .
+
+<http://www.osp-core.com/cuds#b9804beb-8b10-4815-9760-25057e59ca78> a emmo:EMMO_2781c835_f883_4aa2_bf5d_cf27949c07a0 ;
+    emmo:EMMO_23b579e1_8088_45b5_9975_064014026c42 "surface"^^xsd:string ;
+    emmo:INVERSE_OF_hasProperty <http://www.osp-core.com/cuds#eaa9e279-4165-496f-b1e3-0886d5ba649d> .
+
+<http://www.osp-core.com/cuds#ba99fb7b-6cf0-4eec-8b7f-2a6dbe8dc337> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "1.35410612" ;
+    emmo:INVERSE_OF_hasSpatialNext <http://www.osp-core.com/cuds#bb51c9b4-b6fc-484a-af85-3ff3d803581d> .
+
+<http://www.osp-core.com/cuds#baa3e309-a48f-4810-9741-a2a3e98c94e0> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "6.95527267" ;
+    emmo:INVERSE_OF_hasSpatialNext <http://www.osp-core.com/cuds#62568cf4-e20f-4acf-9a33-908bed1a4945> .
+
+<http://www.osp-core.com/cuds#bafe6c1f-1aa2-4451-b03b-151e047aa9d9> a emmo:EMMO_6c865924_f5cd_442b_8ce6_98b3381c9f82 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "100" ;
+    emmo:INVERSE_OF_hasInput <http://www.osp-core.com/cuds#672b6244-3c8f-4192-b772-366d9f3e4e1c> .
+
+<http://www.osp-core.com/cuds#bc78ac27-7128-4ae4-ba4d-32422ba47610> a emmo:EMMO_4f40def1_3cd7_4067_9596_541e9a5134cf ;
+    emmo:EMMO_23b579e1_8088_45b5_9975_064014026c42 "Pt"^^xsd:string ;
+    emmo:INVERSE_OF_hasProperty <http://www.osp-core.com/cuds#adc6ef81-7f08-4372-b78a-758c4de6d410> .
+
+<http://www.osp-core.com/cuds#bdb196f2-47f4-48d2-8a12-9d545f8a1363> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "2.95443942" ;
+    emmo:INVERSE_OF_hasSpatialNext <http://www.osp-core.com/cuds#aebc7981-9223-4fd4-8033-150ce0eda332> .
+
+<http://www.osp-core.com/cuds#bf1c6bba-7f6d-48ec-8b20-00e08f947449> a emmo:EMMO_2781c835_f883_4aa2_bf5d_cf27949c07a0 ;
+    emmo:EMMO_23b579e1_8088_45b5_9975_064014026c42 "surface"^^xsd:string ;
+    emmo:INVERSE_OF_hasProperty <http://www.osp-core.com/cuds#a27dad0d-97f6-4849-a2a8-ddfb6e18f2a4> .
+
+<http://www.osp-core.com/cuds#c046db07-c70e-4c16-816f-34cfdc2cf40c> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "9.52500529" ;
+    emmo:INVERSE_OF_hasSpatialLast <http://www.osp-core.com/cuds#50b4c9fc-b004-4d11-a357-a91a339f3005> .
+
+<http://www.osp-core.com/cuds#c2037f4e-7331-4733-b5a8-d19c640027c8> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "5.83678694" ;
+    emmo:INVERSE_OF_hasSpatialLast <http://www.osp-core.com/cuds#56d95101-636c-4497-9ad8-e08b1ed23d20> .
+
+<http://www.osp-core.com/cuds#c21c2f20-17d8-4ae7-a049-3a74d6975ae9> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "2.95549819" ;
+    emmo:INVERSE_OF_hasSpatialNext <http://www.osp-core.com/cuds#50b4c9fc-b004-4d11-a357-a91a339f3005> .
+
+<http://www.osp-core.com/cuds#c99423c2-a00e-4ba4-9a67-4b4d45ec7d4e> a emmo:EMMO_4f40def1_3cd7_4067_9596_541e9a5134cf ;
+    emmo:EMMO_23b579e1_8088_45b5_9975_064014026c42 "O"^^xsd:string ;
+    emmo:INVERSE_OF_hasProperty <http://www.osp-core.com/cuds#83170aa5-8816-48bb-affc-af484db8e381> .
+
+<http://www.osp-core.com/cuds#cad28633-c744-46e0-a1c4-9ad53be6c8b1> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "2.95443942" ;
+    emmo:INVERSE_OF_hasSpatialNext <http://www.osp-core.com/cuds#32e8588c-a2f4-48a4-a992-99c868a1d518> .
+
+<http://www.osp-core.com/cuds#cb5d48ce-ebc7-44d2-9b4e-fd2e90da2e91> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "12.01256059" ;
+    emmo:INVERSE_OF_hasSpatialFirst <http://www.osp-core.com/cuds#848e6694-d449-4d3a-908a-d443b25b72bd> .
+
+<http://www.osp-core.com/cuds#cba626d0-2f72-444c-acbf-367bb544dadc> a emmo:EMMO_4f40def1_3cd7_4067_9596_541e9a5134cf ;
+    emmo:EMMO_23b579e1_8088_45b5_9975_064014026c42 "Pt"^^xsd:string ;
+    emmo:INVERSE_OF_hasProperty <http://www.osp-core.com/cuds#eea9d1db-254f-4425-b4b6-7bfa8035d33e> .
+
+<http://www.osp-core.com/cuds#ccef19a1-4b43-4ad4-a784-5735adcf5667> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "2.15427277" ;
+    emmo:INVERSE_OF_hasSpatialNext <http://www.osp-core.com/cuds#551c1d5a-d51f-4a18-94a1-2e898c699f71> .
+
+<http://www.osp-core.com/cuds#cd6e6d42-f0d6-416c-a407-c88eb929cca6> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "7.75543932" ;
+    emmo:INVERSE_OF_hasSpatialNext <http://www.osp-core.com/cuds#83482a13-147e-4d11-b8bc-12ef3437c0ed> .
+
+<http://www.osp-core.com/cuds#cde8bc85-942d-4af8-b27c-574ce5fc125d> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "2.15427277" ;
+    emmo:INVERSE_OF_hasSpatialNext <http://www.osp-core.com/cuds#d66f0a74-c53e-464b-baa4-7d4e7af97d0c> .
+
+<http://www.osp-core.com/cuds#ce9516ae-1c53-483b-a691-9c2e1bfe40d8> a emmo:EMMO_4f40def1_3cd7_4067_9596_541e9a5134cf ;
+    emmo:EMMO_23b579e1_8088_45b5_9975_064014026c42 "C"^^xsd:string ;
+    emmo:INVERSE_OF_hasProperty <http://www.osp-core.com/cuds#ffb260da-13cd-45fe-bbbd-0c94b62c2faa> .
+
+<http://www.osp-core.com/cuds#cfcaff59-dae5-404f-9a7b-2e70fe91645e> a emmo:EMMO_2781c835_f883_4aa2_bf5d_cf27949c07a0 ;
+    emmo:EMMO_23b579e1_8088_45b5_9975_064014026c42 "surface"^^xsd:string ;
+    emmo:INVERSE_OF_hasProperty <http://www.osp-core.com/cuds#a16cc581-d56c-460e-a835-0e0c75e77916> .
+
+<http://www.osp-core.com/cuds#d04055c6-d8fe-49b5-b4f3-4715987c7523> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "3.57357389" ;
+    emmo:INVERSE_OF_hasSpatialLast <http://www.osp-core.com/cuds#1fb7f0e6-94c1-4229-8dc2-d5bba1ed08a5> .
+
+<http://www.osp-core.com/cuds#d22de8bc-e52e-4094-af17-acac51ddb35e> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "8.31557575" ;
+    emmo:INVERSE_OF_hasSpatialFirst <http://www.osp-core.com/cuds#4fce973f-03b3-4f0e-9d05-2883aa863fdd> .
+
+<http://www.osp-core.com/cuds#d311433f-c8e6-4bdd-953c-64018557ce5a> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "6.15510602" ;
+    emmo:INVERSE_OF_hasSpatialNext <http://www.osp-core.com/cuds#27864806-b1b1-4076-8426-bf198e4ea969> .
+
+<http://www.osp-core.com/cuds#d3957f94-41e9-4506-82b8-a446775e2ff3> a emmo:EMMO_2781c835_f883_4aa2_bf5d_cf27949c07a0 ;
+    emmo:EMMO_23b579e1_8088_45b5_9975_064014026c42 "surface"^^xsd:string ;
+    emmo:INVERSE_OF_hasProperty <http://www.osp-core.com/cuds#a05a0594-e51d-491e-b882-55bc3b301a6a> .
+
+<http://www.osp-core.com/cuds#d547498d-aadb-43f1-92ba-3dc5ef2489c8> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "5.08349688" ;
+    emmo:INVERSE_OF_hasSpatialFirst <http://www.osp-core.com/cuds#50b4c9fc-b004-4d11-a357-a91a339f3005> .
+
+<http://www.osp-core.com/cuds#d6bfc7b6-deee-4ad9-ae50-68caade8ae1d> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "9.24070201" ;
+    emmo:INVERSE_OF_hasSpatialFirst <http://www.osp-core.com/cuds#b4c8541b-0573-4137-93cb-9ce1a992ca02> .
+
+<http://www.osp-core.com/cuds#d7c9b5fc-5882-4792-99de-1983ff5005f7> a emmo:EMMO_4f40def1_3cd7_4067_9596_541e9a5134cf ;
+    emmo:EMMO_23b579e1_8088_45b5_9975_064014026c42 "Pt"^^xsd:string ;
+    emmo:INVERSE_OF_hasProperty <http://www.osp-core.com/cuds#0db57452-2154-4e89-9b47-014d853c6b5a> .
+
+<http://www.osp-core.com/cuds#d969c9ff-3e59-43fa-a770-69bf2c1ce253> a emmo:EMMO_2781c835_f883_4aa2_bf5d_cf27949c07a0 ;
+    emmo:EMMO_23b579e1_8088_45b5_9975_064014026c42 "surface"^^xsd:string ;
+    emmo:INVERSE_OF_hasProperty <http://www.osp-core.com/cuds#7dcb8dad-c58d-4be7-8fd2-6fc84662bf95> .
+
+<http://www.osp-core.com/cuds#d9c7578b-faa4-4ab9-94a7-279622f25281> a emmo:EMMO_9c7765c6_f41a_4479_bec5_dab2d81e9bc2 ;
+    emmo:EMMO_23b579e1_8088_45b5_9975_064014026c42 "surface"^^xsd:string ;
+    emmo:INVERSE_OF_hasInput <http://www.osp-core.com/cuds#672b6244-3c8f-4192-b772-366d9f3e4e1c> .
+
+<http://www.osp-core.com/cuds#da1dca02-6fec-48a0-974b-840d33b0b192> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "2.15427277" ;
+    emmo:INVERSE_OF_hasSpatialNext <http://www.osp-core.com/cuds#2f9458e5-848a-436d-81d3-8e3e380f64cd> .
+
+<http://www.osp-core.com/cuds#da6b30ad-58dd-45f9-bdb5-228aea0f1375> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "1.35410612" ;
+    emmo:INVERSE_OF_hasSpatialNext <http://www.osp-core.com/cuds#db95ae1f-c3ee-488a-910f-24ee5f89ae50> .
+
+<http://www.osp-core.com/cuds#dbb3137b-6c97-45b8-a017-54e775dbf4e2> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "3.57357389" ;
+    emmo:INVERSE_OF_hasSpatialLast <http://www.osp-core.com/cuds#bb51c9b4-b6fc-484a-af85-3ff3d803581d> .
+
+<http://www.osp-core.com/cuds#de720926-7aab-4bc9-8b56-5db301c24921> a emmo:EMMO_2781c835_f883_4aa2_bf5d_cf27949c07a0 ;
+    emmo:EMMO_23b579e1_8088_45b5_9975_064014026c42 "surface"^^xsd:string ;
+    emmo:INVERSE_OF_hasProperty <http://www.osp-core.com/cuds#9ac9cc1c-9d01-47b7-b362-76b45207e4bc> .
+
+<http://www.osp-core.com/cuds#ded184fc-089f-4e5c-a83d-5ae4c764f5e6> a emmo:EMMO_2781c835_f883_4aa2_bf5d_cf27949c07a0 ;
+    emmo:EMMO_23b579e1_8088_45b5_9975_064014026c42 "surface"^^xsd:string ;
+    emmo:INVERSE_OF_hasProperty <http://www.osp-core.com/cuds#1d289d63-f0ba-466b-9e09-10af4e63527b> .
+
+<http://www.osp-core.com/cuds#e0ed0b40-90c3-4013-8012-43df58fd462d> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "10.6266313" ;
+    emmo:INVERSE_OF_hasSpatialFirst <http://www.osp-core.com/cuds#8315e6e5-d00c-42b3-a412-fcfa252dac4e> .
+
+<http://www.osp-core.com/cuds#e1e54384-2a96-4ecb-98fa-68804a24aee4> a emmo:EMMO_4f40def1_3cd7_4067_9596_541e9a5134cf ;
+    emmo:EMMO_23b579e1_8088_45b5_9975_064014026c42 "Pt"^^xsd:string ;
+    emmo:INVERSE_OF_hasProperty <http://www.osp-core.com/cuds#fbe10449-b1b9-47ee-a13f-8725bace9a82> .
+
+<http://www.osp-core.com/cuds#e401e871-23a4-429d-a284-1bc3f8b33d20> a emmo:EMMO_2781c835_f883_4aa2_bf5d_cf27949c07a0 ;
+    emmo:EMMO_23b579e1_8088_45b5_9975_064014026c42 "surface"^^xsd:string ;
+    emmo:INVERSE_OF_hasProperty <http://www.osp-core.com/cuds#776a064d-6887-4a9e-bf45-de7e9b06699b> .
+
+<http://www.osp-core.com/cuds#e4046065-d9c3-4c2f-96f2-77bff961734a> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "8.1" ;
+    emmo:INVERSE_OF_hasSpatialLast <http://www.osp-core.com/cuds#b4c8541b-0573-4137-93cb-9ce1a992ca02> .
+
+<http://www.osp-core.com/cuds#e4e06ca4-77a5-4771-b91f-39e7a883c463> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "2.0" ;
+    emmo:INVERSE_OF_hasQuantityValue <http://www.osp-core.com/cuds#e81f1bee-0d2c-41d1-9deb-dc42a0332e67> .
+
+<http://www.osp-core.com/cuds#e52fed23-50be-4074-807b-4934542bd3e6> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "6.95527267" ;
+    emmo:INVERSE_OF_hasSpatialNext <http://www.osp-core.com/cuds#848e6694-d449-4d3a-908a-d443b25b72bd> .
+
+<http://www.osp-core.com/cuds#e69f3109-6685-4fe5-a5ac-bdce1bfcb798> a emmo:EMMO_4f40def1_3cd7_4067_9596_541e9a5134cf ;
+    emmo:EMMO_23b579e1_8088_45b5_9975_064014026c42 "Pt"^^xsd:string ;
+    emmo:INVERSE_OF_hasProperty <http://www.osp-core.com/cuds#747747e5-b6e0-4708-bc35-727de5a7b9c9> .
+
+<http://www.osp-core.com/cuds#e770f005-5db3-4486-bc49-54ac225d76d1> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "3.57357389" ;
+    emmo:INVERSE_OF_hasSpatialLast <http://www.osp-core.com/cuds#5da82c57-0ea4-4562-af6e-ff6f83147ea7> .
+
+<http://www.osp-core.com/cuds#e7eb2178-15c4-47ca-ae91-f26fc45484f5> a emmo:EMMO_4f40def1_3cd7_4067_9596_541e9a5134cf ;
+    emmo:EMMO_23b579e1_8088_45b5_9975_064014026c42 "Pt"^^xsd:string ;
+    emmo:INVERSE_OF_hasProperty <http://www.osp-core.com/cuds#1d289d63-f0ba-466b-9e09-10af4e63527b> .
+
+<http://www.osp-core.com/cuds#e808a29d-7bd5-4ac1-8b3a-49102cfe6450> a emmo:EMMO_6535571a_fa0f_47da_ac63_9d7180475aa3 ;
+    emmo:EMMO_23b579e1_8088_45b5_9975_064014026c42 "surface"^^xsd:string ;
+    emmo:INVERSE_OF_hasInput <http://www.osp-core.com/cuds#672b6244-3c8f-4192-b772-366d9f3e4e1c> .
+
+<http://www.osp-core.com/cuds#e8bfbaf5-87a0-481e-9d0a-cba0ef9c4038> a emmo:EMMO_2781c835_f883_4aa2_bf5d_cf27949c07a0 ;
+    emmo:EMMO_23b579e1_8088_45b5_9975_064014026c42 "surface"^^xsd:string ;
+    emmo:INVERSE_OF_hasProperty <http://www.osp-core.com/cuds#5e7317e4-a9c3-4ea9-a3aa-b0a917ba01cc> .
+
+<http://www.osp-core.com/cuds#e8ca897d-e6d5-45b7-b950-b23529569a2e> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "2.15427277" ;
+    emmo:INVERSE_OF_hasSpatialNext <http://www.osp-core.com/cuds#9ba733a6-37a6-48cb-9f54-8a0337510bfc> .
+
+<http://www.osp-core.com/cuds#ea38e6e3-d633-4b1a-8806-581c080a8478> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "5.83678694" ;
+    emmo:INVERSE_OF_hasSpatialLast <http://www.osp-core.com/cuds#7414023c-6bea-4774-b3b0-25f863d03be3> .
+
+<http://www.osp-core.com/cuds#edd86bd3-a565-44c4-89a0-c43bebfa1e22> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "3.69698485" ;
+    emmo:INVERSE_OF_hasSpatialFirst <http://www.osp-core.com/cuds#2f9458e5-848a-436d-81d3-8e3e380f64cd> .
+
+<http://www.osp-core.com/cuds#ee33c5a9-6767-41e9-9efe-ca862fbf8b54> a emmo:EMMO_4f40def1_3cd7_4067_9596_541e9a5134cf ;
+    emmo:EMMO_23b579e1_8088_45b5_9975_064014026c42 "Pt"^^xsd:string ;
+    emmo:INVERSE_OF_hasProperty <http://www.osp-core.com/cuds#252d2760-0736-43ef-8c11-a162f6e943ce> .
+
+<http://www.osp-core.com/cuds#eeaeef3d-abd1-4ab6-b76d-d78c7af396a5> a emmo:EMMO_4f40def1_3cd7_4067_9596_541e9a5134cf ;
+    emmo:EMMO_23b579e1_8088_45b5_9975_064014026c42 "Pt"^^xsd:string ;
+    emmo:INVERSE_OF_hasProperty <http://www.osp-core.com/cuds#fb276102-e128-4513-9b02-22c6469c0f4d> .
+
+<http://www.osp-core.com/cuds#ef6a3408-ea12-402b-86d0-03bad956a84e> a emmo:EMMO_4f40def1_3cd7_4067_9596_541e9a5134cf ;
+    emmo:EMMO_23b579e1_8088_45b5_9975_064014026c42 "Pt"^^xsd:string ;
+    emmo:INVERSE_OF_hasProperty <http://www.osp-core.com/cuds#01b60d32-58b0-403c-b465-2fcd909245bd> .
+
+<http://www.osp-core.com/cuds#ef7c257e-1763-4179-a60c-2cd137fe498d> a emmo:EMMO_2781c835_f883_4aa2_bf5d_cf27949c07a0 ;
+    emmo:EMMO_23b579e1_8088_45b5_9975_064014026c42 "surface"^^xsd:string ;
+    emmo:INVERSE_OF_hasProperty <http://www.osp-core.com/cuds#0db57452-2154-4e89-9b47-014d853c6b5a> .
+
+<http://www.osp-core.com/cuds#f047a98e-30b0-45f9-bab6-d2df01fd2fc9> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "6.95527267" ;
+    emmo:INVERSE_OF_hasSpatialNext <http://www.osp-core.com/cuds#ee66cf4b-d48d-4a67-9043-909fd7b836b3> .
+
+<http://www.osp-core.com/cuds#f0f3aa23-1777-4048-8411-bef5a465096b> a emmo:EMMO_4f40def1_3cd7_4067_9596_541e9a5134cf ;
+    emmo:EMMO_23b579e1_8088_45b5_9975_064014026c42 "Pt"^^xsd:string ;
+    emmo:INVERSE_OF_hasProperty <http://www.osp-core.com/cuds#9ac9cc1c-9d01-47b7-b362-76b45207e4bc> .
+
+<http://www.osp-core.com/cuds#f100c265-9f3f-48c4-8189-23a3584b0969> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "5.83678694" ;
+    emmo:INVERSE_OF_hasSpatialLast <http://www.osp-core.com/cuds#83482a13-147e-4d11-b8bc-12ef3437c0ed> .
+
+<http://www.osp-core.com/cuds#f1d3948d-8359-4e6a-9460-78255126b3d0> a emmo:EMMO_4f40def1_3cd7_4067_9596_541e9a5134cf ;
+    emmo:EMMO_23b579e1_8088_45b5_9975_064014026c42 "Pt"^^xsd:string ;
+    emmo:INVERSE_OF_hasProperty <http://www.osp-core.com/cuds#e2b644d8-1d8e-450b-873c-95ef30f28303> .
+
+<http://www.osp-core.com/cuds#f4436ada-858b-4ce6-9b60-40e38d5bb8ba> a emmo:EMMO_2781c835_f883_4aa2_bf5d_cf27949c07a0 ;
+    emmo:EMMO_23b579e1_8088_45b5_9975_064014026c42 "surface"^^xsd:string ;
+    emmo:INVERSE_OF_hasProperty <http://www.osp-core.com/cuds#eea9d1db-254f-4425-b4b6-7bfa8035d33e> .
+
+<http://www.osp-core.com/cuds#f4d03e1d-7a0f-4684-a34e-45a917153af9> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "6.95527267" ;
+    emmo:INVERSE_OF_hasSpatialNext <http://www.osp-core.com/cuds#5e6bfd9d-d2c1-402f-bb52-b8587ebd124f> .
+
+<http://www.osp-core.com/cuds#f545a9a1-b156-4de2-90fe-31390ffde018> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "5.08291414" ;
+    emmo:INVERSE_OF_hasSpatialFirst <http://www.osp-core.com/cuds#1fb7f0e6-94c1-4229-8dc2-d5bba1ed08a5> .
+
+<http://www.osp-core.com/cuds#f857ca91-4443-4268-836c-1ca7dc4b6b43> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "0.0" ;
+    emmo:INVERSE_OF_hasSpatialNext <http://www.osp-core.com/cuds#4fce973f-03b3-4f0e-9d05-2883aa863fdd> .
+
+<http://www.osp-core.com/cuds#fb349ffe-944e-41ae-9680-499a4da2acb7> a emmo:EMMO_a1083d0a_c1fb_471f_8e20_a98f881ad527 ;
+    emmo:EMMO_23b579e1_8088_45b5_9975_064014026c42 "Direct"^^xsd:string ;
+    emmo:INVERSE_OF_hasPart <http://www.osp-core.com/cuds#43fb4c4a-5807-4f58-96e6-aa2c83410473> .
+
+<http://www.osp-core.com/cuds#fb43501b-c790-4b6c-a289-ef7c811196d5> a emmo:EMMO_4f40def1_3cd7_4067_9596_541e9a5134cf ;
+    emmo:EMMO_23b579e1_8088_45b5_9975_064014026c42 "Pt"^^xsd:string ;
+    emmo:INVERSE_OF_hasProperty <http://www.osp-core.com/cuds#a05a0594-e51d-491e-b882-55bc3b301a6a> .
+
+<http://www.osp-core.com/cuds#fb4ff399-6477-4e4b-9bd0-22c90dccc4c3> a emmo:EMMO_2781c835_f883_4aa2_bf5d_cf27949c07a0 ;
+    emmo:EMMO_23b579e1_8088_45b5_9975_064014026c42 "surface"^^xsd:string ;
+    emmo:INVERSE_OF_hasProperty <http://www.osp-core.com/cuds#e0a703d7-056a-48b2-80a6-2cb5e88ea7b3> .
+
+<http://www.osp-core.com/cuds#fcb3957a-3cde-4f15-97be-a19a17afe65d> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "9.24070201" ;
+    emmo:INVERSE_OF_hasSpatialFirst <http://www.osp-core.com/cuds#d66f0a74-c53e-464b-baa4-7d4e7af97d0c> .
+
+<http://www.osp-core.com/cuds#fd2c7018-1464-440d-8eee-8bfa38be15b4> a emmo:EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+    emmo:EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "9.24070201" ;
+    emmo:INVERSE_OF_hasSpatialFirst <http://www.osp-core.com/cuds#45da9210-1cd3-4f97-898e-e4000764e5ab> .
+
+<http://www.osp-core.com/cuds#fe24a753-e399-4460-b339-6d3adebb4005> a emmo:EMMO_4f40def1_3cd7_4067_9596_541e9a5134cf ;
+    emmo:EMMO_23b579e1_8088_45b5_9975_064014026c42 "Pt"^^xsd:string ;
+    emmo:INVERSE_OF_hasProperty <http://www.osp-core.com/cuds#28a17eec-a6e5-4269-8c6b-41fa31b6a892> .
+
+<http://www.osp-core.com/cuds#ffedf695-5656-4839-8f15-e49f630895c9> a emmo:EMMO_2781c835_f883_4aa2_bf5d_cf27949c07a0 ;
+    emmo:EMMO_23b579e1_8088_45b5_9975_064014026c42 "adsorbate"^^xsd:string ;
+    emmo:INVERSE_OF_hasProperty <http://www.osp-core.com/cuds#ffb260da-13cd-45fe-bbbd-0c94b62c2faa> .
+
+<http://www.osp-core.com/cuds#43fb4c4a-5807-4f58-96e6-aa2c83410473> a emmo:EMMO_0a62ad91_3a4b_4050_a43b_f5d76218c22f ;
+    emmo:EMMO_17e27c22_37e1_468c_9dd7_95e137f73e7f <http://www.osp-core.com/cuds#fb349ffe-944e-41ae-9680-499a4da2acb7> ;
+    emmo:INVERSE_OF_hasInput <http://www.osp-core.com/cuds#672b6244-3c8f-4192-b772-366d9f3e4e1c> .
+
+<http://www.osp-core.com/cuds#add81c0d-9d4c-4e5c-9acc-f8896ec4e20e> a crystallography:EMMO_79c5bbf6_7429_44c6_a70d_0d3c461b6375 ;
+    emmo:EMMO_b2282816_b7a3_44c6_b2cb_3feff1ceb7fe <http://www.osp-core.com/cuds#4fce973f-03b3-4f0e-9d05-2883aa863fdd>,
+        <http://www.osp-core.com/cuds#eecd261b-f2c7-4cc1-bff7-f48c85a3a884> ;
+    emmo:INVERSE_OF_hasInput <http://www.osp-core.com/cuds#672b6244-3c8f-4192-b772-366d9f3e4e1c> .
+
+<http://www.osp-core.com/cuds#e81f1bee-0d2c-41d1-9deb-dc42a0332e67> a emmo:EMMO_553fb3fe_2b8e_4129_ab05_ae4c5ba5edb5 ;
+    emmo:EMMO_67fc0a36_8dcb_4ffa_9a43_31074efa3296 <http://www.osp-core.com/cuds#5a96db9b-03d7-4a00-924c-fa76a31b9e81> ;
+    emmo:EMMO_8ef3cd6d_ae58_4a8d_9fc0_ad8f49015cd0 <http://www.osp-core.com/cuds#e4e06ca4-77a5-4771-b91f-39e7a883c463> ;
+    emmo:INVERSE_OF_hasInput <http://www.osp-core.com/cuds#672b6244-3c8f-4192-b772-366d9f3e4e1c> .
+
+<http://www.osp-core.com/cuds#01b60d32-58b0-403c-b465-2fcd909245bd> a emmo:EMMO_eb77076b_a104_42ac_a065_798b2d2809ad ;
+    emmo:EMMO_e1097637_70d2_4895_973f_2396f04fa204 <http://www.osp-core.com/cuds#2f9458e5-848a-436d-81d3-8e3e380f64cd>,
+        <http://www.osp-core.com/cuds#7a5b1d8b-0116-4afa-9d5d-93192b283e14>,
+        <http://www.osp-core.com/cuds#ef6a3408-ea12-402b-86d0-03bad956a84e> ;
+    emmo:INVERSE_OF_hasPart <http://www.osp-core.com/cuds#0d311c91-de67-4bed-8955-1a4e425ed682> .
+
+<http://www.osp-core.com/cuds#09d9d350-b303-436b-97d3-79ff27baaa1c> a emmo:EMMO_eb77076b_a104_42ac_a065_798b2d2809ad ;
+    emmo:EMMO_e1097637_70d2_4895_973f_2396f04fa204 <http://www.osp-core.com/cuds#32e8588c-a2f4-48a4-a992-99c868a1d518>,
+        <http://www.osp-core.com/cuds#6a266cab-1c48-4a82-9c0c-31396ef973bb>,
+        <http://www.osp-core.com/cuds#79310511-9456-410e-98fb-e318be1656b0> ;
+    emmo:INVERSE_OF_hasPart <http://www.osp-core.com/cuds#0d311c91-de67-4bed-8955-1a4e425ed682> .
+
+<http://www.osp-core.com/cuds#0a2927c9-82d9-41ac-8a8d-cdb4c34bb446> a emmo:EMMO_eb77076b_a104_42ac_a065_798b2d2809ad ;
+    emmo:EMMO_e1097637_70d2_4895_973f_2396f04fa204 <http://www.osp-core.com/cuds#21d73602-aa1c-4d84-87e5-bb3e00dd5382>,
+        <http://www.osp-core.com/cuds#8846f334-31b7-44d9-b8c2-bac186e83389>,
+        <http://www.osp-core.com/cuds#b3cc76d9-0a07-4f45-b689-db51e7bbe215> ;
+    emmo:INVERSE_OF_hasPart <http://www.osp-core.com/cuds#0d311c91-de67-4bed-8955-1a4e425ed682> .
+
+<http://www.osp-core.com/cuds#0a7d1545-7afa-4a9f-bcca-9c80592eee8d> a emmo:EMMO_eb77076b_a104_42ac_a065_798b2d2809ad ;
+    emmo:EMMO_e1097637_70d2_4895_973f_2396f04fa204 <http://www.osp-core.com/cuds#80d7cdb9-33f3-4db4-bea4-126ec4313b1e>,
+        <http://www.osp-core.com/cuds#936756d8-e950-4104-be21-f438df754136>,
+        <http://www.osp-core.com/cuds#db95ae1f-c3ee-488a-910f-24ee5f89ae50> ;
+    emmo:INVERSE_OF_hasPart <http://www.osp-core.com/cuds#0d311c91-de67-4bed-8955-1a4e425ed682> .
+
+<http://www.osp-core.com/cuds#0d22e5c7-ee03-4c03-a2eb-bbe7b66a18db> a emmo:EMMO_44da6d75_54a4_4aa8_bd3a_156f6e9abb8e ;
+    emmo:EMMO_050b47b6_2583_43f7_95eb_a216b41cd5f6 <http://www.osp-core.com/cuds#838349a1-a35c-4fe4-bfee-3559d37a7fe5> ;
+    emmo:EMMO_2a9fcd79_bc67_4b1a_8e64_9dfe505a0007 <http://www.osp-core.com/cuds#0088484f-da18-4d4c-8566-fd2dba976fd2> ;
+    emmo:EMMO_8785be5a_2493_4b12_8f39_31907ab11748 <http://www.osp-core.com/cuds#1c191d5a-177e-4a7f-9b91-de596035d269> ;
+    emmo:INVERSE_OF_hasProperty <http://www.osp-core.com/cuds#6a1e2b39-68d6-4ed5-9a72-b58451751680> .
+
+<http://www.osp-core.com/cuds#0db57452-2154-4e89-9b47-014d853c6b5a> a emmo:EMMO_eb77076b_a104_42ac_a065_798b2d2809ad ;
+    emmo:EMMO_e1097637_70d2_4895_973f_2396f04fa204 <http://www.osp-core.com/cuds#b2f67f03-6fee-4d5a-9f8a-852da8eef551>,
+        <http://www.osp-core.com/cuds#d7c9b5fc-5882-4792-99de-1983ff5005f7>,
+        <http://www.osp-core.com/cuds#ef7c257e-1763-4179-a60c-2cd137fe498d> ;
+    emmo:INVERSE_OF_hasPart <http://www.osp-core.com/cuds#0d311c91-de67-4bed-8955-1a4e425ed682> .
+
+<http://www.osp-core.com/cuds#14a6b270-a9ff-4ce8-beba-595e6344b0a7> a emmo:EMMO_44da6d75_54a4_4aa8_bd3a_156f6e9abb8e ;
+    emmo:EMMO_050b47b6_2583_43f7_95eb_a216b41cd5f6 <http://www.osp-core.com/cuds#0ef971df-4bba-478b-83a9-ef9bebe86431> ;
+    emmo:EMMO_2a9fcd79_bc67_4b1a_8e64_9dfe505a0007 <http://www.osp-core.com/cuds#50a324e3-b965-48ef-9de6-3918322ebb36> ;
+    emmo:EMMO_8785be5a_2493_4b12_8f39_31907ab11748 <http://www.osp-core.com/cuds#103aa2f7-aad6-48b8-83b3-a5478251e345> ;
+    emmo:INVERSE_OF_hasProperty <http://www.osp-core.com/cuds#252d2760-0736-43ef-8c11-a162f6e943ce> .
+
+<http://www.osp-core.com/cuds#1b73ee5c-c5a6-4880-9a2b-40bc5caec594> a emmo:EMMO_44da6d75_54a4_4aa8_bd3a_156f6e9abb8e ;
+    emmo:EMMO_050b47b6_2583_43f7_95eb_a216b41cd5f6 <http://www.osp-core.com/cuds#470194bd-2317-4b9c-82d4-a623e05f867f> ;
+    emmo:EMMO_2a9fcd79_bc67_4b1a_8e64_9dfe505a0007 <http://www.osp-core.com/cuds#401ca6a1-9d4d-45f3-8232-126acef47cc4> ;
+    emmo:EMMO_8785be5a_2493_4b12_8f39_31907ab11748 <http://www.osp-core.com/cuds#80e5741b-0981-467d-91fd-6a51d152109d> ;
+    emmo:INVERSE_OF_hasProperty <http://www.osp-core.com/cuds#1d289d63-f0ba-466b-9e09-10af4e63527b> .
+
+<http://www.osp-core.com/cuds#1d289d63-f0ba-466b-9e09-10af4e63527b> a emmo:EMMO_eb77076b_a104_42ac_a065_798b2d2809ad ;
+    emmo:EMMO_e1097637_70d2_4895_973f_2396f04fa204 <http://www.osp-core.com/cuds#1b73ee5c-c5a6-4880-9a2b-40bc5caec594>,
+        <http://www.osp-core.com/cuds#ded184fc-089f-4e5c-a83d-5ae4c764f5e6>,
+        <http://www.osp-core.com/cuds#e7eb2178-15c4-47ca-ae91-f26fc45484f5> ;
+    emmo:INVERSE_OF_hasPart <http://www.osp-core.com/cuds#0d311c91-de67-4bed-8955-1a4e425ed682> .
+
+<http://www.osp-core.com/cuds#1fb7f0e6-94c1-4229-8dc2-d5bba1ed08a5> a emmo:EMMO_44da6d75_54a4_4aa8_bd3a_156f6e9abb8e ;
+    emmo:EMMO_050b47b6_2583_43f7_95eb_a216b41cd5f6 <http://www.osp-core.com/cuds#d04055c6-d8fe-49b5-b4f3-4715987c7523> ;
+    emmo:EMMO_2a9fcd79_bc67_4b1a_8e64_9dfe505a0007 <http://www.osp-core.com/cuds#f545a9a1-b156-4de2-90fe-31390ffde018> ;
+    emmo:EMMO_8785be5a_2493_4b12_8f39_31907ab11748 <http://www.osp-core.com/cuds#21603e3d-c9fd-4e4d-9dee-07d28b2acb57> ;
+    emmo:INVERSE_OF_hasProperty <http://www.osp-core.com/cuds#bf021187-38f6-4d7d-9110-67a7cd4333be> .
+
+<http://www.osp-core.com/cuds#252d2760-0736-43ef-8c11-a162f6e943ce> a emmo:EMMO_eb77076b_a104_42ac_a065_798b2d2809ad ;
+    emmo:EMMO_e1097637_70d2_4895_973f_2396f04fa204 <http://www.osp-core.com/cuds#14a6b270-a9ff-4ce8-beba-595e6344b0a7>,
+        <http://www.osp-core.com/cuds#a3421d0f-306e-4c99-8780-40a8a409673f>,
+        <http://www.osp-core.com/cuds#ee33c5a9-6767-41e9-9efe-ca862fbf8b54> ;
+    emmo:INVERSE_OF_hasPart <http://www.osp-core.com/cuds#0d311c91-de67-4bed-8955-1a4e425ed682> .
+
+<http://www.osp-core.com/cuds#26d9be47-0cdb-410d-8b41-a63a440f60e4> a emmo:EMMO_eb77076b_a104_42ac_a065_798b2d2809ad ;
+    emmo:EMMO_e1097637_70d2_4895_973f_2396f04fa204 <http://www.osp-core.com/cuds#53e2a66c-871e-4df8-a90a-8745f351616b>,
+        <http://www.osp-core.com/cuds#7414023c-6bea-4774-b3b0-25f863d03be3>,
+        <http://www.osp-core.com/cuds#86acc866-ca84-4c6e-93f0-240ff517e730> ;
+    emmo:INVERSE_OF_hasPart <http://www.osp-core.com/cuds#0d311c91-de67-4bed-8955-1a4e425ed682> .
+
+<http://www.osp-core.com/cuds#27864806-b1b1-4076-8426-bf198e4ea969> a emmo:EMMO_44da6d75_54a4_4aa8_bd3a_156f6e9abb8e ;
+    emmo:EMMO_050b47b6_2583_43f7_95eb_a216b41cd5f6 <http://www.osp-core.com/cuds#13e3275d-8bb7-431e-bc4c-d2fa9d6666e5> ;
+    emmo:EMMO_2a9fcd79_bc67_4b1a_8e64_9dfe505a0007 <http://www.osp-core.com/cuds#0847321e-1a15-4c23-a7b1-8e655a5f92e6> ;
+    emmo:EMMO_8785be5a_2493_4b12_8f39_31907ab11748 <http://www.osp-core.com/cuds#d311433f-c8e6-4bdd-953c-64018557ce5a> ;
+    emmo:INVERSE_OF_hasProperty <http://www.osp-core.com/cuds#776a064d-6887-4a9e-bf45-de7e9b06699b> .
+
+<http://www.osp-core.com/cuds#28a17eec-a6e5-4269-8c6b-41fa31b6a892> a emmo:EMMO_eb77076b_a104_42ac_a065_798b2d2809ad ;
+    emmo:EMMO_e1097637_70d2_4895_973f_2396f04fa204 <http://www.osp-core.com/cuds#0df12f6e-8fe4-4e08-a7b4-16982d3714ee>,
+        <http://www.osp-core.com/cuds#d66f0a74-c53e-464b-baa4-7d4e7af97d0c>,
+        <http://www.osp-core.com/cuds#fe24a753-e399-4460-b339-6d3adebb4005> ;
+    emmo:INVERSE_OF_hasPart <http://www.osp-core.com/cuds#0d311c91-de67-4bed-8955-1a4e425ed682> .
+
+<http://www.osp-core.com/cuds#2f9458e5-848a-436d-81d3-8e3e380f64cd> a emmo:EMMO_44da6d75_54a4_4aa8_bd3a_156f6e9abb8e ;
+    emmo:EMMO_050b47b6_2583_43f7_95eb_a216b41cd5f6 <http://www.osp-core.com/cuds#2df7f147-443d-4562-858c-d205e457c06c> ;
+    emmo:EMMO_2a9fcd79_bc67_4b1a_8e64_9dfe505a0007 <http://www.osp-core.com/cuds#edd86bd3-a565-44c4-89a0-c43bebfa1e22> ;
+    emmo:EMMO_8785be5a_2493_4b12_8f39_31907ab11748 <http://www.osp-core.com/cuds#da1dca02-6fec-48a0-974b-840d33b0b192> ;
+    emmo:INVERSE_OF_hasProperty <http://www.osp-core.com/cuds#01b60d32-58b0-403c-b465-2fcd909245bd> .
+
+<http://www.osp-core.com/cuds#32e8588c-a2f4-48a4-a992-99c868a1d518> a emmo:EMMO_44da6d75_54a4_4aa8_bd3a_156f6e9abb8e ;
+    emmo:EMMO_050b47b6_2583_43f7_95eb_a216b41cd5f6 <http://www.osp-core.com/cuds#95365a42-ea02-4080-bae1-b75bf5fa0779> ;
+    emmo:EMMO_2a9fcd79_bc67_4b1a_8e64_9dfe505a0007 <http://www.osp-core.com/cuds#27ff5662-9805-4b3d-9cfb-0999fb791838> ;
+    emmo:EMMO_8785be5a_2493_4b12_8f39_31907ab11748 <http://www.osp-core.com/cuds#cad28633-c744-46e0-a1c4-9ad53be6c8b1> ;
+    emmo:INVERSE_OF_hasProperty <http://www.osp-core.com/cuds#09d9d350-b303-436b-97d3-79ff27baaa1c> .
+
+<http://www.osp-core.com/cuds#363431ae-2a85-4803-a438-db8c3079582f> a emmo:EMMO_eb77076b_a104_42ac_a065_798b2d2809ad ;
+    emmo:EMMO_e1097637_70d2_4895_973f_2396f04fa204 <http://www.osp-core.com/cuds#3e2be417-aef8-4be2-84c8-5342f41ecd8a>,
+        <http://www.osp-core.com/cuds#5da82c57-0ea4-4562-af6e-ff6f83147ea7>,
+        <http://www.osp-core.com/cuds#6fdacaea-4963-41f4-a199-7c651744fa73> ;
+    emmo:INVERSE_OF_hasPart <http://www.osp-core.com/cuds#0d311c91-de67-4bed-8955-1a4e425ed682> .
+
+<http://www.osp-core.com/cuds#3a573f38-ad5f-4be7-a63d-94f6b5986370> a emmo:EMMO_eb77076b_a104_42ac_a065_798b2d2809ad ;
+    emmo:EMMO_e1097637_70d2_4895_973f_2396f04fa204 <http://www.osp-core.com/cuds#556adecf-02a3-4b7d-a684-9ad7cc8d578e>,
+        <http://www.osp-core.com/cuds#8969036c-55b7-4c9c-855d-01bb7e0c720a>,
+        <http://www.osp-core.com/cuds#aebc7981-9223-4fd4-8033-150ce0eda332> ;
+    emmo:INVERSE_OF_hasPart <http://www.osp-core.com/cuds#0d311c91-de67-4bed-8955-1a4e425ed682> .
+
+<http://www.osp-core.com/cuds#41664615-6f39-4612-9eb8-00697a6d4e1a> a emmo:EMMO_eb77076b_a104_42ac_a065_798b2d2809ad ;
+    emmo:EMMO_e1097637_70d2_4895_973f_2396f04fa204 <http://www.osp-core.com/cuds#4ba383b0-8d41-4ae9-b4af-53e8ada13200>,
+        <http://www.osp-core.com/cuds#647ed5ff-1410-4e32-918a-02c2a9a16233>,
+        <http://www.osp-core.com/cuds#8e4c96b2-9d13-4ae8-8856-6b9662d9e4db> ;
+    emmo:INVERSE_OF_hasPart <http://www.osp-core.com/cuds#0d311c91-de67-4bed-8955-1a4e425ed682> .
+
+<http://www.osp-core.com/cuds#45da9210-1cd3-4f97-898e-e4000764e5ab> a emmo:EMMO_44da6d75_54a4_4aa8_bd3a_156f6e9abb8e ;
+    emmo:EMMO_050b47b6_2583_43f7_95eb_a216b41cd5f6 <http://www.osp-core.com/cuds#abedf3fd-a3c9-41fa-b3df-da19d6823619> ;
+    emmo:EMMO_2a9fcd79_bc67_4b1a_8e64_9dfe505a0007 <http://www.osp-core.com/cuds#fd2c7018-1464-440d-8eee-8bfa38be15b4> ;
+    emmo:EMMO_8785be5a_2493_4b12_8f39_31907ab11748 <http://www.osp-core.com/cuds#b39e8c3d-7223-494b-83df-f1242a27c8c2> ;
+    emmo:INVERSE_OF_hasProperty <http://www.osp-core.com/cuds#a27dad0d-97f6-4849-a2a8-ddfb6e18f2a4> .
+
+<http://www.osp-core.com/cuds#474febfa-5237-46c6-bedb-10e70189bef1> a emmo:EMMO_eb77076b_a104_42ac_a065_798b2d2809ad ;
+    emmo:EMMO_e1097637_70d2_4895_973f_2396f04fa204 <http://www.osp-core.com/cuds#52d8db53-10b7-476b-82e7-065ff1ca92ba>,
+        <http://www.osp-core.com/cuds#5cc45b59-9ec2-4453-a086-d30bb71981d4>,
+        <http://www.osp-core.com/cuds#72c35fdc-e343-4250-9e8a-ff46210eef3a> ;
+    emmo:INVERSE_OF_hasPart <http://www.osp-core.com/cuds#0d311c91-de67-4bed-8955-1a4e425ed682> .
+
+<http://www.osp-core.com/cuds#4fce973f-03b3-4f0e-9d05-2883aa863fdd> a crystallography:EMMO_6b5e88c8_0d54_4a02_a9ff_6958f6013e0e ;
+    emmo:EMMO_050b47b6_2583_43f7_95eb_a216b41cd5f6 <http://www.osp-core.com/cuds#43fa842a-d558-4292-bf76-3d0e6f023b97> ;
+    emmo:EMMO_2a9fcd79_bc67_4b1a_8e64_9dfe505a0007 <http://www.osp-core.com/cuds#d22de8bc-e52e-4094-af17-acac51ddb35e> ;
+    emmo:EMMO_8785be5a_2493_4b12_8f39_31907ab11748 <http://www.osp-core.com/cuds#f857ca91-4443-4268-836c-1ca7dc4b6b43> ;
+    emmo:INVERSE_OF_hasSpatialDirectPart <http://www.osp-core.com/cuds#add81c0d-9d4c-4e5c-9acc-f8896ec4e20e> .
+
+<http://www.osp-core.com/cuds#50b4c9fc-b004-4d11-a357-a91a339f3005> a emmo:EMMO_44da6d75_54a4_4aa8_bd3a_156f6e9abb8e ;
+    emmo:EMMO_050b47b6_2583_43f7_95eb_a216b41cd5f6 <http://www.osp-core.com/cuds#c046db07-c70e-4c16-816f-34cfdc2cf40c> ;
+    emmo:EMMO_2a9fcd79_bc67_4b1a_8e64_9dfe505a0007 <http://www.osp-core.com/cuds#d547498d-aadb-43f1-92ba-3dc5ef2489c8> ;
+    emmo:EMMO_8785be5a_2493_4b12_8f39_31907ab11748 <http://www.osp-core.com/cuds#c21c2f20-17d8-4ae7-a049-3a74d6975ae9> ;
+    emmo:INVERSE_OF_hasProperty <http://www.osp-core.com/cuds#ffb260da-13cd-45fe-bbbd-0c94b62c2faa> .
+
+<http://www.osp-core.com/cuds#551c1d5a-d51f-4a18-94a1-2e898c699f71> a emmo:EMMO_44da6d75_54a4_4aa8_bd3a_156f6e9abb8e ;
+    emmo:EMMO_050b47b6_2583_43f7_95eb_a216b41cd5f6 <http://www.osp-core.com/cuds#94877b82-e042-4bbf-a47b-69d1200410be> ;
+    emmo:EMMO_2a9fcd79_bc67_4b1a_8e64_9dfe505a0007 <http://www.osp-core.com/cuds#a48ad691-3cda-4344-87f8-6b5acd2d71ce> ;
+    emmo:EMMO_8785be5a_2493_4b12_8f39_31907ab11748 <http://www.osp-core.com/cuds#ccef19a1-4b43-4ad4-a784-5735adcf5667> ;
+    emmo:INVERSE_OF_hasProperty <http://www.osp-core.com/cuds#9ac9cc1c-9d01-47b7-b362-76b45207e4bc> .
+
+<http://www.osp-core.com/cuds#56d95101-636c-4497-9ad8-e08b1ed23d20> a emmo:EMMO_44da6d75_54a4_4aa8_bd3a_156f6e9abb8e ;
+    emmo:EMMO_050b47b6_2583_43f7_95eb_a216b41cd5f6 <http://www.osp-core.com/cuds#c2037f4e-7331-4733-b5a8-d19c640027c8> ;
+    emmo:EMMO_2a9fcd79_bc67_4b1a_8e64_9dfe505a0007 <http://www.osp-core.com/cuds#a758cb66-8145-4b21-8308-1dbf85466b61> ;
+    emmo:EMMO_8785be5a_2493_4b12_8f39_31907ab11748 <http://www.osp-core.com/cuds#65459a83-2f96-4e2e-ad7f-d7da4af6c674> ;
+    emmo:INVERSE_OF_hasProperty <http://www.osp-core.com/cuds#9f8cb7d4-0d5b-4b4e-a42a-4f4982958915> .
+
+<http://www.osp-core.com/cuds#5cc45b59-9ec2-4453-a086-d30bb71981d4> a emmo:EMMO_44da6d75_54a4_4aa8_bd3a_156f6e9abb8e ;
+    emmo:EMMO_050b47b6_2583_43f7_95eb_a216b41cd5f6 <http://www.osp-core.com/cuds#b3da6ef8-5e32-40f6-b6a4-cb61b58d520b> ;
+    emmo:EMMO_2a9fcd79_bc67_4b1a_8e64_9dfe505a0007 <http://www.osp-core.com/cuds#adc754a4-bb77-4c65-ba00-dfa18583401a> ;
+    emmo:EMMO_8785be5a_2493_4b12_8f39_31907ab11748 <http://www.osp-core.com/cuds#66b9b319-1de8-49eb-ab28-1ae7b2fb6ca0> ;
+    emmo:INVERSE_OF_hasProperty <http://www.osp-core.com/cuds#474febfa-5237-46c6-bedb-10e70189bef1> .
+
+<http://www.osp-core.com/cuds#5da82c57-0ea4-4562-af6e-ff6f83147ea7> a emmo:EMMO_44da6d75_54a4_4aa8_bd3a_156f6e9abb8e ;
+    emmo:EMMO_050b47b6_2583_43f7_95eb_a216b41cd5f6 <http://www.osp-core.com/cuds#e770f005-5db3-4486-bc49-54ac225d76d1> ;
+    emmo:EMMO_2a9fcd79_bc67_4b1a_8e64_9dfe505a0007 <http://www.osp-core.com/cuds#90cd9281-3470-490e-a9dd-67e5a81b97cb> ;
+    emmo:EMMO_8785be5a_2493_4b12_8f39_31907ab11748 <http://www.osp-core.com/cuds#73da4fd8-8ad5-4acf-b500-1f60fdbaa60c> ;
+    emmo:INVERSE_OF_hasProperty <http://www.osp-core.com/cuds#363431ae-2a85-4803-a438-db8c3079582f> .
+
+<http://www.osp-core.com/cuds#5e6bfd9d-d2c1-402f-bb52-b8587ebd124f> a emmo:EMMO_44da6d75_54a4_4aa8_bd3a_156f6e9abb8e ;
+    emmo:EMMO_050b47b6_2583_43f7_95eb_a216b41cd5f6 <http://www.osp-core.com/cuds#5bdf4e76-f9cf-4570-b1c8-b1e0b237e0dc> ;
+    emmo:EMMO_2a9fcd79_bc67_4b1a_8e64_9dfe505a0007 <http://www.osp-core.com/cuds#4b53bffe-c6d4-4c32-bada-28a1d5275b2f> ;
+    emmo:EMMO_8785be5a_2493_4b12_8f39_31907ab11748 <http://www.osp-core.com/cuds#f4d03e1d-7a0f-4684-a34e-45a917153af9> ;
+    emmo:INVERSE_OF_hasProperty <http://www.osp-core.com/cuds#fb276102-e128-4513-9b02-22c6469c0f4d> .
+
+<http://www.osp-core.com/cuds#5e7317e4-a9c3-4ea9-a3aa-b0a917ba01cc> a emmo:EMMO_eb77076b_a104_42ac_a065_798b2d2809ad ;
+    emmo:EMMO_e1097637_70d2_4895_973f_2396f04fa204 <http://www.osp-core.com/cuds#5bb01b38-8d1b-40ca-aac3-5c4b680d7fa9>,
+        <http://www.osp-core.com/cuds#9ba733a6-37a6-48cb-9f54-8a0337510bfc>,
+        <http://www.osp-core.com/cuds#e8bfbaf5-87a0-481e-9d0a-cba0ef9c4038> ;
+    emmo:INVERSE_OF_hasPart <http://www.osp-core.com/cuds#0d311c91-de67-4bed-8955-1a4e425ed682> .
+
+<http://www.osp-core.com/cuds#60ce3bd7-bd3c-44ee-be57-c3adb70fe76c> a emmo:EMMO_eb77076b_a104_42ac_a065_798b2d2809ad ;
+    emmo:EMMO_e1097637_70d2_4895_973f_2396f04fa204 <http://www.osp-core.com/cuds#2a9f49b9-7cde-4d77-b534-47cbcd3ab4b8>,
+        <http://www.osp-core.com/cuds#43e66837-1526-4906-8317-6b1e0046b625>,
+        <http://www.osp-core.com/cuds#8e8f7c7e-78c9-42c0-b4b6-cf444811aba8> ;
+    emmo:INVERSE_OF_hasPart <http://www.osp-core.com/cuds#0d311c91-de67-4bed-8955-1a4e425ed682> .
+
+<http://www.osp-core.com/cuds#62568cf4-e20f-4acf-9a33-908bed1a4945> a emmo:EMMO_44da6d75_54a4_4aa8_bd3a_156f6e9abb8e ;
+    emmo:EMMO_050b47b6_2583_43f7_95eb_a216b41cd5f6 <http://www.osp-core.com/cuds#56ed2165-c328-4b19-bd90-c5fce9dd6127> ;
+    emmo:EMMO_2a9fcd79_bc67_4b1a_8e64_9dfe505a0007 <http://www.osp-core.com/cuds#22dd5af7-4ab7-4fd4-9c7b-694ba32556a2> ;
+    emmo:EMMO_8785be5a_2493_4b12_8f39_31907ab11748 <http://www.osp-core.com/cuds#baa3e309-a48f-4810-9741-a2a3e98c94e0> ;
+    emmo:INVERSE_OF_hasProperty <http://www.osp-core.com/cuds#eaa9e279-4165-496f-b1e3-0886d5ba649d> .
+
+<http://www.osp-core.com/cuds#694fd38b-fabb-434d-916f-db29360c9ee7> a emmo:EMMO_44da6d75_54a4_4aa8_bd3a_156f6e9abb8e ;
+    emmo:EMMO_050b47b6_2583_43f7_95eb_a216b41cd5f6 <http://www.osp-core.com/cuds#5710d0d2-c4c4-4485-bdd5-06da9a66c882> ;
+    emmo:EMMO_2a9fcd79_bc67_4b1a_8e64_9dfe505a0007 <http://www.osp-core.com/cuds#64518360-c97f-45f7-a999-8704c91b3d71> ;
+    emmo:EMMO_8785be5a_2493_4b12_8f39_31907ab11748 <http://www.osp-core.com/cuds#547e5b2f-be8f-42b1-b69f-9970359f4d08> ;
+    emmo:INVERSE_OF_hasProperty <http://www.osp-core.com/cuds#ecc1385e-7707-4d33-a76e-a31e8f7af20a> .
+
+<http://www.osp-core.com/cuds#6a1e2b39-68d6-4ed5-9a72-b58451751680> a emmo:EMMO_eb77076b_a104_42ac_a065_798b2d2809ad ;
+    emmo:EMMO_e1097637_70d2_4895_973f_2396f04fa204 <http://www.osp-core.com/cuds#0d22e5c7-ee03-4c03-a2eb-bbe7b66a18db>,
+        <http://www.osp-core.com/cuds#1f06d3cb-2dbc-4b19-95d8-006404ec572a>,
+        <http://www.osp-core.com/cuds#5d7f046b-ea3a-48ce-9e20-5186f0abdf73> ;
+    emmo:INVERSE_OF_hasPart <http://www.osp-core.com/cuds#0d311c91-de67-4bed-8955-1a4e425ed682> .
+
+<http://www.osp-core.com/cuds#7414023c-6bea-4774-b3b0-25f863d03be3> a emmo:EMMO_44da6d75_54a4_4aa8_bd3a_156f6e9abb8e ;
+    emmo:EMMO_050b47b6_2583_43f7_95eb_a216b41cd5f6 <http://www.osp-core.com/cuds#ea38e6e3-d633-4b1a-8806-581c080a8478> ;
+    emmo:EMMO_2a9fcd79_bc67_4b1a_8e64_9dfe505a0007 <http://www.osp-core.com/cuds#3ec578a4-4628-4c85-a103-2338e0d02d40> ;
+    emmo:EMMO_8785be5a_2493_4b12_8f39_31907ab11748 <http://www.osp-core.com/cuds#9a762b78-8388-4a70-b17e-950477b692d8> ;
+    emmo:INVERSE_OF_hasProperty <http://www.osp-core.com/cuds#26d9be47-0cdb-410d-8b41-a63a440f60e4> .
+
+<http://www.osp-core.com/cuds#747747e5-b6e0-4708-bc35-727de5a7b9c9> a emmo:EMMO_eb77076b_a104_42ac_a065_798b2d2809ad ;
+    emmo:EMMO_e1097637_70d2_4895_973f_2396f04fa204 <http://www.osp-core.com/cuds#034e9734-33cd-405a-980d-119647fbd86f>,
+        <http://www.osp-core.com/cuds#b4c8541b-0573-4137-93cb-9ce1a992ca02>,
+        <http://www.osp-core.com/cuds#e69f3109-6685-4fe5-a5ac-bdce1bfcb798> ;
+    emmo:INVERSE_OF_hasPart <http://www.osp-core.com/cuds#0d311c91-de67-4bed-8955-1a4e425ed682> .
+
+<http://www.osp-core.com/cuds#776a064d-6887-4a9e-bf45-de7e9b06699b> a emmo:EMMO_eb77076b_a104_42ac_a065_798b2d2809ad ;
+    emmo:EMMO_e1097637_70d2_4895_973f_2396f04fa204 <http://www.osp-core.com/cuds#27864806-b1b1-4076-8426-bf198e4ea969>,
+        <http://www.osp-core.com/cuds#5aace5b3-4703-46ed-93e4-c599d1f61885>,
+        <http://www.osp-core.com/cuds#e401e871-23a4-429d-a284-1bc3f8b33d20> ;
+    emmo:INVERSE_OF_hasPart <http://www.osp-core.com/cuds#0d311c91-de67-4bed-8955-1a4e425ed682> .
+
+<http://www.osp-core.com/cuds#7c56b763-f6ef-4000-8d86-583613b7e373> a emmo:EMMO_44da6d75_54a4_4aa8_bd3a_156f6e9abb8e ;
+    emmo:EMMO_050b47b6_2583_43f7_95eb_a216b41cd5f6 <http://www.osp-core.com/cuds#5eb4fc4d-3ff1-4d22-9c88-56f81a683c62> ;
+    emmo:EMMO_2a9fcd79_bc67_4b1a_8e64_9dfe505a0007 <http://www.osp-core.com/cuds#53c694bb-17d0-4f4b-b754-3a1bd8abad84> ;
+    emmo:EMMO_8785be5a_2493_4b12_8f39_31907ab11748 <http://www.osp-core.com/cuds#ae2e0312-6c41-481b-b054-b80f3eb0d03d> ;
+    emmo:INVERSE_OF_hasProperty <http://www.osp-core.com/cuds#fbe10449-b1b9-47ee-a13f-8725bace9a82> .
+
+<http://www.osp-core.com/cuds#7dcb8dad-c58d-4be7-8fd2-6fc84662bf95> a emmo:EMMO_eb77076b_a104_42ac_a065_798b2d2809ad ;
+    emmo:EMMO_e1097637_70d2_4895_973f_2396f04fa204 <http://www.osp-core.com/cuds#3eda3f56-a825-45de-9f1a-c9bce9a5f252>,
+        <http://www.osp-core.com/cuds#8315e6e5-d00c-42b3-a412-fcfa252dac4e>,
+        <http://www.osp-core.com/cuds#d969c9ff-3e59-43fa-a770-69bf2c1ce253> ;
+    emmo:INVERSE_OF_hasPart <http://www.osp-core.com/cuds#0d311c91-de67-4bed-8955-1a4e425ed682> .
+
+<http://www.osp-core.com/cuds#7fd4edcd-dab1-4acb-ae44-a647a410c284> a emmo:EMMO_44da6d75_54a4_4aa8_bd3a_156f6e9abb8e ;
+    emmo:EMMO_050b47b6_2583_43f7_95eb_a216b41cd5f6 <http://www.osp-core.com/cuds#7908f215-fdca-4977-81ac-91b61e87e0b5> ;
+    emmo:EMMO_2a9fcd79_bc67_4b1a_8e64_9dfe505a0007 <http://www.osp-core.com/cuds#08d0b8a8-5d24-4594-9585-39f829046e38> ;
+    emmo:EMMO_8785be5a_2493_4b12_8f39_31907ab11748 <http://www.osp-core.com/cuds#ad5b6b2c-980a-41ca-a462-183cb6c13786> ;
+    emmo:INVERSE_OF_hasProperty <http://www.osp-core.com/cuds#83170aa5-8816-48bb-affc-af484db8e381> .
+
+<http://www.osp-core.com/cuds#8315e6e5-d00c-42b3-a412-fcfa252dac4e> a emmo:EMMO_44da6d75_54a4_4aa8_bd3a_156f6e9abb8e ;
+    emmo:EMMO_050b47b6_2583_43f7_95eb_a216b41cd5f6 <http://www.osp-core.com/cuds#9e2428b8-83c1-447c-b946-cc6ebde959ab> ;
+    emmo:EMMO_2a9fcd79_bc67_4b1a_8e64_9dfe505a0007 <http://www.osp-core.com/cuds#e0ed0b40-90c3-4013-8012-43df58fd462d> ;
+    emmo:EMMO_8785be5a_2493_4b12_8f39_31907ab11748 <http://www.osp-core.com/cuds#0f72ac46-9140-426f-9b7c-c15bb1d72a5a> ;
+    emmo:INVERSE_OF_hasProperty <http://www.osp-core.com/cuds#7dcb8dad-c58d-4be7-8fd2-6fc84662bf95> .
+
+<http://www.osp-core.com/cuds#83170aa5-8816-48bb-affc-af484db8e381> a emmo:EMMO_eb77076b_a104_42ac_a065_798b2d2809ad ;
+    emmo:EMMO_e1097637_70d2_4895_973f_2396f04fa204 <http://www.osp-core.com/cuds#7fd4edcd-dab1-4acb-ae44-a647a410c284>,
+        <http://www.osp-core.com/cuds#ab2d151c-1d05-4450-9bee-6f88e2858571>,
+        <http://www.osp-core.com/cuds#c99423c2-a00e-4ba4-9a67-4b4d45ec7d4e> ;
+    emmo:INVERSE_OF_hasPart <http://www.osp-core.com/cuds#0d311c91-de67-4bed-8955-1a4e425ed682> .
+
+<http://www.osp-core.com/cuds#83482a13-147e-4d11-b8bc-12ef3437c0ed> a emmo:EMMO_44da6d75_54a4_4aa8_bd3a_156f6e9abb8e ;
+    emmo:EMMO_050b47b6_2583_43f7_95eb_a216b41cd5f6 <http://www.osp-core.com/cuds#f100c265-9f3f-48c4-8189-23a3584b0969> ;
+    emmo:EMMO_2a9fcd79_bc67_4b1a_8e64_9dfe505a0007 <http://www.osp-core.com/cuds#a8c7adc4-4901-4897-9a09-caf8af15a302> ;
+    emmo:EMMO_8785be5a_2493_4b12_8f39_31907ab11748 <http://www.osp-core.com/cuds#cd6e6d42-f0d6-416c-a407-c88eb929cca6> ;
+    emmo:INVERSE_OF_hasProperty <http://www.osp-core.com/cuds#a05a0594-e51d-491e-b882-55bc3b301a6a> .
+
+<http://www.osp-core.com/cuds#848e6694-d449-4d3a-908a-d443b25b72bd> a emmo:EMMO_44da6d75_54a4_4aa8_bd3a_156f6e9abb8e ;
+    emmo:EMMO_050b47b6_2583_43f7_95eb_a216b41cd5f6 <http://www.osp-core.com/cuds#acf47203-6a44-49ab-8d13-450a91807000> ;
+    emmo:EMMO_2a9fcd79_bc67_4b1a_8e64_9dfe505a0007 <http://www.osp-core.com/cuds#cb5d48ce-ebc7-44d2-9b4e-fd2e90da2e91> ;
+    emmo:EMMO_8785be5a_2493_4b12_8f39_31907ab11748 <http://www.osp-core.com/cuds#e52fed23-50be-4074-807b-4934542bd3e6> ;
+    emmo:INVERSE_OF_hasProperty <http://www.osp-core.com/cuds#a83ed1ae-7947-4c3f-8fe3-c02346efe123> .
+
+<http://www.osp-core.com/cuds#8846f334-31b7-44d9-b8c2-bac186e83389> a emmo:EMMO_44da6d75_54a4_4aa8_bd3a_156f6e9abb8e ;
+    emmo:EMMO_050b47b6_2583_43f7_95eb_a216b41cd5f6 <http://www.osp-core.com/cuds#251c43bc-6be6-4ba3-9273-19308dea53f6> ;
+    emmo:EMMO_2a9fcd79_bc67_4b1a_8e64_9dfe505a0007 <http://www.osp-core.com/cuds#0074d593-040e-43f1-97d0-e49a11e0c690> ;
+    emmo:EMMO_8785be5a_2493_4b12_8f39_31907ab11748 <http://www.osp-core.com/cuds#52b0f098-e47f-48ca-82e1-e585c416257b> ;
+    emmo:INVERSE_OF_hasProperty <http://www.osp-core.com/cuds#0a2927c9-82d9-41ac-8a8d-cdb4c34bb446> .
+
+<http://www.osp-core.com/cuds#88d59576-e66d-4c82-95ba-ba2667a32416> a emmo:EMMO_eb77076b_a104_42ac_a065_798b2d2809ad ;
+    emmo:EMMO_e1097637_70d2_4895_973f_2396f04fa204 <http://www.osp-core.com/cuds#16b1c9f4-7f31-45dd-8aac-689b43611f7f>,
+        <http://www.osp-core.com/cuds#410f1b41-2882-4f80-ad8d-70ccfc82252c>,
+        <http://www.osp-core.com/cuds#cbeaab92-82e0-4c26-8c9b-dfd20d4e3247> ;
+    emmo:INVERSE_OF_hasPart <http://www.osp-core.com/cuds#0d311c91-de67-4bed-8955-1a4e425ed682> .
+
+<http://www.osp-core.com/cuds#8e4c96b2-9d13-4ae8-8856-6b9662d9e4db> a emmo:EMMO_44da6d75_54a4_4aa8_bd3a_156f6e9abb8e ;
+    emmo:EMMO_050b47b6_2583_43f7_95eb_a216b41cd5f6 <http://www.osp-core.com/cuds#5229521f-4e44-4725-af00-04d4a378a65d> ;
+    emmo:EMMO_2a9fcd79_bc67_4b1a_8e64_9dfe505a0007 <http://www.osp-core.com/cuds#5ae79769-801a-4953-90b2-5130dc0757c5> ;
+    emmo:EMMO_8785be5a_2493_4b12_8f39_31907ab11748 <http://www.osp-core.com/cuds#4e4ba880-af5f-44f7-ba49-2c1467b2b7c2> ;
+    emmo:INVERSE_OF_hasProperty <http://www.osp-core.com/cuds#41664615-6f39-4612-9eb8-00697a6d4e1a> .
+
+<http://www.osp-core.com/cuds#8e8f7c7e-78c9-42c0-b4b6-cf444811aba8> a emmo:EMMO_44da6d75_54a4_4aa8_bd3a_156f6e9abb8e ;
+    emmo:EMMO_050b47b6_2583_43f7_95eb_a216b41cd5f6 <http://www.osp-core.com/cuds#1d6821f3-15bb-415b-b1fa-e8640f9c5333> ;
+    emmo:EMMO_2a9fcd79_bc67_4b1a_8e64_9dfe505a0007 <http://www.osp-core.com/cuds#7eb4a643-5a61-41aa-b21a-57132f6b62c2> ;
+    emmo:EMMO_8785be5a_2493_4b12_8f39_31907ab11748 <http://www.osp-core.com/cuds#8870c62c-8c07-493d-ae4c-c31f5d8bd1d7> ;
+    emmo:INVERSE_OF_hasProperty <http://www.osp-core.com/cuds#60ce3bd7-bd3c-44ee-be57-c3adb70fe76c> .
+
+<http://www.osp-core.com/cuds#953e2b09-9bf1-4523-99ae-79027c6af287> a emmo:EMMO_44da6d75_54a4_4aa8_bd3a_156f6e9abb8e ;
+    emmo:EMMO_050b47b6_2583_43f7_95eb_a216b41cd5f6 <http://www.osp-core.com/cuds#a626bfe0-3699-4a97-9631-e440c8f9a39e> ;
+    emmo:EMMO_2a9fcd79_bc67_4b1a_8e64_9dfe505a0007 <http://www.osp-core.com/cuds#525fc519-0c4e-4b53-a04f-6a200aa5e691> ;
+    emmo:EMMO_8785be5a_2493_4b12_8f39_31907ab11748 <http://www.osp-core.com/cuds#267d7256-38e2-47ed-a25b-515fc9c8f850> ;
+    emmo:INVERSE_OF_hasProperty <http://www.osp-core.com/cuds#eea9d1db-254f-4425-b4b6-7bfa8035d33e> .
+
+<http://www.osp-core.com/cuds#9ac9cc1c-9d01-47b7-b362-76b45207e4bc> a emmo:EMMO_eb77076b_a104_42ac_a065_798b2d2809ad ;
+    emmo:EMMO_e1097637_70d2_4895_973f_2396f04fa204 <http://www.osp-core.com/cuds#551c1d5a-d51f-4a18-94a1-2e898c699f71>,
+        <http://www.osp-core.com/cuds#de720926-7aab-4bc9-8b56-5db301c24921>,
+        <http://www.osp-core.com/cuds#f0f3aa23-1777-4048-8411-bef5a465096b> ;
+    emmo:INVERSE_OF_hasPart <http://www.osp-core.com/cuds#0d311c91-de67-4bed-8955-1a4e425ed682> .
+
+<http://www.osp-core.com/cuds#9ba733a6-37a6-48cb-9f54-8a0337510bfc> a emmo:EMMO_44da6d75_54a4_4aa8_bd3a_156f6e9abb8e ;
+    emmo:EMMO_050b47b6_2583_43f7_95eb_a216b41cd5f6 <http://www.osp-core.com/cuds#77f0793a-32d6-4b34-bbc6-d33b7c60d669> ;
+    emmo:EMMO_2a9fcd79_bc67_4b1a_8e64_9dfe505a0007 <http://www.osp-core.com/cuds#12c4292a-98a0-45f6-8b8e-b25a9b5cdeee> ;
+    emmo:EMMO_8785be5a_2493_4b12_8f39_31907ab11748 <http://www.osp-core.com/cuds#e8ca897d-e6d5-45b7-b950-b23529569a2e> ;
+    emmo:INVERSE_OF_hasProperty <http://www.osp-core.com/cuds#5e7317e4-a9c3-4ea9-a3aa-b0a917ba01cc> .
+
+<http://www.osp-core.com/cuds#9f8cb7d4-0d5b-4b4e-a42a-4f4982958915> a emmo:EMMO_eb77076b_a104_42ac_a065_798b2d2809ad ;
+    emmo:EMMO_e1097637_70d2_4895_973f_2396f04fa204 <http://www.osp-core.com/cuds#006f1bbf-1f7b-40ae-979e-c170f2059b37>,
+        <http://www.osp-core.com/cuds#472a5edd-723a-4cbb-a318-99c7e5fca216>,
+        <http://www.osp-core.com/cuds#56d95101-636c-4497-9ad8-e08b1ed23d20> ;
+    emmo:INVERSE_OF_hasPart <http://www.osp-core.com/cuds#0d311c91-de67-4bed-8955-1a4e425ed682> .
+
+<http://www.osp-core.com/cuds#a05a0594-e51d-491e-b882-55bc3b301a6a> a emmo:EMMO_eb77076b_a104_42ac_a065_798b2d2809ad ;
+    emmo:EMMO_e1097637_70d2_4895_973f_2396f04fa204 <http://www.osp-core.com/cuds#83482a13-147e-4d11-b8bc-12ef3437c0ed>,
+        <http://www.osp-core.com/cuds#d3957f94-41e9-4506-82b8-a446775e2ff3>,
+        <http://www.osp-core.com/cuds#fb43501b-c790-4b6c-a289-ef7c811196d5> ;
+    emmo:INVERSE_OF_hasPart <http://www.osp-core.com/cuds#0d311c91-de67-4bed-8955-1a4e425ed682> .
+
+<http://www.osp-core.com/cuds#a16cc581-d56c-460e-a835-0e0c75e77916> a emmo:EMMO_eb77076b_a104_42ac_a065_798b2d2809ad ;
+    emmo:EMMO_e1097637_70d2_4895_973f_2396f04fa204 <http://www.osp-core.com/cuds#33dd3fd6-cbf4-4b3f-a3e7-fbbd91682289>,
+        <http://www.osp-core.com/cuds#cfcaff59-dae5-404f-9a7b-2e70fe91645e>,
+        <http://www.osp-core.com/cuds#e0fcd146-552e-4618-b1db-4b44c73168b2> ;
+    emmo:INVERSE_OF_hasPart <http://www.osp-core.com/cuds#0d311c91-de67-4bed-8955-1a4e425ed682> .
+
+<http://www.osp-core.com/cuds#a27dad0d-97f6-4849-a2a8-ddfb6e18f2a4> a emmo:EMMO_eb77076b_a104_42ac_a065_798b2d2809ad ;
+    emmo:EMMO_e1097637_70d2_4895_973f_2396f04fa204 <http://www.osp-core.com/cuds#2b2ac20b-2caa-442d-af37-7dbe976361ee>,
+        <http://www.osp-core.com/cuds#45da9210-1cd3-4f97-898e-e4000764e5ab>,
+        <http://www.osp-core.com/cuds#bf1c6bba-7f6d-48ec-8b20-00e08f947449> ;
+    emmo:INVERSE_OF_hasPart <http://www.osp-core.com/cuds#0d311c91-de67-4bed-8955-1a4e425ed682> .
+
+<http://www.osp-core.com/cuds#a796d434-aecb-4c75-b682-941e059e8cee> a emmo:EMMO_eb77076b_a104_42ac_a065_798b2d2809ad ;
+    emmo:EMMO_e1097637_70d2_4895_973f_2396f04fa204 <http://www.osp-core.com/cuds#3e24bdc5-b59e-4a87-994d-517569f8a731>,
+        <http://www.osp-core.com/cuds#ad22a5f3-6be1-4e94-a440-83cba2bd8da2>,
+        <http://www.osp-core.com/cuds#c6ea8247-13f5-4a40-a312-2938b5f85b8e> ;
+    emmo:INVERSE_OF_hasPart <http://www.osp-core.com/cuds#0d311c91-de67-4bed-8955-1a4e425ed682> .
+
+<http://www.osp-core.com/cuds#a83ed1ae-7947-4c3f-8fe3-c02346efe123> a emmo:EMMO_eb77076b_a104_42ac_a065_798b2d2809ad ;
+    emmo:EMMO_e1097637_70d2_4895_973f_2396f04fa204 <http://www.osp-core.com/cuds#6d37a454-1cde-491f-a69d-e7bab13a2be4>,
+        <http://www.osp-core.com/cuds#7bc7f764-15cb-4dc7-b39d-d75e4601d786>,
+        <http://www.osp-core.com/cuds#848e6694-d449-4d3a-908a-d443b25b72bd> ;
+    emmo:INVERSE_OF_hasPart <http://www.osp-core.com/cuds#0d311c91-de67-4bed-8955-1a4e425ed682> .
+
+<http://www.osp-core.com/cuds#adc6ef81-7f08-4372-b78a-758c4de6d410> a emmo:EMMO_eb77076b_a104_42ac_a065_798b2d2809ad ;
+    emmo:EMMO_e1097637_70d2_4895_973f_2396f04fa204 <http://www.osp-core.com/cuds#0c1d0ff9-5958-4cf7-b37a-41b492412aa6>,
+        <http://www.osp-core.com/cuds#bb51c9b4-b6fc-484a-af85-3ff3d803581d>,
+        <http://www.osp-core.com/cuds#bc78ac27-7128-4ae4-ba4d-32422ba47610> ;
+    emmo:INVERSE_OF_hasPart <http://www.osp-core.com/cuds#0d311c91-de67-4bed-8955-1a4e425ed682> .
+
+<http://www.osp-core.com/cuds#aebc7981-9223-4fd4-8033-150ce0eda332> a emmo:EMMO_44da6d75_54a4_4aa8_bd3a_156f6e9abb8e ;
+    emmo:EMMO_050b47b6_2583_43f7_95eb_a216b41cd5f6 <http://www.osp-core.com/cuds#5723691e-6466-47fc-b4ea-9dc9cf6f529f> ;
+    emmo:EMMO_2a9fcd79_bc67_4b1a_8e64_9dfe505a0007 <http://www.osp-core.com/cuds#3e94da44-66f1-4da1-ad0b-88f8cd799a02> ;
+    emmo:EMMO_8785be5a_2493_4b12_8f39_31907ab11748 <http://www.osp-core.com/cuds#bdb196f2-47f4-48d2-8a12-9d545f8a1363> ;
+    emmo:INVERSE_OF_hasProperty <http://www.osp-core.com/cuds#3a573f38-ad5f-4be7-a63d-94f6b5986370> .
+
+<http://www.osp-core.com/cuds#b2f67f03-6fee-4d5a-9f8a-852da8eef551> a emmo:EMMO_44da6d75_54a4_4aa8_bd3a_156f6e9abb8e ;
+    emmo:EMMO_050b47b6_2583_43f7_95eb_a216b41cd5f6 <http://www.osp-core.com/cuds#4866ac1d-35e4-4ffe-a9bb-b14cf0217f08> ;
+    emmo:EMMO_2a9fcd79_bc67_4b1a_8e64_9dfe505a0007 <http://www.osp-core.com/cuds#3c3fe347-c9ed-4d57-b2ff-e34872bd4d50> ;
+    emmo:EMMO_8785be5a_2493_4b12_8f39_31907ab11748 <http://www.osp-core.com/cuds#86b1b54a-2c20-4a98-bb93-6204176390e4> ;
+    emmo:INVERSE_OF_hasProperty <http://www.osp-core.com/cuds#0db57452-2154-4e89-9b47-014d853c6b5a> .
+
+<http://www.osp-core.com/cuds#b4c8541b-0573-4137-93cb-9ce1a992ca02> a emmo:EMMO_44da6d75_54a4_4aa8_bd3a_156f6e9abb8e ;
+    emmo:EMMO_050b47b6_2583_43f7_95eb_a216b41cd5f6 <http://www.osp-core.com/cuds#e4046065-d9c3-4c2f-96f2-77bff961734a> ;
+    emmo:EMMO_2a9fcd79_bc67_4b1a_8e64_9dfe505a0007 <http://www.osp-core.com/cuds#d6bfc7b6-deee-4ad9-ae50-68caade8ae1d> ;
+    emmo:EMMO_8785be5a_2493_4b12_8f39_31907ab11748 <http://www.osp-core.com/cuds#39fc7081-5276-4ba1-8766-75bb514867a7> ;
+    emmo:INVERSE_OF_hasProperty <http://www.osp-core.com/cuds#747747e5-b6e0-4708-bc35-727de5a7b9c9> .
+
+<http://www.osp-core.com/cuds#bb51c9b4-b6fc-484a-af85-3ff3d803581d> a emmo:EMMO_44da6d75_54a4_4aa8_bd3a_156f6e9abb8e ;
+    emmo:EMMO_050b47b6_2583_43f7_95eb_a216b41cd5f6 <http://www.osp-core.com/cuds#dbb3137b-6c97-45b8-a017-54e775dbf4e2> ;
+    emmo:EMMO_2a9fcd79_bc67_4b1a_8e64_9dfe505a0007 <http://www.osp-core.com/cuds#36086597-2cfa-4ba1-854c-f028026d67af> ;
+    emmo:EMMO_8785be5a_2493_4b12_8f39_31907ab11748 <http://www.osp-core.com/cuds#ba99fb7b-6cf0-4eec-8b7f-2a6dbe8dc337> ;
+    emmo:INVERSE_OF_hasProperty <http://www.osp-core.com/cuds#adc6ef81-7f08-4372-b78a-758c4de6d410> .
+
+<http://www.osp-core.com/cuds#bf021187-38f6-4d7d-9110-67a7cd4333be> a emmo:EMMO_eb77076b_a104_42ac_a065_798b2d2809ad ;
+    emmo:EMMO_e1097637_70d2_4895_973f_2396f04fa204 <http://www.osp-core.com/cuds#1fb7f0e6-94c1-4229-8dc2-d5bba1ed08a5>,
+        <http://www.osp-core.com/cuds#72132358-fc0b-4a39-89b7-b63d041fc5dd>,
+        <http://www.osp-core.com/cuds#8b17ede3-aac6-4a5b-9f73-32915ba76bad> ;
+    emmo:INVERSE_OF_hasPart <http://www.osp-core.com/cuds#0d311c91-de67-4bed-8955-1a4e425ed682> .
+
+<http://www.osp-core.com/cuds#c514216b-4ad4-4680-abdc-0ca05c7b2579> a emmo:EMMO_44da6d75_54a4_4aa8_bd3a_156f6e9abb8e ;
+    emmo:EMMO_050b47b6_2583_43f7_95eb_a216b41cd5f6 <http://www.osp-core.com/cuds#1dc7e8e7-d406-4c94-a402-2951703507f6> ;
+    emmo:EMMO_2a9fcd79_bc67_4b1a_8e64_9dfe505a0007 <http://www.osp-core.com/cuds#43a9390f-bd52-4fac-83dd-b87fb2106bfd> ;
+    emmo:EMMO_8785be5a_2493_4b12_8f39_31907ab11748 <http://www.osp-core.com/cuds#2d7e3468-4d30-4527-b95c-1756aacb03fe> ;
+    emmo:INVERSE_OF_hasProperty <http://www.osp-core.com/cuds#e0a703d7-056a-48b2-80a6-2cb5e88ea7b3> .
+
+<http://www.osp-core.com/cuds#c6ea8247-13f5-4a40-a312-2938b5f85b8e> a emmo:EMMO_44da6d75_54a4_4aa8_bd3a_156f6e9abb8e ;
+    emmo:EMMO_050b47b6_2583_43f7_95eb_a216b41cd5f6 <http://www.osp-core.com/cuds#a5c136e0-ac80-4cd3-b299-0b264e5a04dd> ;
+    emmo:EMMO_2a9fcd79_bc67_4b1a_8e64_9dfe505a0007 <http://www.osp-core.com/cuds#4b61e2ed-5000-4c2b-b387-3bb44cd12f5a> ;
+    emmo:EMMO_8785be5a_2493_4b12_8f39_31907ab11748 <http://www.osp-core.com/cuds#7f30db38-1815-44c9-a2d1-c59d7bc6590a> ;
+    emmo:INVERSE_OF_hasProperty <http://www.osp-core.com/cuds#a796d434-aecb-4c75-b682-941e059e8cee> .
+
+<http://www.osp-core.com/cuds#cbeaab92-82e0-4c26-8c9b-dfd20d4e3247> a emmo:EMMO_44da6d75_54a4_4aa8_bd3a_156f6e9abb8e ;
+    emmo:EMMO_050b47b6_2583_43f7_95eb_a216b41cd5f6 <http://www.osp-core.com/cuds#6add4612-09f6-425e-b445-2ea5d793e97a> ;
+    emmo:EMMO_2a9fcd79_bc67_4b1a_8e64_9dfe505a0007 <http://www.osp-core.com/cuds#9d638bea-7257-47f1-af04-8894ce05c146> ;
+    emmo:EMMO_8785be5a_2493_4b12_8f39_31907ab11748 <http://www.osp-core.com/cuds#9575d08e-cb57-4d43-9a15-d96198bcb97f> ;
+    emmo:INVERSE_OF_hasProperty <http://www.osp-core.com/cuds#88d59576-e66d-4c82-95ba-ba2667a32416> .
+
+<http://www.osp-core.com/cuds#d66f0a74-c53e-464b-baa4-7d4e7af97d0c> a emmo:EMMO_44da6d75_54a4_4aa8_bd3a_156f6e9abb8e ;
+    emmo:EMMO_050b47b6_2583_43f7_95eb_a216b41cd5f6 <http://www.osp-core.com/cuds#740cb98d-42ca-4614-882f-fc759a5ccfa4> ;
+    emmo:EMMO_2a9fcd79_bc67_4b1a_8e64_9dfe505a0007 <http://www.osp-core.com/cuds#fcb3957a-3cde-4f15-97be-a19a17afe65d> ;
+    emmo:EMMO_8785be5a_2493_4b12_8f39_31907ab11748 <http://www.osp-core.com/cuds#cde8bc85-942d-4af8-b27c-574ce5fc125d> ;
+    emmo:INVERSE_OF_hasProperty <http://www.osp-core.com/cuds#28a17eec-a6e5-4269-8c6b-41fa31b6a892> .
+
+<http://www.osp-core.com/cuds#db95ae1f-c3ee-488a-910f-24ee5f89ae50> a emmo:EMMO_44da6d75_54a4_4aa8_bd3a_156f6e9abb8e ;
+    emmo:EMMO_050b47b6_2583_43f7_95eb_a216b41cd5f6 <http://www.osp-core.com/cuds#6e0f97eb-b7e5-4af7-abfc-156c070cd332> ;
+    emmo:EMMO_2a9fcd79_bc67_4b1a_8e64_9dfe505a0007 <http://www.osp-core.com/cuds#6934bb9c-89fd-4823-ac23-7bd0238f254f> ;
+    emmo:EMMO_8785be5a_2493_4b12_8f39_31907ab11748 <http://www.osp-core.com/cuds#da6b30ad-58dd-45f9-bdb5-228aea0f1375> ;
+    emmo:INVERSE_OF_hasProperty <http://www.osp-core.com/cuds#0a7d1545-7afa-4a9f-bcca-9c80592eee8d> .
+
+<http://www.osp-core.com/cuds#e0a703d7-056a-48b2-80a6-2cb5e88ea7b3> a emmo:EMMO_eb77076b_a104_42ac_a065_798b2d2809ad ;
+    emmo:EMMO_e1097637_70d2_4895_973f_2396f04fa204 <http://www.osp-core.com/cuds#98479bfa-41e6-4dd7-93fa-1d3abec4b7da>,
+        <http://www.osp-core.com/cuds#c514216b-4ad4-4680-abdc-0ca05c7b2579>,
+        <http://www.osp-core.com/cuds#fb4ff399-6477-4e4b-9bd0-22c90dccc4c3> ;
+    emmo:INVERSE_OF_hasPart <http://www.osp-core.com/cuds#0d311c91-de67-4bed-8955-1a4e425ed682> .
+
+<http://www.osp-core.com/cuds#e0fcd146-552e-4618-b1db-4b44c73168b2> a emmo:EMMO_44da6d75_54a4_4aa8_bd3a_156f6e9abb8e ;
+    emmo:EMMO_050b47b6_2583_43f7_95eb_a216b41cd5f6 <http://www.osp-core.com/cuds#b0d32d33-7c4d-46f0-9ee5-edc2254f935b> ;
+    emmo:EMMO_2a9fcd79_bc67_4b1a_8e64_9dfe505a0007 <http://www.osp-core.com/cuds#a2298f80-91d4-4df8-8d5c-ac1e9f6afab4> ;
+    emmo:EMMO_8785be5a_2493_4b12_8f39_31907ab11748 <http://www.osp-core.com/cuds#b16f524a-7cfe-4710-839b-7245d1c37dda> ;
+    emmo:INVERSE_OF_hasProperty <http://www.osp-core.com/cuds#a16cc581-d56c-460e-a835-0e0c75e77916> .
+
+<http://www.osp-core.com/cuds#e2b644d8-1d8e-450b-873c-95ef30f28303> a emmo:EMMO_eb77076b_a104_42ac_a065_798b2d2809ad ;
+    emmo:EMMO_e1097637_70d2_4895_973f_2396f04fa204 <http://www.osp-core.com/cuds#7406cdd9-79e9-43db-bc5e-e195ec2b4f7b>,
+        <http://www.osp-core.com/cuds#ee66cf4b-d48d-4a67-9043-909fd7b836b3>,
+        <http://www.osp-core.com/cuds#f1d3948d-8359-4e6a-9460-78255126b3d0> ;
+    emmo:INVERSE_OF_hasPart <http://www.osp-core.com/cuds#0d311c91-de67-4bed-8955-1a4e425ed682> .
+
+<http://www.osp-core.com/cuds#eaa9e279-4165-496f-b1e3-0886d5ba649d> a emmo:EMMO_eb77076b_a104_42ac_a065_798b2d2809ad ;
+    emmo:EMMO_e1097637_70d2_4895_973f_2396f04fa204 <http://www.osp-core.com/cuds#62568cf4-e20f-4acf-9a33-908bed1a4945>,
+        <http://www.osp-core.com/cuds#8099d8ea-0de3-452a-9eb1-499ce8116b4b>,
+        <http://www.osp-core.com/cuds#b9804beb-8b10-4815-9760-25057e59ca78> ;
+    emmo:INVERSE_OF_hasPart <http://www.osp-core.com/cuds#0d311c91-de67-4bed-8955-1a4e425ed682> .
+
+<http://www.osp-core.com/cuds#ecc1385e-7707-4d33-a76e-a31e8f7af20a> a emmo:EMMO_eb77076b_a104_42ac_a065_798b2d2809ad ;
+    emmo:EMMO_e1097637_70d2_4895_973f_2396f04fa204 <http://www.osp-core.com/cuds#60e03476-9842-40f5-aeac-399cebfb0af9>,
+        <http://www.osp-core.com/cuds#694fd38b-fabb-434d-916f-db29360c9ee7>,
+        <http://www.osp-core.com/cuds#9642f76e-6dd0-4bb2-9b8d-3ae992f717c8> ;
+    emmo:INVERSE_OF_hasPart <http://www.osp-core.com/cuds#0d311c91-de67-4bed-8955-1a4e425ed682> .
+
+<http://www.osp-core.com/cuds#ee66cf4b-d48d-4a67-9043-909fd7b836b3> a emmo:EMMO_44da6d75_54a4_4aa8_bd3a_156f6e9abb8e ;
+    emmo:EMMO_050b47b6_2583_43f7_95eb_a216b41cd5f6 <http://www.osp-core.com/cuds#b8ec3a9f-1d50-4409-be31-bbf5231252ad> ;
+    emmo:EMMO_2a9fcd79_bc67_4b1a_8e64_9dfe505a0007 <http://www.osp-core.com/cuds#2ed441af-f950-4491-ba69-9e436afca579> ;
+    emmo:EMMO_8785be5a_2493_4b12_8f39_31907ab11748 <http://www.osp-core.com/cuds#f047a98e-30b0-45f9-bab6-d2df01fd2fc9> ;
+    emmo:INVERSE_OF_hasProperty <http://www.osp-core.com/cuds#e2b644d8-1d8e-450b-873c-95ef30f28303> .
+
+<http://www.osp-core.com/cuds#eea9d1db-254f-4425-b4b6-7bfa8035d33e> a emmo:EMMO_eb77076b_a104_42ac_a065_798b2d2809ad ;
+    emmo:EMMO_e1097637_70d2_4895_973f_2396f04fa204 <http://www.osp-core.com/cuds#953e2b09-9bf1-4523-99ae-79027c6af287>,
+        <http://www.osp-core.com/cuds#cba626d0-2f72-444c-acbf-367bb544dadc>,
+        <http://www.osp-core.com/cuds#f4436ada-858b-4ce6-9b60-40e38d5bb8ba> ;
+    emmo:INVERSE_OF_hasPart <http://www.osp-core.com/cuds#0d311c91-de67-4bed-8955-1a4e425ed682> .
+
+<http://www.osp-core.com/cuds#eecd261b-f2c7-4cc1-bff7-f48c85a3a884> a crystallography:EMMO_6b5e88c8_0d54_4a02_a9ff_6958f6013e0e ;
+    emmo:EMMO_050b47b6_2583_43f7_95eb_a216b41cd5f6 <http://www.osp-core.com/cuds#18b6dc3c-c330-4a67-bc69-60e884e0ab65> ;
+    emmo:EMMO_2a9fcd79_bc67_4b1a_8e64_9dfe505a0007 <http://www.osp-core.com/cuds#2a3d4835-1869-4912-9402-81c2794b8846> ;
+    emmo:EMMO_8785be5a_2493_4b12_8f39_31907ab11748 <http://www.osp-core.com/cuds#07056617-452c-4a78-ad61-4a6067310898> ;
+    emmo:INVERSE_OF_hasSpatialDirectPart <http://www.osp-core.com/cuds#add81c0d-9d4c-4e5c-9acc-f8896ec4e20e> .
+
+<http://www.osp-core.com/cuds#fb276102-e128-4513-9b02-22c6469c0f4d> a emmo:EMMO_eb77076b_a104_42ac_a065_798b2d2809ad ;
+    emmo:EMMO_e1097637_70d2_4895_973f_2396f04fa204 <http://www.osp-core.com/cuds#5e6bfd9d-d2c1-402f-bb52-b8587ebd124f>,
+        <http://www.osp-core.com/cuds#70bb7ffc-b055-40c2-abc7-2e65f3b3aadc>,
+        <http://www.osp-core.com/cuds#eeaeef3d-abd1-4ab6-b76d-d78c7af396a5> ;
+    emmo:INVERSE_OF_hasPart <http://www.osp-core.com/cuds#0d311c91-de67-4bed-8955-1a4e425ed682> .
+
+<http://www.osp-core.com/cuds#fbe10449-b1b9-47ee-a13f-8725bace9a82> a emmo:EMMO_eb77076b_a104_42ac_a065_798b2d2809ad ;
+    emmo:EMMO_e1097637_70d2_4895_973f_2396f04fa204 <http://www.osp-core.com/cuds#46da9d36-9563-46b2-8b1c-85d3501922be>,
+        <http://www.osp-core.com/cuds#7c56b763-f6ef-4000-8d86-583613b7e373>,
+        <http://www.osp-core.com/cuds#e1e54384-2a96-4ecb-98fa-68804a24aee4> ;
+    emmo:INVERSE_OF_hasPart <http://www.osp-core.com/cuds#0d311c91-de67-4bed-8955-1a4e425ed682> .
+
+<http://www.osp-core.com/cuds#ffb260da-13cd-45fe-bbbd-0c94b62c2faa> a emmo:EMMO_eb77076b_a104_42ac_a065_798b2d2809ad ;
+    emmo:EMMO_e1097637_70d2_4895_973f_2396f04fa204 <http://www.osp-core.com/cuds#50b4c9fc-b004-4d11-a357-a91a339f3005>,
+        <http://www.osp-core.com/cuds#ce9516ae-1c53-483b-a691-9c2e1bfe40d8>,
+        <http://www.osp-core.com/cuds#ffedf695-5656-4839-8f15-e49f630895c9> ;
+    emmo:INVERSE_OF_hasPart <http://www.osp-core.com/cuds#0d311c91-de67-4bed-8955-1a4e425ed682> .
+
+<http://www.osp-core.com/cuds#672b6244-3c8f-4192-b772-366d9f3e4e1c> a emmo:EMMO_175e6df5_7b05_4a81_9d6c_3824e1270c97 ;
+    emmo:EMMO_b78fbd63_02aa_49a3_8d43_ab4e6cb15995 <http://www.osp-core.com/cuds#0d311c91-de67-4bed-8955-1a4e425ed682>,
+        <http://www.osp-core.com/cuds#2806da43-e7e3-49a0-9f8a-633abb307294>,
+        <http://www.osp-core.com/cuds#43fb4c4a-5807-4f58-96e6-aa2c83410473>,
+        <http://www.osp-core.com/cuds#586fe1f4-c252-47e6-bd25-38c05ff9cf8c>,
+        <http://www.osp-core.com/cuds#7fce8070-48d2-4e78-83f5-71d39aa46674>,
+        <http://www.osp-core.com/cuds#add81c0d-9d4c-4e5c-9acc-f8896ec4e20e>,
+        <http://www.osp-core.com/cuds#bafe6c1f-1aa2-4451-b03b-151e047aa9d9>,
+        <http://www.osp-core.com/cuds#d9c7578b-faa4-4ab9-94a7-279622f25281>,
+        <http://www.osp-core.com/cuds#e808a29d-7bd5-4ac1-8b3a-49102cfe6450>,
+        <http://www.osp-core.com/cuds#e81f1bee-0d2c-41d1-9deb-dc42a0332e67> .
+
+<http://www.osp-core.com/cuds#0d311c91-de67-4bed-8955-1a4e425ed682> a emmo:EMMO_3397f270_dfc1_4500_8f6f_4d0d85ac5f71 ;
+    emmo:EMMO_17e27c22_37e1_468c_9dd7_95e137f73e7f <http://www.osp-core.com/cuds#01b60d32-58b0-403c-b465-2fcd909245bd>,
+        <http://www.osp-core.com/cuds#09d9d350-b303-436b-97d3-79ff27baaa1c>,
+        <http://www.osp-core.com/cuds#0a2927c9-82d9-41ac-8a8d-cdb4c34bb446>,
+        <http://www.osp-core.com/cuds#0a7d1545-7afa-4a9f-bcca-9c80592eee8d>,
+        <http://www.osp-core.com/cuds#0db57452-2154-4e89-9b47-014d853c6b5a>,
+        <http://www.osp-core.com/cuds#1d289d63-f0ba-466b-9e09-10af4e63527b>,
+        <http://www.osp-core.com/cuds#252d2760-0736-43ef-8c11-a162f6e943ce>,
+        <http://www.osp-core.com/cuds#26d9be47-0cdb-410d-8b41-a63a440f60e4>,
+        <http://www.osp-core.com/cuds#28a17eec-a6e5-4269-8c6b-41fa31b6a892>,
+        <http://www.osp-core.com/cuds#363431ae-2a85-4803-a438-db8c3079582f>,
+        <http://www.osp-core.com/cuds#3a573f38-ad5f-4be7-a63d-94f6b5986370>,
+        <http://www.osp-core.com/cuds#41664615-6f39-4612-9eb8-00697a6d4e1a>,
+        <http://www.osp-core.com/cuds#474febfa-5237-46c6-bedb-10e70189bef1>,
+        <http://www.osp-core.com/cuds#5e7317e4-a9c3-4ea9-a3aa-b0a917ba01cc>,
+        <http://www.osp-core.com/cuds#60ce3bd7-bd3c-44ee-be57-c3adb70fe76c>,
+        <http://www.osp-core.com/cuds#6a1e2b39-68d6-4ed5-9a72-b58451751680>,
+        <http://www.osp-core.com/cuds#747747e5-b6e0-4708-bc35-727de5a7b9c9>,
+        <http://www.osp-core.com/cuds#776a064d-6887-4a9e-bf45-de7e9b06699b>,
+        <http://www.osp-core.com/cuds#7dcb8dad-c58d-4be7-8fd2-6fc84662bf95>,
+        <http://www.osp-core.com/cuds#83170aa5-8816-48bb-affc-af484db8e381>,
+        <http://www.osp-core.com/cuds#88d59576-e66d-4c82-95ba-ba2667a32416>,
+        <http://www.osp-core.com/cuds#9ac9cc1c-9d01-47b7-b362-76b45207e4bc>,
+        <http://www.osp-core.com/cuds#9f8cb7d4-0d5b-4b4e-a42a-4f4982958915>,
+        <http://www.osp-core.com/cuds#a05a0594-e51d-491e-b882-55bc3b301a6a>,
+        <http://www.osp-core.com/cuds#a16cc581-d56c-460e-a835-0e0c75e77916>,
+        <http://www.osp-core.com/cuds#a27dad0d-97f6-4849-a2a8-ddfb6e18f2a4>,
+        <http://www.osp-core.com/cuds#a796d434-aecb-4c75-b682-941e059e8cee>,
+        <http://www.osp-core.com/cuds#a83ed1ae-7947-4c3f-8fe3-c02346efe123>,
+        <http://www.osp-core.com/cuds#adc6ef81-7f08-4372-b78a-758c4de6d410>,
+        <http://www.osp-core.com/cuds#bf021187-38f6-4d7d-9110-67a7cd4333be>,
+        <http://www.osp-core.com/cuds#e0a703d7-056a-48b2-80a6-2cb5e88ea7b3>,
+        <http://www.osp-core.com/cuds#e2b644d8-1d8e-450b-873c-95ef30f28303>,
+        <http://www.osp-core.com/cuds#eaa9e279-4165-496f-b1e3-0886d5ba649d>,
+        <http://www.osp-core.com/cuds#ecc1385e-7707-4d33-a76e-a31e8f7af20a>,
+        <http://www.osp-core.com/cuds#eea9d1db-254f-4425-b4b6-7bfa8035d33e>,
+        <http://www.osp-core.com/cuds#fb276102-e128-4513-9b02-22c6469c0f4d>,
+        <http://www.osp-core.com/cuds#fbe10449-b1b9-47ee-a13f-8725bace9a82>,
+        <http://www.osp-core.com/cuds#ffb260da-13cd-45fe-bbbd-0c94b62c2faa> ;
+    emmo:INVERSE_OF_hasInput <http://www.osp-core.com/cuds#672b6244-3c8f-4192-b772-366d9f3e4e1c> .
+

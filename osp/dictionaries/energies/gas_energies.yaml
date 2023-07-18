@@ -1,0 +1,5 @@
+# Dictionary containing formation energies for gas species. 
+Gas_energies:
+    O2:   0.00000
+    CO:   0.00000
+    CO2: -4.15784 

@@ -1,0 +1,32 @@
+{
+    "pathways": [
+      {
+        "reactant": {
+          "xyz_file": "b66ff7f5-979f-4e38-8ad3-e6bce42145d5",
+          "charge": -1
+        },
+        "transition": {
+          "xyz_file": "76dd6a5c-0e80-4b82-af2e-0b2f884af1b0",
+          "charge": -1
+        },
+        "product": {
+          "xyz_file": "d1c1b58b-50ef-4e1b-9776-6ad90b20fe98",
+          "charge": -1
+        }
+      },
+      {
+        "reactant": {
+          "xyz_file": "d1c1b58b-50ef-4e1b-9776-6ad90b20fe98",
+          "charge": -1
+        },
+        "transition": {
+          "xyz_file": "8944c8d3-e7a4-453d-a179-d9126d1c5d61",
+          "charge": -1
+        },
+        "product": {
+          "xyz_file": "934651a0-badd-43a3-98fd-ed67265b9669",
+          "charge": -1
+        }
+      }
+    ]
+  }

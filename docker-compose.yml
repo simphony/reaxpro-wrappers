@@ -1,0 +1,32 @@
+version: "3"
+
+services:
+  simphony:
+    image: "registry.gitlab.cc-asp.fraunhofer.de/simphony/wrappers/reaxpro-wrappers:${BUILD_VERSION:-latest}"
+    environment:
+      REAXPRO_MINIO_ENDPOINT: minio:9000
+      REAXPRO_MINIO_USER: ${REAXPRO_MINIO_USER}
+      REAXPRO_MINIO_PASSWORD: ${REAXPRO_MINIO_PASSWORD}
+    networks:
+      - reaxpro
+
+  minio:
+    image: quay.io/minio/minio
+    ports:
+      - 9000
+    environment:
+      MINIO_ROOT_USER: ${REAXPRO_MINIO_USER}
+      MINIO_ROOT_PASSWORD: ${REAXPRO_MINIO_PASSWORD}
+    volumes:
+      - minio-data:/data
+    command: server /data
+    networks:
+      - reaxpro
+
+
+networks:
+  reaxpro:
+
+volumes:
+  minio-data:
+  

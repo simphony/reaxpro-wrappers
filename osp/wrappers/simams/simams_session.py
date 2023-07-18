@@ -1,0 +1,79 @@
+"""Describe AMS Session class."""
+from osp.core.session import SimWrapperSession
+from osp.core.cuds import Cuds
+from osp.tools.graph_functions import graph_wrapper_dependencies
+from osp.tools.mapping_functions import map_function, map_results
+from scm.plams import init as PlamsInit
+from scm.plams import MultiJob, AMSJob
+# from osp.core.utils import pretty_print
+
+
+class SimamsSession(SimWrapperSession):
+    """Describe AMS Session class."""
+
+    def __init__(self, engine=None, **kwargs):
+        """Initialise SimamsSession."""
+        if engine is None:
+            PlamsInit()
+            self.engine = MultiJob()
+        super().__init__(engine, **kwargs)
+
+    def __str__(self):
+        """To overwrite the private str method. Not advised, but here it is."""
+        # TODO: Define the output of str(SomeSimulationSession())
+        return "Some Wrapper Session"
+
+    def _run(self, root_cuds_object: Cuds):
+        """
+        Execute engine session.
+
+        :param root_cuds_object: Main Cuds object.
+
+        """
+        self.engine.run()
+        map_results(self.engine, root_cuds_object)
+
+    # OVERRIDE   # Map results
+    def _load_from_backend(self, uids, expired=None):
+        """Load the cuds object from the simulation engine."""
+        # TODO load cuds objects from the backend
+        for uid in uids:
+            if uid in self._registry:
+                yield self._registry.get(uid)
+            else:
+                yield None
+
+    # OVERRIDE #Map functions
+    def _apply_added(self, root_obj, buffer):
+        """Add the added cuds to the engine."""
+        # Solve dependencies:
+        self.dependencies = graph_wrapper_dependencies(root_obj)
+
+        # One Calculation without Simulation:
+        if list(self.dependencies.keys())[0] == "Calculation":
+            (plams_molecule, plams_settings) = \
+                map_function(self, self.dependencies["Calculation"][0])
+            self.engine.children = [AMSJob(molecule=plams_molecule, settings=plams_settings)]
+
+        # If Simulation, create a loop of PLAMS jobs according to dependencies:
+        elif list(self.dependencies.keys())[0] == "Simulation":
+            job_list = []
+            for calculation in self.dependencies["Simulation"]["Calculations"]:
+                (plams_molecule, plams_settings) = map_function(self, calculation)
+                job_list.append(AMSJob(molecule=plams_molecule, settings=plams_settings))
+            self.engine.children = job_list
+
+    # OVERRIDE
+    def _apply_updated(self, root_obj, buffer):
+        """Updates the updated cuds in the engine."""
+        # TODO: What should happen in the engine
+        # when the user updates a certain cuds?
+        # The given buffer contains all the updated CUDS object in a dictionary
+#        map_results(self.engine, 'total_energy')
+
+    # OVERRIDE
+    def _apply_deleted(self, root_obj, buffer):
+        """Deletes the deleted cuds from the engine."""
+        # TODO: What should happen in the engine
+        # when the user removes a certain cuds?
+        # The given buffer contains all the deleted CUDS object in a dictionary
