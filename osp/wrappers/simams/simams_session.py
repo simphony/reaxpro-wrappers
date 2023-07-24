@@ -16,7 +16,7 @@ class SimamsSession(SimWrapperSession):
         if engine is None:
             PlamsInit()
             self.engine = MultiJob()
-        super().__init__(engine, **kwargs)
+        super().__init__(engine)
 
     def __str__(self):
         """To overwrite the private str method. Not advised, but here it is."""
