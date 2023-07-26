@@ -78,12 +78,11 @@ class EnergyLandscapeRefinement:
     def __post_init_post_parse__(self):
         with CoreSession() as session:
             calculation = emmo.LandscapeRefinement()
-            energy_landscape = emmo.EnergyLandscape()
             model = emmo.DFTB()
-            energy_landscape.add(*self._make_landscape(), rel=emmo.hasPart)
-            calculation.add(energy_landscape, model, rel=emmo.hasInput)
-        file = tempfile.NamedTemporaryFile(suffix=".ttl")
+            calculation.add(self._make_landscape(), model, rel=emmo.hasInput)
+        file = tempfile.NamedTemporaryFile(suffix=".ttl",delete=False)
         export_cuds(session, file.name)
+        self._file = file.name
         try:
             self._uuid = get_upload(file)
         except Exception as error:
@@ -92,7 +91,20 @@ class EnergyLandscapeRefinement:
             warnings.warn(message)
         self._session = session
 
-    def _make_landscape(self) -> "List[Cuds]":
+    def _make_landscape(self) -> "Cuds":
+        energy_landscape = emmo.EnergyLandscape()
+        pathways = self._make_reaction_paths()
+        for index in range(len(pathways)):
+            if index == 0:
+                energy_landscape.add(pathways[index], rel=emmo.hasSpatialFirst)
+            else:
+                pathways[index-1].add(pathways[index], rel=emmo.hasSpatialNext)
+                energy_landscape.add(pathways[index], rel=emmo.hasSpatialDirectPart)
+            if index == len(pathways) + 1:
+                energy_landscape.add(pathways[index], rel=emmo.hasSpatialLast)
+        return energy_landscape
+
+    def _make_reaction_paths(self) -> "List[Cuds]":
         reactions = self._make_reaction()
         paths = []
         for index in range(len(reactions)):
@@ -173,6 +185,10 @@ class EnergyLandscapeRefinement:
     @property
     def uuid(cls):
         return cls._uuid
+
+    @property
+    def file(cls):
+        return cls._file
 
     class Config:
         """Pydantic Config for EnergyLandscapeRefinement"""

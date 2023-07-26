@@ -195,6 +195,7 @@ def molecule_from_xyz(filename: str, TS: bool):
 
     # Creating atom containers and adding them to the root_cuds_object
     # (i.e. MolecularGeometry)
+    atoms = []
     for iatom in range(n_atoms):
         atom = emmo.AtomEntity()
         atom_symbol = emmo.ChemicalElement(hasSymbolData=labels[iatom])
@@ -212,10 +213,18 @@ def molecule_from_xyz(filename: str, TS: bool):
         else:
             region = emmo.Region(hasSymbolData=regions[iatom].lower())
             atom.add(position_vec, atom_symbol, region, rel=emmo.hasPart)
-        if TS:
-            transition_state.add(atom, rel=emmo.hasSpatialPart)
+        if iatom == 0:
+            rel = emmo.hasSpatialFirst
+        elif iatom == n_atoms:
+            rel = emmo.hasSpatialLast
         else:
-            molecule.add(atom, rel=emmo.hasSpatialPart)
+            rel = emmo.hasSpatialDirectPart
+            atoms[iatom-1].add(atom, rel=emmo.hasSpatialNext)
+        atoms.append(atom)
+        if TS:
+            transition_state.add(atom, rel=rel)
+        else:
+            molecule.add(atom, rel=rel)
     if TS:
         assign_chemical_name(transition_state, labels)
         return transition_state
@@ -728,18 +737,18 @@ def raise_error(file: str, function: str, type: str, message: str):
     """
 
     nl = "\n"
-    if type == "NotImplementedError":
-        raise NameError(message)
 
+    msg = (
+        f"{nl}### ERROR ### {function} function/method"
+        f" in {file}:"
+        f'{nl}              "{message}"'
+    )
     if type == "NameError":
-        msg = (
-            f"{nl}### ERROR ### {function} function/method"
-            f" in {file}:"
-            f'{nl}              "{message}"'
-        )
         raise NameError(msg)
-    return
-
+    elif type == "ValueError":
+        raise ValueError(msg)
+    elif type == "NotImplementedError":
+        raise NameError(message)
 
 def raise_warning(file: str, function: str, message: str, message2=None):
     """

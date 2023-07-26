@@ -1,6 +1,6 @@
 """Run AMS LandscapeRefinment calculation using ReaxPro ontology."""
 import os
-from osp.core.namespaces import cuba, emmo
+from osp.core.namespaces import cuba, emmo, cuba
 from osp.core.utils import Cuds2dot, pretty_print
 from osp.core.utils import simple_search as search
 from osp.models.ams.energy_landscape_refinement import EnergyLandscapeRefinement
@@ -50,7 +50,7 @@ pretty_print(model.cuds)
 
 with SimamsSession() as sess:
     reaxpro_wrapper = cuba.Wrapper(session=sess)
-    reaxpro_wrapper.add(model.cuds, rel=emmo.hasPart)
+    reaxpro_wrapper.add(model.cuds, rel=cuba.relationship)
     reaxpro_wrapper.session.run()
 #
 ## Post-processing:
