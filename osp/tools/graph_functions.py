@@ -6,7 +6,7 @@ from osp.core.cuds import Cuds
 from osp.core.ontology.relationship import OntologyRelationship
 from osp.core.utils import simple_search as search
 from osp.tools.io_functions import raise_error
-from osp.core.namespaces import emmo
+from osp.core.namespaces import emmo, cuba
 from osp.core.utils.general import get_relationships_between
 from typing import List
 # from osp.core.utils import pretty_print

@@ -16,6 +16,7 @@ from osp.core.ontology.oclass import OntologyClass
 from osp.core.cuds import Cuds
 from osp.core.namespaces import emmo, crystallography
 from osp.core.utils import pretty_print
+from typing import List
 
 
 def map_function(self, root_cuds_object: Cuds, engine=None) -> tuple:
@@ -42,7 +43,19 @@ def map_function(self, root_cuds_object: Cuds, engine=None) -> tuple:
             plams_molecule = map_PLAMSLandscape(search_landscape[0])
 
         else:
-            plams_molecule = map_PLAMSMolecule(root_cuds_object)
+            search_molecule = \
+                search.find_cuds_objects_by_oclass(emmo.MolecularGeometry, root_cuds_object, emmo.hasPart)
+
+            if len(search_molecule) > 1:
+                raise_error(file=os.path.basename(__file__),
+                            function=map_function.__name__,
+                            type='ValueError',
+                            message='More than one emmo.MolecularGeometry defined in the Wrapper object.')
+            elif not search_molecule:
+                raise_error(file=os.path.basename(__file__), function=map_molecule.__name__,
+                            type='ValueError', message='Molecule CUDS object missed in the wrapper.')
+            else:
+                plams_molecule = map_PLAMSMolecule(search_molecule[0])
 
         plams_settings = map_PLAMSSettings(root_cuds_object)
 
@@ -136,9 +149,7 @@ def map_PLAMSLandscape(root_cuds_object: Cuds) -> dict:
     """
 
     landscape_dict = {}
-    search_reaction_path = \
-        search.find_cuds_objects_by_oclass(emmo.ReactionPathway,
-                                           root_cuds_object, emmo.hasPart)
+    search_reaction_path = find_reaction_path(root_cuds_object)
 
     if search_reaction_path:
 
@@ -153,7 +164,6 @@ def map_PLAMSLandscape(root_cuds_object: Cuds) -> dict:
                 criterion=lambda x:
                 x.is_a(oclass=emmo.MolecularGeometry), root=reaction_path, rel=emmo.hasPart,
                 find_all=True, max_depth=1)
-
             if search_molecule:
 
                 if len(search_molecule) > 1:
@@ -263,89 +273,90 @@ def map_molecule(root_cuds_object: Cuds) -> dict:
                     [coordinate_x_2, coordinate_y_n, coordinate_z_n, (region)]]
     }
 
-    :param root_cuds_object: CUDS wrapper to be checked.
+    :param root_cuds_object: CUDS MolecularGeometry to be checked.
 
     :return str: If a Molecule object is present, return dictionary with
                  atom labels and positions. Otherwise, raise an error.
     """
+    molecule_data = {}
 
-    search_molecule = \
-        search.find_cuds_objects_by_oclass(emmo.MolecularGeometry, root_cuds_object, emmo.hasPart)
+    # Looking for atoms:
+    first = root_cuds_object.get(rel=emmo.hasSpatialFirst)
+    if len(first) > 1:
+        raise_error(file=os.path.basename(__file__),
+                    function=map_molecule.__name__,
+                    type='ValueError',
+                    message='More than one first spatial atom found in molecule.')
+    elif len(first) == 0:
+        raise_error(file=os.path.basename(__file__),
+                    function=map_molecule.__name__,
+                    type='ValueError',
+                    message='First spatial atom in molecule not found.')
+    else:
+        atom_list = []
+        current = first
+        while current:
+            current = current.pop()
+            atom_list.append(current)
+            current = current.get(rel=emmo.hasSpatialNext)
+    # Looking for charges:
+    search_charge =  \
+        search.find_cuds_objects_by_oclass(emmo.ElectricCharge, root_cuds_object,
+                                            emmo.hasProperty)
 
-    if (len(search_molecule) > 1):
-        # Raise error if two molecules, for some reason, are found:
-        raise_error(file=os.path.basename(__file__), function=map_molecule.__name__,
-                    type='NameError', message='More than one emmo.MolecularGeometry defined'
-                                              ' in the Wrapper object.')
+    # Is there any charge?
+    if search_charge:
+        molecular_charge = search_charge[0].get(oclass=emmo.Integer,
+                                                rel=emmo.hasQuantityValue)[0].hasNumericalData
 
-    if search_molecule:
-        molecule_data = {}
+    # For each of the atoms, we add labels and positions:
+    for count, iatom in enumerate(atom_list):
 
-        # Looking for atoms:
-        atom_list = \
-            search.find_cuds_objects_by_oclass(emmo.AtomEntity, search_molecule[0], emmo.hasPart)
+        search_label = \
+            search.find_cuds_objects_by_oclass(emmo.ChemicalElement, iatom, emmo.hasPart)
 
-        # Looking for charges:
-        search_charge =  \
-            search.find_cuds_objects_by_oclass(emmo.ElectricCharge, search_molecule[0],
-                                               emmo.hasProperty)
+        search_position_vec = \
+            search.find_cuds_objects_by_oclass(emmo.PositionVector, iatom, emmo.hasPart)
 
-        # Is there any charge?
-        if search_charge:
-            molecular_charge = search_charge[0].get(oclass=emmo.Integer,
-                                                    rel=emmo.hasQuantityValue)[0].hasNumericalData
+        search_region = \
+            search.find_cuds_objects_by_oclass(emmo.Region, iatom, emmo.hasPart)
 
-        # For each of the atoms, we add labels and positions:
-        for count, iatom in enumerate(atom_list):
+        # Is there any region defined? For EON PES exploration.
+        if search_region:
+            region = search_region[0].hasSymbolData
 
-            search_label = \
-                search.find_cuds_objects_by_oclass(emmo.ChemicalElement, iatom, emmo.hasPart)
+        # Atom coordinates:
+        coordinate_x = \
+            search_position_vec[0].get(oclass=emmo.Real, rel=emmo.hasSpatialFirst)
+        coordinate_y = \
+            search_position_vec[0].get(oclass=emmo.Real, rel=emmo.hasSpatialNext)
+        coordinate_z = \
+            search_position_vec[0].get(oclass=emmo.Real, rel=emmo.hasSpatialLast)
 
-            search_position_vec = \
-                search.find_cuds_objects_by_oclass(emmo.PositionVector, iatom, emmo.hasPart)
-
-            search_region = \
-                search.find_cuds_objects_by_oclass(emmo.Region, iatom, emmo.hasPart)
-
-            # Is there any region defined? For EON PES exploration.
+        if count == 0:
+            molecule_data = {
+                'atom_symbol': [search_label[0].hasSymbolData],
+                'atom_coordinates': [[
+                    coordinate_x[0].hasNumericalData,
+                    coordinate_y[0].hasNumericalData,
+                    coordinate_z[0].hasNumericalData
+                ]]
+            }
             if search_region:
-                region = search_region[0].hasSymbolData
-
-            # Atom coordinates:
-            coordinate_x = \
-                search_position_vec[0].get(oclass=emmo.Real, rel=emmo.hasSpatialFirst)
-            coordinate_y = \
-                search_position_vec[0].get(oclass=emmo.Real, rel=emmo.hasSpatialNext)
-            coordinate_z = \
-                search_position_vec[0].get(oclass=emmo.Real, rel=emmo.hasSpatialLast)
-
-            if count == 0:
-                molecule_data = {
-                    'atom_symbol': [search_label[0].hasSymbolData],
-                    'atom_coordinates': [[
-                        coordinate_x[0].hasNumericalData,
+                molecule_data['region'] = [region]
+            if search_charge:
+                molecule_data['molecular_charge'] = [molecular_charge]
+        else:
+            molecule_data['atom_symbol'].\
+                append(search_label[0].hasSymbolData)
+            molecule_data['atom_coordinates'].\
+                append([coordinate_x[0].hasNumericalData,
                         coordinate_y[0].hasNumericalData,
                         coordinate_z[0].hasNumericalData
-                    ]]
-                }
-                if search_region:
-                    molecule_data['region'] = [region]
-                if search_charge:
-                    molecule_data['molecular_charge'] = [molecular_charge]
-            else:
-                molecule_data['atom_symbol'].\
-                    append(search_label[0].hasSymbolData)
-                molecule_data['atom_coordinates'].\
-                    append([coordinate_x[0].hasNumericalData,
-                            coordinate_y[0].hasNumericalData,
-                            coordinate_z[0].hasNumericalData
-                            ])
-                if search_region:
-                    molecule_data['region'].append(region)
+                        ])
+            if search_region:
+                molecule_data['region'].append(region)
 
-    else:
-        raise_error(file=os.path.basename(__file__), function=map_molecule.__name__,
-                    type='NameError', message='Molecule CUDS object missed in the wrapper.')
     return molecule_data
 
 
@@ -1128,6 +1139,45 @@ def map_PyZacrosSettings(root_cuds_object: Cuds) -> pz.Settings:
 
     return syntactic_settings
 
+def find_reaction_path(root_cuds_object: Cuds) -> List[Cuds]:
+    """
+    Find reaction pathways in root cuds object with specific order
+
+    :param root_cuds_object: Calculation CUDS object.
+
+    :return List[Cuds]:
+    """
+    landscape = search.find_cuds_objects_by_oclass(emmo.EnergyLandscape, root_cuds_object, emmo.hasPart)
+    if len(landscape) > 1:
+        raise_error(file=os.path.basename(__file__),
+                    function=find_reaction_path.__name__,
+                    type='ValueError',
+                    message='More than one energy landscape found.')
+    elif not landscape:
+        raise_error(file=os.path.basename(__file__),
+                    function=find_reaction_path.__name__,
+                    type='ValueError',
+                    message='No energy landscape found.')
+    else:
+        first = landscape.pop().get(oclass=emmo.ReactionPathway, rel=emmo.hasSpatialFirst)
+        if len(first) > 1:
+            raise_error(file=os.path.basename(__file__),
+                        function=find_reaction_path.__name__,
+                        type='ValueError',
+                        message='More than one first spatial reaction pathways found.')
+        elif not first:
+            raise_error(file=os.path.basename(__file__),
+                        function=find_reaction_path.__name__,
+                        type='ValueError',
+                        message='First spatial pathway in energy landscape not found.')
+        else:
+            paths = []
+            current = first
+            while current:
+                current = current.pop()
+                paths.append(current)
+                current = current.get(rel=emmo.hasSpatialNext)
+            return paths
 
 def map_PyZacrosMechanism(root_cuds_object: Cuds) -> pz.Mechanism:
     """
