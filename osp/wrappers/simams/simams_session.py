@@ -31,7 +31,7 @@ class SimamsSession(SimWrapperSession):
 
         """
         self.engine.run()
-        map_results(self.engine, root_cuds_object)
+        self._tarball = map_results(self.engine, root_cuds_object)
 
     # OVERRIDE   # Map results
     def _load_from_backend(self, uids, expired=None):
@@ -77,3 +77,7 @@ class SimamsSession(SimWrapperSession):
         # TODO: What should happen in the engine
         # when the user removes a certain cuds?
         # The given buffer contains all the deleted CUDS object in a dictionary
+
+    @property
+    def tarball(cls) -> str:
+        return cls._tarball
