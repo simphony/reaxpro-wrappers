@@ -37,7 +37,7 @@ class SimzacrosSession(SimWrapperSession):
         pz_job = pz.ZacrosJob(settings=pz_settings, lattice=pz_lattice,
                               mechanism=pz_mechanism, cluster_expansion=pz_cluster_expansion)
         results = pz_job.run()
-        map_results(results, root_cuds_object)
+        self._tarball = map_results(results, root_cuds_object)
 
         # Attributes to easily access (syntactic) info from results.
         self.get_reaction_network = results.get_reaction_network()
@@ -140,3 +140,7 @@ class SimzacrosSession(SimWrapperSession):
         # TODO: What should happen in the engine
         # when the user removes a certain cuds?
         # The given buffer contains all the deleted CUDS object in a dictionary
+
+    @property
+    def tarball(cls) -> str:
+        return cls._tarball

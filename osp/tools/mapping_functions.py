@@ -1560,13 +1560,14 @@ def map_energies(root_cuds_object: Cuds) -> list:
     return electronic_energy_values
 
 
-def map_results(engine, root_cuds_object: Cuds):
+def map_results(engine, root_cuds_object: Cuds) -> str:
     """
     Add main results to the Cuds (Wrapper) object.
 
     :engine: main engine object, e.g. Multijob for AMS calculations.
     :param root_cuds_object: CUDS wrapper to add results to.
     :param wrapper_settings: SimamsSettings object.
+    :return str: file system path to tarball-
    """
 
     if isinstance(engine, MultiJob):
@@ -1584,7 +1585,7 @@ def map_results(engine, root_cuds_object: Cuds):
                     search.find_cuds_objects_by_oclass(
                                        emmo.Calculation,
                                        root_cuds_object, rel=cuba.relationship)
-            map_tarball(engine, search_calculation[0])
+            tarball = map_tarball(engine, search_calculation[0])
 
             if map_calculation_type(root_cuds_object) == "WavefunctionOptimization":
                 add_AMSenergy_to_object(engine.children[0], search_calculation[0])
@@ -1636,8 +1637,6 @@ def map_results(engine, root_cuds_object: Cuds):
                 add_AMSLandscape_to_object(engine.children[0], search_calculation[0])
 
             # TODO elif map_calculation_type(root_cuds_object) == "XXXX":
-            else:
-                return
 
         else:
             if (map_calculation_type(root_cuds_object) == "WavefunctionOptimization") \
@@ -1663,18 +1662,19 @@ def map_results(engine, root_cuds_object: Cuds):
                                               consider_rel=emmo.hasTemporalLast)
                 add_AMSenergy_to_object(engine.children[2], last_calculation[0])
 
-            map_tarball(engine, last_calculation[0])
+            tarball = map_tarball(engine, last_calculation[0])
 
     elif isinstance(engine, pz.ZacrosResults):
         search_calculation = search.find_cuds_objects_by_oclass(
                                    emmo.MesoscopicCalculation, root_cuds_object,
                                    rel=cuba.relationship)
-        map_tarball(engine, search_calculation[0])
+        tarball = map_tarball(engine, search_calculation[0])
 
     else:
         raise_error(file=os.path.basename(__file__), function=map_results.__name__,
                     type='NameError',
                     message='Mapping of the results is not implemented for this engine.')
+    return tarball
 
 
 
@@ -1799,13 +1799,15 @@ def add_AMSLandscape_to_object(job: AMSJob, root_cuds_object: Cuds):
     return
 
 
-def map_tarball(engine, root_cuds_object, path=None):
+def map_tarball(engine, root_cuds_object, path=None) -> str:
     """
     Creates and links tarball of the results to root_cuds_object Calculation:
 
     :engine: Job PLAMS /Multijob PLAMS object for AMS calculations, str: for Zacros calculation
 
     :param root_cuds_object: CUDS Calculation to add results to.
+
+    :return str: file system path to tarball
    """
 
     path = "plams_workdir/"
@@ -1819,3 +1821,4 @@ def map_tarball(engine, root_cuds_object, path=None):
     iri = arcp_random(tar_file)
     string = emmo.String(iri=iri)
     root_cuds_object.add(string, rel=emmo.hasOutput)
+    return tar_file
