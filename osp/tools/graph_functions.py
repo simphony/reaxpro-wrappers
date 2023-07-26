@@ -26,7 +26,7 @@ def graph_wrapper_dependencies(root_cuds_object: Cuds) -> dict:
         search.find_cuds_object(criterion=lambda x:
                                 x.is_a(oclass=emmo.Simulation),
                                 root=root_cuds_object,
-                                rel=emmo.hasPart,
+                                rel=cuba.relationship,
                                 find_all=True,
                                 max_depth=1)
 
@@ -129,7 +129,7 @@ def graph_calculation_dependencies(root_cuds_object: Cuds,
             search.find_cuds_object(criterion=lambda x:
                                     x.oclass in calculations_types,
                                     root=root_cuds_object,
-                                    rel=emmo.hasPart,
+                                    rel=cuba.relationship,
                                     find_all=True,
                                     max_depth=1)
         relationship_list.append(

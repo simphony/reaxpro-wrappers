@@ -14,7 +14,7 @@ from osp.tools.set_functions import AMS_default_setting
 from osp.core.utils import simple_search as search
 from osp.core.ontology.oclass import OntologyClass
 from osp.core.cuds import Cuds
-from osp.core.namespaces import emmo, crystallography
+from osp.core.namespaces import emmo, crystallography, cuba
 from osp.core.utils import pretty_print
 from typing import List
 
@@ -1574,7 +1574,7 @@ def map_results(engine, root_cuds_object: Cuds):
         # in case of several children, outputs will be added in the order of dependencies.
         search_simulation = \
             search.find_cuds_object(criterion=lambda x: x.is_a(oclass=emmo.Simulation),
-                                    root=root_cuds_object, rel=emmo.hasPart, find_all=True,
+                                    root=root_cuds_object, rel=cuba.relationship, find_all=True,
                                     max_depth=1)
 
         if not len(search_simulation):
@@ -1583,7 +1583,7 @@ def map_results(engine, root_cuds_object: Cuds):
             search_calculation = \
                     search.find_cuds_objects_by_oclass(
                                        emmo.Calculation,
-                                       root_cuds_object, rel=emmo.hasPart)
+                                       root_cuds_object, rel=cuba.relationship)
             map_tarball(engine, search_calculation[0])
 
             if map_calculation_type(root_cuds_object) == "WavefunctionOptimization":
@@ -1668,14 +1668,14 @@ def map_results(engine, root_cuds_object: Cuds):
     elif isinstance(engine, pz.ZacrosResults):
         search_calculation = search.find_cuds_objects_by_oclass(
                                    emmo.MesoscopicCalculation, root_cuds_object,
-                                   rel=emmo.hasPart)
+                                   rel=cuba.relationship)
         map_tarball(engine, search_calculation[0])
 
     else:
         raise_error(file=os.path.basename(__file__), function=map_results.__name__,
                     type='NameError',
                     message='Mapping of the results is not implemented for this engine.')
-    return
+
 
 
 def add_AMSenergy_to_object(job: AMSJob, root_cuds_object: Cuds):
