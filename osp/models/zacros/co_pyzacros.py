@@ -1208,6 +1208,10 @@ class COpyZacrosModel:
         return cls._session.load(cls._session.root).first()
 
     @property
+    def uuid(cls):
+        return cls._uuid
+
+    @property
     def file(cls):
         return cls._file
 
