@@ -1,5 +1,5 @@
 """Describe Zacros Session class."""
-from osp.core.namespaces import emmo, crystallography
+from osp.core.namespaces import emmo, crystallography, cuba
 from osp.core.session import SimWrapperSession
 from osp.core.cuds import Cuds
 from osp.tools.io_functions import raise_error
@@ -71,8 +71,7 @@ class SimzacrosSession(SimWrapperSession):
         search_calculation = \
             search.find_cuds_objects_by_oclass(
                            emmo.MesoscopicCalculation,
-                           root_obj, emmo.hasPart)
-
+                           root_obj, cuba.relationship)
         #  Raise error if two calculations, for some reason, are found:
         if len(search_calculation) > 1:
             raise_error(file=os.path.basename(__file__),

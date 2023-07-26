@@ -567,6 +567,7 @@ class COpyZacrosModel:
 
         file = tempfile.NamedTemporaryFile(suffix=".ttl")
         export_cuds(session, file.name)
+        self._file = file.name
         try:
             self._uuid = get_upload(file)
         except Exception as error:
@@ -1205,6 +1206,10 @@ class COpyZacrosModel:
     @property
     def cuds(cls):
         return cls._session.load(cls._session.root).first()
+
+    @property
+    def file(cls):
+        return cls._file
 
     class Config:
         """Pydantic Config for COpyZacrosModel"""
