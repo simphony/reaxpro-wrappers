@@ -1664,7 +1664,7 @@ def map_results(engine, root_cuds_object: Cuds) -> str:
 
             tarball = map_tarball(engine, last_calculation[0])
 
-    elif isinstance(engine, pz.ZacrosResults):
+    elif isinstance(engine, pz.ZacrosJob):
         search_calculation = search.find_cuds_objects_by_oclass(
                                    emmo.MesoscopicCalculation, root_cuds_object,
                                    rel=cuba.relationship)
@@ -1810,10 +1810,8 @@ def map_tarball(engine, root_cuds_object, path=None) -> str:
     :return str: file system path to tarball
    """
 
-    path = "plams_workdir/"
-
     tar = tempfile.NamedTemporaryFile().name
-    shutil.make_archive(tar, "tar", path)
+    shutil.make_archive(tar, "tar", engine.path)
     tar_file = f"{tar}.tar"
 
     print(f"Job output dumped to {tar_file}")

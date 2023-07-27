@@ -19,7 +19,7 @@
         "wall_time": 100 
     },
 
-  "lattice_input": {"xyz_file": "../tests/test_files/lattice_input.dat"},
+  "lattice_input": {"xyz_file": "XYZ/lattice_input.dat"},
 
   "energetics_input": [
     { "name": "CO_Point_brg",

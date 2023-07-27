@@ -5,6 +5,7 @@ from osp.core.cuds import Cuds
 from osp.tools.io_functions import raise_error
 from osp.tools.mapping_functions import map_function, map_results
 from osp.core.utils import simple_search as search
+from osp.models.utils.general import get_download
 import scm.pyzacros as pz
 import os
 # from osp.core.utils import pretty_print
@@ -37,7 +38,7 @@ class SimzacrosSession(SimWrapperSession):
         pz_job = pz.ZacrosJob(settings=pz_settings, lattice=pz_lattice,
                               mechanism=pz_mechanism, cluster_expansion=pz_cluster_expansion)
         results = pz_job.run()
-        self._tarball = map_results(results, root_cuds_object)
+        self._tarball = map_results(pz_job, root_cuds_object)
 
         # Attributes to easily access (syntactic) info from results.
         self.get_reaction_network = results.get_reaction_network()
@@ -111,13 +112,15 @@ class SimzacrosSession(SimWrapperSession):
                         message='More than one crystallography.UnitCell defined'
                         ' in the Wrapper object.')
         if search_lattice:
-            if "jsonpath" in search_lattice[0].iri:
-                # lattice loaded from json dict:
-                self.lattice = "./" + \
-                    str(search_lattice[0].iri).replace("%2F", "/").split("jsonpath=")[1]
+            lattice = search_lattice.pop()
+            if "file://" in str(lattice.iri):
+                split = str(lattice.iri).split("file://")
+                self.lattice = split[-1]
             else:
-                # lattice loaded from semantic-based script:
-                self.lattice = search_lattice[0].iri[49:]
+                self.lattice = get_download(str(lattice.uid), as_file=True)
+        else:
+            # lattice loaded from semantic-based script:
+            self.lattice = search_lattice[0].iri[49:]
 
         # Cluster
         search_cluster = \
