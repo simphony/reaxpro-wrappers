@@ -6,7 +6,7 @@ from typing import TYPE_CHECKING, List, Union, Optional
 from uuid import UUID
 import warnings
 
-from arcp import arcp_random
+from arcp import arcp_random, arcp_name
 from pydantic import AnyUrl, BaseModel, Field, root_validator, confloat, conlist, conint
 from pydantic.dataclasses import dataclass
 from urllib.parse import quote, urlencode
@@ -565,7 +565,7 @@ class COpyZacrosModel:
             calculation = emmo.MesoscopicCalculation()
             calculation.add(*self._make_model(), rel=emmo.hasInput)
 
-        file = tempfile.NamedTemporaryFile(suffix=".ttl")
+        file = tempfile.NamedTemporaryFile(suffix=".ttl", delete=False)
         export_cuds(session, file.name)
         self._file = file.name
         try:
@@ -838,19 +838,17 @@ class COpyZacrosModel:
 
     def _make_lattice(self) -> Cuds:
         """Creates CUDS graph for the lattice input"""
-        xyz_file = str(self.lattice_input.xyz_file)
+        xyz_file = self.lattice_input.xyz_file
         if isinstance(xyz_file, UUID):
-            xyz_file = get_download(xyz_file, as_file=True)
-            iri = self._make_arcp("lattice_input", query=dict(minio=[[xyz_file]]))
+            return crystallography.UnitCell(uid=xyz_file)
         elif isinstance(xyz_file, AnyUrl):
-            iri = str(xyz_file)
+            return crystallography.UnitCell(iri=str(xyz_file))
         elif isinstance(xyz_file, Path):
             if not "file:" in str(xyz_file):
-                iri = f"file://{xyz.as_posix()}"
+                iri = f"file://{xyz_file.as_posix()}"
             else:
                 iri = xyz_file.as_posix()
-
-        return crystallography.UnitCell(iri=iri)
+            return crystallography.UnitCell(iri=iri)
 
     def _make_energetics(self) -> "List[Cuds]":
         """Creates CUDS graph for the energy cluster input"""

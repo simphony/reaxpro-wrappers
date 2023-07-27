@@ -10,6 +10,7 @@ from osp.models.utils.general import get_download
 import scm.pyzacros as pz
 import os
 from urllib.parse import parse_qs
+from pathlib import Path
 # from osp.core.utils import pretty_print
 
 
@@ -114,17 +115,15 @@ class SimzacrosSession(SimWrapperSession):
                         message='More than one crystallography.UnitCell defined'
                         ' in the Wrapper object.')
         if search_lattice:
-            iri = str(search_lattice[0].iri)
-            if is_arcp_uri(iri):
-                arcp_object = parse_arcp(iri)
-                minio_uuid = parse_qs(arcp_object.query).get("minio")
-                if minio_uuid:
-                    self.lattice = get_download(minio_uuid, as_file=True)
-                else:
-                    raise ValueError(f"arcp-object does not have any minio-refernce in query: {iri}")
+            lattice = search_lattice.pop()
+            if "file://" in str(lattice.iri):
+                split = str(lattice.iri).split("file://")
+                self.lattice = Path(split[-1]).resolve()
             else:
-                # lattice loaded from semantic-based script:
-                self.lattice = search_lattice[0].iri[49:]
+                self.lattice = get_download(str(lattice.uid), as_file=True)
+        else:
+            # lattice loaded from semantic-based script:
+            self.lattice = search_lattice[0].iri[49:]
 
         # Cluster
         search_cluster = \
