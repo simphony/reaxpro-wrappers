@@ -841,13 +841,16 @@ class COpyZacrosModel:
         xyz_file = str(self.lattice_input.xyz_file)
         if isinstance(xyz_file, UUID):
             xyz_file = get_download(xyz_file, as_file=True)
+            iri = self._make_arcp("lattice_input", query=dict(minio=[[xyz_file]]))
         elif isinstance(xyz_file, AnyUrl):
-            xyz_file = _download_file(xyz_file, as_file=True)
+            iri = str(xyz_file)
+        elif isinstance(xyz_file, Path):
+            if not "file:" in str(xyz_file):
+                iri = f"file://{xyz.as_posix()}"
+            else:
+                iri = xyz_file.as_posix()
 
-        iri = self._make_arcp("lattice_input", query=dict(jsonpath=[[xyz_file]]))
-        cuds_object = crystallography.UnitCell(iri=iri)
-
-        return cuds_object
+        return crystallography.UnitCell(iri=iri)
 
     def _make_energetics(self) -> "List[Cuds]":
         """Creates CUDS graph for the energy cluster input"""

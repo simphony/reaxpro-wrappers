@@ -5,8 +5,11 @@ from osp.core.cuds import Cuds
 from osp.tools.io_functions import raise_error
 from osp.tools.mapping_functions import map_function, map_results
 from osp.core.utils import simple_search as search
+from arcp import is_arcp_uri, parse_arcp
+from osp.models.utils.general import get_download
 import scm.pyzacros as pz
 import os
+from urllib.parse import parse_qs
 # from osp.core.utils import pretty_print
 
 
@@ -111,10 +114,14 @@ class SimzacrosSession(SimWrapperSession):
                         message='More than one crystallography.UnitCell defined'
                         ' in the Wrapper object.')
         if search_lattice:
-            if "jsonpath" in search_lattice[0].iri:
-                # lattice loaded from json dict:
-                self.lattice = "./" + \
-                    str(search_lattice[0].iri).replace("%2F", "/").split("jsonpath=")[1]
+            iri = str(search_lattice[0].iri)
+            if is_arcp_uri(iri):
+                arcp_object = parse_arcp(iri)
+                minio_uuid = parse_qs(arcp_object.query).get("minio")
+                if minio_uuid:
+                    self.lattice = get_download(minio_uuid, as_file=True)
+                else:
+                    raise ValueError(f"arcp-object does not have any minio-refernce in query: {iri}")
             else:
                 # lattice loaded from semantic-based script:
                 self.lattice = search_lattice[0].iri[49:]
