@@ -11,10 +11,10 @@ from osp.core.utils import import_cuds
 #path = os.path.join(os.path.dirname(__file__), "Ziff-Gulari-Barshad-model.json")
 path = os.path.join(os.path.dirname(__file__), "Ziff-Gulari-Barshad-model-variants.json")
 
-with open(path, mode="r+") as file:
-    content = json.loads(file.read())
+#with open(path, mode="r+") as file:
+#    content = json.loads(file.read())
 
-
+content = COpyZacrosModel.Config.schema_extra["example"]
 model = COpyZacrosModel(**content)
 # pretty_print(model.cuds)
 
