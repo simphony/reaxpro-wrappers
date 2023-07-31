@@ -33,31 +33,19 @@ def graph_wrapper_dependencies(root_cuds_object: Cuds) -> dict:
     # Zero Simulations found:
     if len(search_simulation) == 0:
 
-        wrapper_dependencies = {"Calculation": [Cuds],
-                                "Relationship": [OntologyRelationship]}
 
-        [calculation_list, relationship_list] = graph_calculation_dependencies(
-                                   root_cuds_object=root_cuds_object,
-                                   simulation=False)
+        calculation_list = graph_calculation_dependencies(root_cuds_object=root_cuds_object)
 
-        wrapper_dependencies["Calculation"] = calculation_list
-        wrapper_dependencies["Relationship"] = relationship_list
+        wrapper_dependencies = {"Calculation": calculation_list}
 
     # One Simulation found:
     elif len(search_simulation) == 1:
         # Instantiate the dictionary that will contain the dependencies:
 
+        calculation_list = graph_calculation_dependencies(root_cuds_object=search_simulation[0])
         wrapper_dependencies = {"Simulation": {
-                                "Calculations": [Cuds],
-                                "Relationships": [OntologyRelationship]}}
+                                "Calculations": calculation_list}}
 
-        [calculation_list, relationship_list] = graph_calculation_dependencies(
-                            root_cuds_object=search_simulation[0],
-                            simulation=True)
-        wrapper_dependencies["Simulation"]["Calculations"] = \
-            calculation_list
-        wrapper_dependencies["Simulation"]["Relationships"] = \
-            relationship_list
 
     # More than one Simulation found:
     else:
@@ -69,8 +57,7 @@ def graph_wrapper_dependencies(root_cuds_object: Cuds) -> dict:
     return wrapper_dependencies
 
 
-def graph_calculation_dependencies(root_cuds_object: Cuds,
-                                   simulation: bool = False) -> tuple:
+def graph_calculation_dependencies(root_cuds_object: Cuds) -> list:
     """
     Graph dependencies of Calculations in a CUDS object.
 
@@ -78,52 +65,25 @@ def graph_calculation_dependencies(root_cuds_object: Cuds,
 
         :param simulation: boolean, is there and emmo.Simulation object?
 
-        :return: tuple of list containing the Calculations CUDS
-                and their relationships with the rood_cuds_object.
+        :return: list containing the Calculations CUDS
     """
 
     calculation_list = []
-    relationship_list = []
     calculations_types = emmo.Calculation.subclasses
-    if simulation:
-        first_calculation = \
-            search.find_relationships(find_rel=emmo.INVERSE_OF_hasTemporalFirst,
-                                      root=root_cuds_object,
-                                      consider_rel=emmo.EMMORelation)
+    if root_cuds_object.is_a(emmo.Simulation):
+        first_calculation = root_cuds_object.get(rel=emmo.hasSpatialFirst)
     else:
         first_calculation = []
 
-    if (first_calculation):
-        calculation_list.append(first_calculation[0])
-        relationship_list.append(emmo.hasTemporalFirst)
 
-        next_calculation = \
-            search.find_relationships(find_rel=emmo.INVERSE_OF_hasTemporalNext,
-                                      root=root_cuds_object,
-                                      consider_rel=emmo.hasTemporalNext)
+    if first_calculation:
+        current = first_calculation
 
-        if next_calculation:
-            calculation_list.append(next_calculation[0])
-            relationship_list.append(emmo.hasTemporalNext)
-            last_calculation = \
-                search.find_relationships(find_rel=emmo.INVERSE_OF_hasTemporalLast,
-                                          root=root_cuds_object,
-                                          consider_rel=emmo.EMMORelation)
-            if last_calculation:
-                calculation_list.append(last_calculation[0])
-                relationship_list.append(emmo.hasTemporalLast)
-            else:
-                raise_error(file=os.path.basename(__file__),
-                            function=graph_calculation_dependencies.__name__,
-                            type='NameError',
-                            message="emmo.hasTemporalNext calculation without"
-                                    " an emmo.hasTemporalLast.")
-        else:
-            raise_error(file=os.path.basename(__file__),
-                        function=graph_calculation_dependencies.__name__,
-                        type='NameError',
-                        message="emmo.hasTemporalFirst calculation without"
-                                " an emmo.hasTemporalNext.")
+        while current:
+             current = current.pop()
+             calculation_list.append(current)
+             current = current.get(rel=emmo.hasSpatialNext)
+
     else:
         search_calculation = \
             search.find_cuds_object(criterion=lambda x:
@@ -132,9 +92,7 @@ def graph_calculation_dependencies(root_cuds_object: Cuds,
                                     rel=cuba.relationship,
                                     find_all=True,
                                     max_depth=1)
-        relationship_list.append(
-            get_relationships_between(root_cuds_object, search_calculation[0]))
-
+    
         if len(search_calculation) == 0:
             raise_error(file=os.path.basename(__file__),
                         function=graph_calculation_dependencies.__name__,
@@ -147,8 +105,7 @@ def graph_calculation_dependencies(root_cuds_object: Cuds,
         elif len(search_calculation) >= 1:
             calculation_list = solve_calculation_dependencies(
                                     cuds_list=search_calculation)
-
-    return calculation_list, relationship_list
+    return calculation_list
 
 
 def solve_calculation_dependencies(cuds_list: List[Cuds]) -> list:

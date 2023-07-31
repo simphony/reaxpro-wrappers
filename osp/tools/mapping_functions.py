@@ -1521,6 +1521,7 @@ def map_energies(root_cuds_object: Cuds) -> list:
     object.
     """
 
+    calculations = []
     electronic_energies = []
     electronic_energy_values = []
     search_simulation = \
@@ -1530,20 +1531,14 @@ def map_energies(root_cuds_object: Cuds) -> list:
 
     if not len(search_simulation):
         return
+    
+    # First
+    next_calc = search_simulation[0].get(rel=emmo.hasSpatialFirst)
 
-    first_calculation = search.find_relationships(find_rel=emmo.INVERSE_OF_hasTemporalFirst,
-                                                  root=search_simulation[0],
-                                                  consider_rel=emmo.EMMORelation)
-
-    next_calculation = search.find_relationships(find_rel=emmo.INVERSE_OF_hasTemporalNext,
-                                                 root=search_simulation[0],
-                                                 consider_rel=emmo.hasTemporalNext)
-
-    last_calculation = search.find_relationships(find_rel=emmo.INVERSE_OF_hasTemporalLast,
-                                                 root=search_simulation[0],
-                                                 consider_rel=emmo.hasTemporalLast)
-    calculations = \
-        first_calculation + next_calculation + last_calculation
+    while next_calc:
+        current = next_calc.pop()
+        calculations.append(current)
+        next_calc = current.get(rel=emmo.hasSpatialNext)
 
     for calculation in calculations:
 
@@ -1643,26 +1638,17 @@ def map_results(engine, root_cuds_object: Cuds) -> str:
                or (map_calculation_type(root_cuds_object) == "GeometryOptimization"):
 
                 # First
-                first_calculation = search.find_relationships(
-                    find_rel=emmo.INVERSE_OF_hasTemporalFirst, root=search_simulation[0],
-                    consider_rel=emmo.EMMORelation)
-                add_AMSenergy_to_object(engine.children[0], first_calculation[0])
+                next_calc = search_simulation[0].get(rel=emmo.hasSpatialFirst)
+                i = 0
 
-                # Next
-                next_calculation = \
-                    search.find_relationships(find_rel=emmo.INVERSE_OF_hasTemporalNext,
-                                              root=search_simulation[0],
-                                              consider_rel=emmo.hasTemporalNext)
-                add_AMSenergy_to_object(engine.children[1], next_calculation[0])
+                while next_calc:
+                    
+                    current = next_calc.pop()
+                    add_AMSenergy_to_object(engine.children[i], current)
+                    i += 1
+                    next_calc = current.get(rel=emmo.hasSpatialNext)
 
-                # Last
-                last_calculation = \
-                    search.find_relationships(find_rel=emmo.INVERSE_OF_hasTemporalLast,
-                                              root=search_simulation[0],
-                                              consider_rel=emmo.hasTemporalLast)
-                add_AMSenergy_to_object(engine.children[2], last_calculation[0])
-
-            tarball = map_tarball(engine, last_calculation[0])
+            tarball = map_tarball(engine, current)
 
     elif isinstance(engine, pz.ZacrosJob):
         search_calculation = search.find_cuds_objects_by_oclass(
