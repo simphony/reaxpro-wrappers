@@ -43,19 +43,7 @@ def map_function(self, root_cuds_object: Cuds, engine=None) -> tuple:
             plams_molecule = map_PLAMSLandscape(search_landscape[0])
 
         else:
-            search_molecule = \
-                search.find_cuds_objects_by_oclass(emmo.MolecularGeometry, root_cuds_object, emmo.hasPart)
-
-            if len(search_molecule) > 1:
-                raise_error(file=os.path.basename(__file__),
-                            function=map_function.__name__,
-                            type='ValueError',
-                            message='More than one emmo.MolecularGeometry defined in the Wrapper object.')
-            elif not search_molecule:
-                raise_error(file=os.path.basename(__file__), function=map_molecule.__name__,
-                            type='ValueError', message='Molecule CUDS object missed in the wrapper.')
-            else:
-                plams_molecule = map_PLAMSMolecule(search_molecule[0])
+            plams_molecule = map_PLAMSMolecule(root_cuds_object)
 
         plams_settings = map_PLAMSSettings(root_cuds_object)
 
@@ -273,15 +261,27 @@ def map_molecule(root_cuds_object: Cuds) -> dict:
                     [coordinate_x_2, coordinate_y_n, coordinate_z_n, (region)]]
     }
 
-    :param root_cuds_object: CUDS MolecularGeometry to be checked.
+    :param root_cuds_object: CUDS root_cuds_object to be checked.
 
     :return str: If a Molecule object is present, return dictionary with
                  atom labels and positions. Otherwise, raise an error.
     """
-    molecule_data = {}
 
+    search_molecule = \
+        search.find_cuds_objects_by_oclass(emmo.MolecularGeometry, root_cuds_object, emmo.hasPart)
+
+    if len(search_molecule) > 1:
+        raise_error(file=os.path.basename(__file__),
+                    function=map_function.__name__,
+                    type='ValueError',
+                    message='More than one emmo.MolecularGeometry defined in the Wrapper object.')
+    elif not search_molecule:
+        raise_error(file=os.path.basename(__file__), function=map_molecule.__name__,
+                    type='ValueError', message='Molecule CUDS object missed in the wrapper.')
+
+    molecule_data = {}
     # Looking for atoms:
-    first = root_cuds_object.get(rel=emmo.hasSpatialFirst)
+    first = search_molecule.pop().get(rel=emmo.hasSpatialFirst)
     if len(first) > 1:
         raise_error(file=os.path.basename(__file__),
                     function=map_molecule.__name__,
