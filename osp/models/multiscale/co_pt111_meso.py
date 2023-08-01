@@ -295,6 +295,13 @@ class ZGBModel:
         """
     )
 
+    process_statistics: list = Field(
+       ..., description="""
+        Determines how often statistical information about the occurrence of elementary
+        events will be written to output file procstat_output.txt
+        """
+    )
+
     def __post_init_post_parse__(self):
         with CoreSession() as session:
             calculation = emmo.MesoscopicCalculation()
@@ -320,7 +327,8 @@ class ZGBModel:
             *self._make_settings(),
             *self._make_gas_species(),
             self._make_snapshots(),
-            self._make_species_numbers()
+            self._make_species_numbers(),
+            self._make_proc_stats()
         ]
 
     def _make_settings(self) -> "List[Cuds]":
@@ -376,19 +384,41 @@ class ZGBModel:
 
             if recording_option == "on logtime":
                 cuds_object = emmo.Array()
-                iri = self._make_arcp("snapshots", query=dict(jsonpath=[["snapshots", str(1)]]))
+                iri = self._make_arcp("species_numbers", query=dict(jsonpath=[["snapshots", str(1)]]))
                 time_float_1 = emmo.Real(hasNumericalData=self.snapshots[1], iri=iri)
-                iri = self._make_arcp("snapshots", query=dict(jsonpath=[["snapshots", str(2)]]))
+                iri = self._make_arcp("species_numbers", query=dict(jsonpath=[["snapshots", str(2)]]))
                 time_float_2 = emmo.Real(hasNumericalData=self.snapshots[2], iri=iri)
                 cuds_object.add(time_float_1, time_float_2, rel=emmo.hasSpatialPart)
 
             else:
-                iri = self._make_arcp("snapshots", query=dict(jsonpath=[["snapshots", str(3)]]))
+                iri = self._make_arcp("species_numbers", query=dict(jsonpath=[["snapshots", str(3)]]))
                 cuds_object = emmo.Real(hasNumericalData=self.snapshots[1], iri=iri)
 
             numbers.add(cuds_object, rel=emmo.hasSpatialPart)
         return numbers
 
+    def _make_proc_stats(self) -> "Cuds":
+        recording_option = self.process_statistics[0]
+        iri = self._make_arcp("process_statistics",
+                        query=dict(jsonpath=[["process_statistics", str(0)]]))
+        stats = emmo.ProcessStatistics(hasSymbolData=recording_option, iri=iri)
+        if recording_option != "off":
+
+            if recording_option == "on logtime":
+                cuds_object = emmo.Array()
+                iri = self._make_arcp("process_statistics", query=dict(jsonpath=[["snapshots", str(1)]]))
+                time_float_1 = emmo.Real(hasNumericalData=self.snapshots[1], iri=iri)
+                iri = self._make_arcp("process_statistics", query=dict(jsonpath=[["snapshots", str(2)]]))
+                time_float_2 = emmo.Real(hasNumericalData=self.snapshots[2], iri=iri)
+                cuds_object.add(time_float_1, time_float_2, rel=emmo.hasSpatialPart)
+
+            else:
+                iri = self._make_arcp("process_statistics", query=dict(jsonpath=[["snapshots", str(3)]]))
+                cuds_object = emmo.Real(hasNumericalData=self.snapshots[1], iri=iri)
+
+            stats.add(cuds_object, rel=emmo.hasSpatialPart)
+
+        return stats
 
     def _make_gas_species(self) -> "List[Cuds]":
 

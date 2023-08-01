@@ -42,6 +42,7 @@ data = {
         "gas_molar_fracs": [0.1],
         "snapshots": ["on time", 3.5],
         "species_numbers": ["on time", 3.5],
+        "process_statistics": ["on time", 3.5],
         "max_time": 0.00001,
     }
 }
