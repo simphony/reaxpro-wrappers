@@ -100,20 +100,20 @@ class PESExploration:
     def _make_model(self):
         calculation = emmo.ProcessSearch()
 
-        if isinstance(self.molecule.xyz_file, UUID):
-            xyz_file = get_download(str(self.molecule.xyz_file), as_file=True)
-        elif isinstance(self.molecule.xyz_file, AnyUrl):
-            xyz_file = _download_file(self.molecule.xyz_file, as_file=True)
+        if isinstance(self.molecule, UUID):
+            xyz_file = get_download(str(self.molecule), as_file=True)
+        elif isinstance(self.molecule, AnyUrl):
+            xyz_file = _download_file(self.molecule, as_file=True)
         else:
-            xyz_file = self.molecule.xyz_file
+            xyz_file = self.molecule
         molecule = read_molecule(xyz_file)
 
-        if isinstance(self.lattice.xyz_file, UUID):
-            xyz_file = get_download(str(self.lattice.xyz_file), as_file=True)
-        elif isinstance(self.lattice.xyz_file, AnyUrl):
-            xyz_file = _download_file(self.lattice.xyz_file, as_file=True)
+        if isinstance(self.lattice, UUID):
+            xyz_file = get_download(str(self.lattice), as_file=True)
+        elif isinstance(self.lattice, AnyUrl):
+            xyz_file = _download_file(self.lattic, as_file=True)
         else:
-            xyz_file = self.lattice.xyz_file
+            xyz_file = self.lattice
         lattice = read_lattice(xyz_file)
 
         forcefield = emmo[self.force_field]()
@@ -176,24 +176,87 @@ class PESExploration:
     def file(cls):
         return cls._file
 
+@dataclass
+class BindingSite:
+    """Data model for a binding site calculation based on a previous PESExploration"""
+
+    n_expeditions: conint(ge=1) = Field(
+        30,
+        description="""Sets the number of subsequent expeditions our job will consist of."""
+        """Larger values result in a more comprehensive exploration of the potential energy surface, but will take more computational time.""",
+    )
+    n_explorers: conint(ge=1) = Field(
+        3,
+        description="""Sets the number of independent PES explorers dispatched as part of each expedition. 
+                                      Larger values will result in a more comprehensive exploration of the potential energy surface, but will take more computational time.
+                                       By default an appropriate number of explorers are executed in parallel.""",
+    )
+    symmetry_check: str = Field(
+        "F", description="Symmetry check for structure comparison."
+    ) 
+
+   def __post_init_post_parse__(self):
+        with CoreSession() as session:
+            self._make_model()
+        self._session = session
+
+    def _make_model(self):
+        calculation = emmo.BindingSites()
+        num_expeditions = emmo.NumberOfExpeditions(hasNumericalData=self.n_expedition)
+        num_explorers = emmo.NumberOfExplorers(hasNumericalData=self.n_explorers)
+        symmetry_check = emmo.CheckSymmetry(hasNumericalData=self.symmetry_check)
+        calculation.add(
+            num_expeditions,
+            num_explorers,
+            symmetry_check,
+            rel=emmo.hasInput,
+        )
+        return calculation
+
+    @property
+    def session(self) -> "CoreSession":
+        return self._session
+
+    @property
+    def cuds(cls):
+        return cls._session.load(cls._session.root).first()
 
 @dataclass
 class COPt111MesoscaleModel(BaseModel):
-    """General Model for AMS and Zacros multiscale simulation"""
+    """General Model for multiscale simulation for PESExploration, 
+    Binding Site Calculation and ZGB Model"""
 
-    ams_model: PESExploration = Field(
-        ..., description="AMS model for electronic scale."
+    pes_exploration: PESExploration = Field(
+        ..., description="AMS data model for PESExploration."
     )
-    zacros_model: COpyZacrosModel = Field(
-        ..., description="Zacros model to be defined for mesoscopic scale."
+    binding_site: BindingSite = Field(
+        ...,
+        description="""data model for binding site calculation
+        based on the previous PESExploraion."""
+    )
+    zgb_model: COpyZacrosModel = Field(
+        ..., description="ZGB model for mesoscopic scale."
     )
 
     def __post_init_post_parse__(self):
         with CoreSession() as session:
             workflow = emmo.Workflow()
-            workflow.add(self.ams_model.cuds, rel=emmo.hasSpatialFirst)
-            workflow.add(self.zacros_model.cuds, rel=emmo.hasSpatialLast)
-            self.ams_model.cuds.add(self.zacros_model.cuds, rel=emmo.hasSpatialNext)
+            workflow.add(self.pes_exploration.cuds, rel=emmo.hasSpatialFirst)
+            self.pes_exploration.cuds.add(self.binding_site.cuds, rel=emmo.hasSpatialNext)
+            workflow.add(self.binding_site.cuds, rel=emmo.hasSpatialDirectPart)
+            self.binding_site.cuds.add(self.zacros_model.cuds, rel=emmo.hasSpatialNext)
+            workflow.add(self.zgb_model.cuds, rel=emmo.hasSpatialLast)
+            for oclass in [
+                    "ForceFieldIdentifierString",
+                    "Solver",
+                    "FixedRegion",
+                    "MaximumEnergy",
+                    "NeighborCutoff",
+                    "ReferenceRegion",
+                    "RandomSeed"
+                ]:
+                input_cuds = self.pes_exploration.cuds.get(oclass=emmo[oclass], rel=emmo.hasInput)
+                self.binding_site.cuds.add(input_cuds.pop(), rel=emmo.hasInput)
         file = tempfile.NamedTemporaryFile(suffix=".ttl", delete=False)
         export_cuds(session, file.name)
         self._file = file.name
