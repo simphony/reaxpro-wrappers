@@ -11,13 +11,14 @@ from arcp import arcp_random
 from osp.tools.io_functions import raise_error, raise_warning
 from osp.tools.io_functions import read_mechanism, read_cluster_expansion, read_molecule
 from osp.tools.set_functions import AMS_default_setting
+from osp.models.utils.general import get_upload
 from osp.core.utils import simple_search as search
 from osp.core.ontology.oclass import OntologyClass
 from osp.core.cuds import Cuds
 from osp.core.namespaces import emmo, crystallography, cuba
 from osp.core.utils import pretty_print
 from typing import List
-
+from uuid import UUID
 
 def map_function(self, root_cuds_object: Cuds, engine=None) -> tuple:
     """
@@ -1622,10 +1623,12 @@ def map_results(engine, root_cuds_object: Cuds) -> str:
                 loader_bs.replace_site_types(['A', 'B', 'C'], ['fcc', 'br', 'hcp'])
                 loader_bs.lattice.set_repeat_cell((10, 10))
                 loader_bs.lattice.plot()
-                lattice_file = open("lattice_input.dat", "a")
-                lattice_file.write(str(loader_bs.lattice))
-                iri = arcp_random("./lattice_input.dat")
-                lattice_output = crystallography.UnitCell(iri=iri)
+                
+                file = os.path.join(engine.path, "lattice_input.dat")
+                with open(file, "w+") as lattice_file:
+                    lattice_file.write(str(loader_bs.lattice))
+                uuid = get_upload(file)
+                lattice_output = crystallography.UnitCell(uid=UUID(uuid))
                 search_calculation[0].add(lattice_output, rel=emmo.hasOutput)
 
             elif map_calculation_type(root_cuds_object) == "LandscapeRefinement":

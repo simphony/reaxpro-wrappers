@@ -9,6 +9,7 @@ import os
 PATH = os.path.dirname(__file__)
 molecule = os.path.join("XYZ", "CO_ads+Pt111.xyz")
 lattice = os.path.join("XYZ", "CO_ads+Pt111.xyz")
+
 # PES Exploration 
 
 data = {
@@ -51,17 +52,6 @@ with SimamsSession() as sess:
                         rel=emmo.hasPart)
     reaxpro_wrapper1.session.run()
 
-## Post-processing:
-search_calculation = \
-        search.find_cuds_objects_by_oclass(
-                           emmo.Calculation,
-                           reaxpro_wrapper1, emmo.hasPart)
-
-if search_calculation:
-    #pretty_print(search_calculation[0])
-    Cuds2dot(model.pes_exploration.cuds).render()
-    export_cuds(model.pes_exploration.cuds, "CO+Pt111.ttl", format="ttl")
-
 # Binding Site Calculation
 
 with SimamsSession() as sess:
@@ -72,35 +62,16 @@ with SimamsSession() as sess:
 
 # Mesoscopic calculation 
 
-
 # pyZacros Mechanism, retrieved from a previous calculation
 
-search_mechanism = \
-                   search.find_cuds_objects_by_oclass(
-                                           emmo.ChemicalReactionMechanism,
-                                           model.pes_exploration.cuds, emmo.hasOutput)
+search_mechanism = reaxpro_wrapper1.get(oclass=emmo.Calculation).pop().get(oclass=emmo.ChemicalReactionMechanism, rel=emmo.hasOutput)
 
-# pyZacros Cluster_expansions, retrieved from a previous calculation
+search_clusters = reaxpro_wrapper1.get(oclass=emmo.Calculation).pop().get(oclass=emmo.ClusterExpansion, rel=emmo.hasOutput)
 
-search_clusters = \
-                   search.find_cuds_objects_by_oclass(
-                                           emmo.ClusterExpansion,
-                                           model.pes_exploration.cuds, emmo.hasOutput)
+search_lattice = reaxpro_wrapper2.get(oclass=emmo.Calculation).pop().get(oclass=crystallography.UnitCell, rel=emmo.hasOutput)
 
-for cluster in search_clusters:
-    model.zgb_model.cuds.add(cluster, rel=emmo.hasInput)
 
-# pyZacros Lattice, retrieved from previous calculation, written in file
-
-search_lattice = \
-                   search.find_cuds_objects_by_oclass(
-                                           crystallography.UnitCell,
-                                           model.binding_site.cuds, emmo.hasOutput)
-
-# pyZacros Settings:
-#
-
-model.zgb_model.cuds.add(search_mechanism[0], search_lattice[0], rel=emmo.hasInput)
+model.zgb_model.cuds.add(*search_mechanism, *search_lattice, *search_clusters, rel=emmo.hasInput)
 
 with SimzacrosSession() as sess:
     reaxpro_wrapper3 = cuba.Wrapper(session=sess)

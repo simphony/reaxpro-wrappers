@@ -6,7 +6,7 @@ from pathlib import Path
 from typing import Union, List, TYPE_CHECKING
 from uuid import UUID
 
-from osp.core.namespaces import emmo
+from osp.core.namespaces import emmo, crystallography
 from osp.core.session import CoreSession
 from osp.core.utils import export_cuds
 from osp.models.utils.general import (_download_file, _get_example_json,
@@ -365,7 +365,7 @@ class ZGBModel:
 
             gas_species = emmo.GasSpecies()
             molar_fraction = emmo.AmountFraction()
-
+            symbol = emmo.ChemicalElement(hasSymbolData=self.gas_specs_names[species])
 
             iri = self._make_arcp("gas_molar_fracs",
                             query=dict(jsonpath=[["gas_molar_fracs", str(species)]]))
@@ -373,7 +373,7 @@ class ZGBModel:
                 hasNumericalData=self.gas_molar_fracs[species], iri=iri)
             molar_fraction.add(molar_fraction_float, rel=emmo.hasQuantityValue)
 
-            gas_species.add(molar_fraction, rel=emmo.hasProperty)
+            gas_species.add(molar_fraction, symbol, rel=emmo.hasProperty)
             cuds.append(gas_species)
 
         return cuds
@@ -431,7 +431,7 @@ class COPt111MesoscaleModel:
                     emmo.MolecularGeometry,
                     crystallography.UnitCell
                 ]:
-                input_cuds = self.pes_exploration.cuds.get(oclass=emmo[oclass], rel=emmo.hasInput)
+                input_cuds = self.pes_exploration.cuds.get(oclass=oclass, rel=emmo.hasInput)
                 self.binding_site.cuds.add(input_cuds.pop(), rel=emmo.hasInput)
         file = tempfile.NamedTemporaryFile(suffix=".ttl", delete=False)
         export_cuds(session, file.name)
