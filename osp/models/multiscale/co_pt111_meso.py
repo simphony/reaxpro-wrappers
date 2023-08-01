@@ -198,7 +198,8 @@ class BindingSite:
     )
     symmetry_check: str = Field(
         "F", description="Symmetry check for structure comparison."
-    ) 
+    )
+
 
     def __post_init_post_parse__(self):
         with CoreSession() as session:
@@ -245,7 +246,7 @@ class ZGBModel:
 
     pressure: confloat(gt=0, allow_inf_nan=False) = Field(
         ..., description="""
-        The pressure (Pa) under which the system is simulated.
+        The pressure (bar) under which the system is simulated.
         """
     )
 
@@ -286,6 +287,14 @@ class ZGBModel:
         """
     )
 
+    species_numbers: list = Field(
+       ..., description="""
+        Determines how often information about the number of gas and surface species,
+        as well as the energy of the current lattice configuration) will be written
+        to specnum_output.txt
+        """
+    )
+
     def __post_init_post_parse__(self):
         with CoreSession() as session:
             calculation = emmo.MesoscopicCalculation()
@@ -310,7 +319,8 @@ class ZGBModel:
         return [
             *self._make_settings(),
             *self._make_gas_species(),
-            self._make_snapshots()
+            self._make_snapshots(),
+            self._make_species_numbers()
         ]
 
     def _make_settings(self) -> "List[Cuds]":
@@ -354,8 +364,30 @@ class ZGBModel:
                 iri = self._make_arcp("snapshots", query=dict(jsonpath=[["snapshots", str(3)]]))
                 cuds_object = emmo.Real(hasNumericalData=self.snapshots[1], iri=iri)
 
-            snap.add(cuds_object, rel=emmo.hasSpatialPart)      
+            snap.add(cuds_object, rel=emmo.hasSpatialPart)
+
         return snap
+
+    def _make_species_numbers(self) -> "Cuds":
+        recording_option = self.species_numbers[0]
+        iri = self._make_arcp("species_numbers", query=dict(jsonpath=[["species_numbers", str(0)]]))
+        numbers = emmo.SpeciesNumbers(hasSymbolData=recording_option)
+        if recording_option != "off":
+
+            if recording_option == "on logtime":
+                cuds_object = emmo.Array()
+                iri = self._make_arcp("snapshots", query=dict(jsonpath=[["snapshots", str(1)]]))
+                time_float_1 = emmo.Real(hasNumericalData=self.snapshots[1], iri=iri)
+                iri = self._make_arcp("snapshots", query=dict(jsonpath=[["snapshots", str(2)]]))
+                time_float_2 = emmo.Real(hasNumericalData=self.snapshots[2], iri=iri)
+                cuds_object.add(time_float_1, time_float_2, rel=emmo.hasSpatialPart)
+
+            else:
+                iri = self._make_arcp("snapshots", query=dict(jsonpath=[["snapshots", str(3)]]))
+                cuds_object = emmo.Real(hasNumericalData=self.snapshots[1], iri=iri)
+
+            numbers.add(cuds_object, rel=emmo.hasSpatialPart)
+        return numbers
 
 
     def _make_gas_species(self) -> "List[Cuds]":

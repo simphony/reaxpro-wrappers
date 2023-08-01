@@ -7,8 +7,12 @@ from osp.core.utils import pretty_print, Cuds2dot, export_cuds
 import os
 
 PATH = os.path.dirname(__file__)
-molecule = os.path.join("XYZ", "CO_ads+Pt111.xyz")
-lattice = os.path.join("XYZ", "CO_ads+Pt111.xyz")
+molecule = os.path.join(PATH, "XYZ", "CO_ads+Pt111.xyz")
+lattice = os.path.join(PATH, "XYZ", "CO_ads+Pt111.xyz")
+
+os.environ["REAXPRO_MINIO_USER"] = "rootname"
+os.environ["REAXPRO_MINIO_PASSWORD"] = "rootname123"
+os.environ["REAXPRO_MINIO_ENDPOINT"] = "172.17.0.3:9000"
 
 # PES Exploration 
 
@@ -25,7 +29,7 @@ data = {
         "random_seed": 100, 
         "fixed_region":'surface', 
         "reference_region": 'surface',
-        "symmetry_check": 'T', 
+        "symmetry_check": 'T',
         },
     "binding_site": {
         "n_expeditions": 1,
@@ -35,12 +39,13 @@ data = {
     "zgb_model": {
         "random_seed": 10,
         "temperature": 273.15,
-        "pressure": 101325,
+        "pressure": 1.01325,
         "n_gas_species": 1,                                                                                                       
         "gas_specs_names": ["CO"],
         "gas_molar_fracs": [0.1],
         "snapshots": ["on time", 3.5],
-        "max_time": 0.000001,
+        "species_numbers": ["on time", 3.5],
+        "max_time": 0.00001,
     }
 }
 
