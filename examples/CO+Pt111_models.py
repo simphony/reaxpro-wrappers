@@ -10,9 +10,6 @@ PATH = os.path.dirname(__file__)
 molecule = os.path.join(PATH, "XYZ", "CO_ads+Pt111.xyz")
 lattice = os.path.join(PATH, "XYZ", "CO_ads+Pt111.xyz")
 
-os.environ["REAXPRO_MINIO_USER"] = "rootname"
-os.environ["REAXPRO_MINIO_PASSWORD"] = "rootname123"
-os.environ["REAXPRO_MINIO_ENDPOINT"] = "172.17.0.3:9000"
 
 # PES Exploration 
 
