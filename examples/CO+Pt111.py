@@ -135,7 +135,7 @@ max_time.add(time_unit, rel=emmo.hasReferenceUnit)
 max_time.add(time_float, rel=emmo.hasQuantityValue)
 
 snapshots_float=emmo.Real(hasNumericalData='3.5')
-snapshots = emmo.Snapshots(hasSymbolData="off")
+snapshots = emmo.Snapshots(hasSymbolData="on time")
 snapshots.add(snapshots_float, rel=emmo.hasSpatialPart)
 
 molar_fraction_CO = emmo.AmountFraction()

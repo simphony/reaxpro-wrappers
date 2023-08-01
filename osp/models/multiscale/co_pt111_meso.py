@@ -3,7 +3,7 @@ import tempfile
 import warnings
 from enum import Enum
 from pathlib import Path
-from typing import Union
+from typing import Union, List, TYPE_CHECKING
 from uuid import UUID
 
 from osp.core.namespaces import emmo
@@ -11,10 +11,15 @@ from osp.core.session import CoreSession
 from osp.core.utils import export_cuds
 from osp.models.utils.general import (_download_file, _get_example_json,
                                       get_download, get_upload)
-from osp.models.zacros.co_pyzacros import COpyZacrosModel
 from osp.tools.io_functions import read_lattice, read_molecule
-from pydantic import AnyUrl, BaseModel, Field, confloat, conint
+from pydantic import AnyUrl, Field, confloat, conint, conlist, root_validator
 from pydantic.dataclasses import dataclass
+
+from urllib.parse import quote, urlencode
+from arcp import arcp_random
+
+if TYPE_CHECKING:
+    from osp.core.cuds import Cuds
 
 
 class ForceField(str, Enum):
@@ -116,7 +121,7 @@ class PESExploration:
             xyz_file = self.lattice
         lattice = read_lattice(xyz_file)
 
-        forcefield = emmo[self.force_field]()
+        forcefield = emmo[self.force_field.value]()
 
         solver = emmo.Solver()
         type_of_solver = emmo.Symbol(hasSymbolData=self.solver_type)
@@ -195,14 +200,14 @@ class BindingSite:
         "F", description="Symmetry check for structure comparison."
     ) 
 
-   def __post_init_post_parse__(self):
+    def __post_init_post_parse__(self):
         with CoreSession() as session:
             self._make_model()
         self._session = session
 
     def _make_model(self):
         calculation = emmo.BindingSites()
-        num_expeditions = emmo.NumberOfExpeditions(hasNumericalData=self.n_expedition)
+        num_expeditions = emmo.NumberOfExpeditions(hasNumericalData=self.n_expeditions)
         num_explorers = emmo.NumberOfExplorers(hasNumericalData=self.n_explorers)
         symmetry_check = emmo.CheckSymmetry(hasNumericalData=self.symmetry_check)
         calculation.add(
@@ -222,7 +227,176 @@ class BindingSite:
         return cls._session.load(cls._session.root).first()
 
 @dataclass
-class COPt111MesoscaleModel(BaseModel):
+class ZGBModel:
+    """Data model for running ZGB model after PESExploration and BindingSite Calculation"""
+
+    random_seed: int = Field(
+        ..., description="""
+        The integer seed of the random number generator.
+        """
+    )
+
+    temperature: confloat(gt=0, allow_inf_nan=False) = Field(
+        ..., description="""
+        Temperature (K) under which the system is simulated.
+        """
+    )
+
+
+    pressure: confloat(gt=0, allow_inf_nan=False) = Field(
+        ..., description="""
+        The pressure (Pa) under which the system is simulated.
+        """
+    )
+
+    max_time: confloat(ge=0, allow_inf_nan=True) = Field(
+       ..., description="""
+       The maximum allowed simulated time interval in seconds (time ranges from 0.0 to the maximum time in a
+       simulation).
+       """
+    )
+
+    n_gas_species: int = Field(
+        ..., description="""
+        The number of gas species in the chemistry.
+        """
+    )
+
+    gas_specs_names: conlist(item_type=str) = Field(
+        ..., description="""
+        A list[str1, str2, ...] with the names of the gas species.
+        There should be as many strings following the keyword as the number of gas species
+        specified with keyword n_gas_species."
+        """
+    )
+
+    gas_molar_fracs: conlist(item_type=confloat(ge=0, allow_inf_nan=False)) = Field(
+        ..., description="""
+        A list[str1, str2, ...] with the molar fractions (dim/less) of the gas species
+        in the gas phase. There should be as many reals following this keyword as the number of gas
+        species specified with keyword n_gas_species. The ordering of these values should be
+        consistent with the order used in keyword gas_specs_names.
+        """
+    )
+
+    snapshots: list = Field(
+       ..., description="""
+        Determines how often snapshots of the lattice state will be written to output file
+        history_output.txt.
+        """
+    )
+
+    def __post_init_post_parse__(self):
+        with CoreSession() as session:
+            calculation = emmo.MesoscopicCalculation()
+            calculation.add(*self._make_model(), rel=emmo.hasInput)
+        self._session = session
+
+    @root_validator
+    def validate_all(cls, values):
+        recording_options = ["off",
+                             "on time",
+                             "on event",
+                             "on elemevent",
+                             "on logtime",
+                             "on realtime"]    
+        if values["snapshots"][0] not in recording_options:
+            raise ValueError(
+                f"""Wrong recording option in 'snapshots', use one of the following:
+                    {[recording_options]}.""")
+        return values
+    
+    def _make_model(self) -> "List[Cuds]":
+        return [
+            *self._make_settings(),
+            *self._make_gas_species(),
+            self._make_snapshots()
+        ]
+
+    def _make_settings(self) -> "List[Cuds]":
+        random_seed = emmo.RandomSeed(hasNumericalData=self.random_seed)
+
+        temperature_float = emmo.Real(hasNumericalData=self.temperature)
+        temperature_unit = emmo.Kelvin(hasSymbolData='K')
+        temperature = emmo.ThermodynamicTemperature()
+        temperature.add(temperature_unit, rel=emmo.hasReferenceUnit)
+        temperature.add(temperature_float, rel=emmo.hasQuantityValue)
+
+        pressure_float = emmo.Real(hasNumericalData=self.pressure)
+        pressure_unit = emmo.Pascal(hasSymbolData='Pa')
+        pressure = emmo.Pressure()
+        pressure.add(pressure_unit, rel=emmo.hasReferenceUnit)
+        pressure.add(pressure_float, rel=emmo.hasQuantityValue)
+
+        time_float = emmo.Real(hasNumericalData=self.max_time)
+        time_unit = emmo.Second(hasSymbolData='s')
+        max_time = emmo.MaximumTime()
+        max_time.add(time_unit, rel=emmo.hasReferenceUnit)
+        max_time.add(time_float, rel=emmo.hasQuantityValue)
+
+        return [random_seed, temperature, pressure, max_time]
+
+    def _make_snapshots(self) -> "Cuds":
+        recording_option = self.snapshots[0]
+        iri = self._make_arcp("snapshots", query=dict(jsonpath=[["snapshot", str(0)]]))
+        snap = emmo.Snapshots(hasSymbolData=recording_option, iri=iri)
+        if recording_option != "off":
+
+            if recording_option == "on logtime":
+                cuds_object = emmo.Array()
+                iri = self._make_arcp("snapshots", query=dict(jsonpath=[["snapshots", str(1)]]))
+                time_float_1 = emmo.Real(hasNumericalData=self.snapshots[1], iri=iri)
+                iri = self._make_arcp("snapshots", query=dict(jsonpath=[["snapshots", str(2)]]))
+                time_float_2 = emmo.Real(hasNumericalData=self.snapshots[2], iri=iri)
+                cuds_object.add(time_float_1, time_float_2, rel=emmo.hasSpatialPart)
+
+            else:
+                iri = self._make_arcp("snapshots", query=dict(jsonpath=[["snapshots", str(3)]]))
+                cuds_object = emmo.Real(hasNumericalData=self.snapshots[1], iri=iri)
+
+            snap.add(cuds_object, rel=emmo.hasSpatialPart)      
+        return snap
+
+
+    def _make_gas_species(self) -> "List[Cuds]":
+
+        cuds = []
+        for species in range(self.n_gas_species):
+
+            gas_species = emmo.GasSpecies()
+            molar_fraction = emmo.AmountFraction()
+
+
+            iri = self._make_arcp("gas_molar_fracs",
+                            query=dict(jsonpath=[["gas_molar_fracs", str(species)]]))
+            molar_fraction_float = emmo.Real(
+                hasNumericalData=self.gas_molar_fracs[species], iri=iri)
+            molar_fraction.add(molar_fraction_float, rel=emmo.hasQuantityValue)
+
+            gas_species.add(molar_fraction, rel=emmo.hasProperty)
+            cuds.append(gas_species)
+
+        return cuds
+
+    def _make_arcp(self, *args, **kwargs):
+        if kwargs.get("query"):
+            query = kwargs.pop("query")
+            for key, value in query.items():
+                query[key] = [quote(".".join(item)) for item in value]
+            query = urlencode(query, doseq=True)
+        return arcp_random(*args, **kwargs, query=query)
+
+    @property
+    def session(self) -> "CoreSession":
+        return self._session
+
+    @property
+    def cuds(cls):
+        return cls._session.load(cls._session.root).first()
+
+
+@dataclass
+class COPt111MesoscaleModel:
     """General Model for multiscale simulation for PESExploration, 
     Binding Site Calculation and ZGB Model"""
 
@@ -234,7 +408,7 @@ class COPt111MesoscaleModel(BaseModel):
         description="""data model for binding site calculation
         based on the previous PESExploraion."""
     )
-    zgb_model: COpyZacrosModel = Field(
+    zgb_model: ZGBModel = Field(
         ..., description="ZGB model for mesoscopic scale."
     )
 
@@ -244,16 +418,18 @@ class COPt111MesoscaleModel(BaseModel):
             workflow.add(self.pes_exploration.cuds, rel=emmo.hasSpatialFirst)
             self.pes_exploration.cuds.add(self.binding_site.cuds, rel=emmo.hasSpatialNext)
             workflow.add(self.binding_site.cuds, rel=emmo.hasSpatialDirectPart)
-            self.binding_site.cuds.add(self.zacros_model.cuds, rel=emmo.hasSpatialNext)
+            self.binding_site.cuds.add(self.zgb_model.cuds, rel=emmo.hasSpatialNext)
             workflow.add(self.zgb_model.cuds, rel=emmo.hasSpatialLast)
             for oclass in [
-                    "ForceFieldIdentifierString",
-                    "Solver",
-                    "FixedRegion",
-                    "MaximumEnergy",
-                    "NeighborCutoff",
-                    "ReferenceRegion",
-                    "RandomSeed"
+                    emmo.ForceFieldIdentifierString,
+                    emmo.Solver,
+                    emmo.FixedRegion,
+                    emmo.MaximumEnergy,
+                    emmo.NeighborCutoff,
+                    emmo.ReferenceRegion,
+                    emmo.RandomSeed,
+                    emmo.MolecularGeometry,
+                    crystallography.UnitCell
                 ]:
                 input_cuds = self.pes_exploration.cuds.get(oclass=emmo[oclass], rel=emmo.hasInput)
                 self.binding_site.cuds.add(input_cuds.pop(), rel=emmo.hasInput)
