@@ -21,6 +21,10 @@ from arcp import arcp_random
 if TYPE_CHECKING:
     from osp.core.cuds import Cuds
 
+STANDARD_XYZ = [
+    ("4442d5c3-4b61-4b13-9bbb-fdf942776ca6", "CO_ads+Pt111.xyz"),
+]
+
 
 class ForceField(str, Enum):
     """Force field types in AMS."""
@@ -49,7 +53,7 @@ class PESExploration:
     """Data model for Potential Energy Surface (PES) Exploration."""
 
     force_field: ForceField = Field(
-        ForceField.CHONSFPtClNi.value, description="Force field for the AMS calculation"
+        ForceField.CHONSFPtClNi, description="Force field for the AMS calculation"
     )
     solver_type: str = Field("Direct", description="Type of solver used.")
     n_expeditions: conint(ge=1) = Field(
@@ -180,6 +184,12 @@ class PESExploration:
     @property
     def file(cls):
         return cls._file
+    
+    class Config:
+        use_enum_values = True
+        schema_extra = {
+            "example": _get_example_json("pesexploration.json", STANDARD_XYZ)
+        }
 
 @dataclass
 class BindingSite:
@@ -523,3 +533,10 @@ class COPt111MesoscaleModel:
     @property
     def file(cls):
         return cls._file
+
+    class Config:
+        """Pydantic Config"""
+    
+        schema_extra = {
+            "example": _get_example_json("co_pt111_meso.json", STANDARD_XYZ)
+        }
