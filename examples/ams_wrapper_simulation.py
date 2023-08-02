@@ -37,9 +37,10 @@ calculation3.add(molecule3, basis_set3,
                  xc_functional3,
                  rel=emmo.hasInput)
 
-simulation.add(calculation1, rel=emmo.hasTemporalFirst)
-simulation.add(calculation2, rel=emmo.hasTemporalNext)
-simulation.add(calculation3, rel=emmo.hasTemporalLast)
+simulation.add(calculation1, rel=emmo.hasSpatialFirst)
+calculation1.add(calculation2, rel=emmo.hasSpatialNext)
+calculation2.add(calculation3, rel=emmo.hasSpatialNext)
+simulation.add(calculation3, rel=emmo.hasSpatialLast)
 
 with SimamsSession() as sess:
     reaxpro_wrapper = cuba.Wrapper(session=sess)

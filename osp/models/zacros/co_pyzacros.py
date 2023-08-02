@@ -6,7 +6,7 @@ from typing import TYPE_CHECKING, List, Union, Optional
 from uuid import UUID
 import warnings
 
-from arcp import arcp_random, arcp_name
+from arcp import arcp_random
 from pydantic import AnyUrl, BaseModel, Field, root_validator, confloat, conlist, conint
 from pydantic.dataclasses import dataclass
 from urllib.parse import quote, urlencode

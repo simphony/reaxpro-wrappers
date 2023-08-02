@@ -11,13 +11,14 @@ from arcp import arcp_random
 from osp.tools.io_functions import raise_error, raise_warning
 from osp.tools.io_functions import read_mechanism, read_cluster_expansion, read_molecule
 from osp.tools.set_functions import AMS_default_setting
+from osp.models.utils.general import get_upload
 from osp.core.utils import simple_search as search
 from osp.core.ontology.oclass import OntologyClass
 from osp.core.cuds import Cuds
 from osp.core.namespaces import emmo, crystallography, cuba
 from osp.core.utils import pretty_print
 from typing import List
-
+from uuid import UUID
 
 def map_function(self, root_cuds_object: Cuds, engine=None) -> tuple:
     """
@@ -43,19 +44,7 @@ def map_function(self, root_cuds_object: Cuds, engine=None) -> tuple:
             plams_molecule = map_PLAMSLandscape(search_landscape[0])
 
         else:
-            search_molecule = \
-                search.find_cuds_objects_by_oclass(emmo.MolecularGeometry, root_cuds_object, emmo.hasPart)
-
-            if len(search_molecule) > 1:
-                raise_error(file=os.path.basename(__file__),
-                            function=map_function.__name__,
-                            type='ValueError',
-                            message='More than one emmo.MolecularGeometry defined in the Wrapper object.')
-            elif not search_molecule:
-                raise_error(file=os.path.basename(__file__), function=map_molecule.__name__,
-                            type='ValueError', message='Molecule CUDS object missed in the wrapper.')
-            else:
-                plams_molecule = map_PLAMSMolecule(search_molecule[0])
+            plams_molecule = map_PLAMSMolecule(root_cuds_object)
 
         plams_settings = map_PLAMSSettings(root_cuds_object)
 
@@ -273,15 +262,27 @@ def map_molecule(root_cuds_object: Cuds) -> dict:
                     [coordinate_x_2, coordinate_y_n, coordinate_z_n, (region)]]
     }
 
-    :param root_cuds_object: CUDS MolecularGeometry to be checked.
+    :param root_cuds_object: CUDS root_cuds_object to be checked.
 
     :return str: If a Molecule object is present, return dictionary with
                  atom labels and positions. Otherwise, raise an error.
     """
-    molecule_data = {}
 
+    search_molecule = \
+        search.find_cuds_objects_by_oclass(emmo.MolecularGeometry, root_cuds_object, emmo.hasPart)
+
+    if len(search_molecule) > 1:
+        raise_error(file=os.path.basename(__file__),
+                    function=map_function.__name__,
+                    type='ValueError',
+                    message='More than one emmo.MolecularGeometry defined in the Wrapper object.')
+    elif not search_molecule:
+        raise_error(file=os.path.basename(__file__), function=map_molecule.__name__,
+                    type='ValueError', message='Molecule CUDS object missed in the wrapper.')
+
+    molecule_data = {}
     # Looking for atoms:
-    first = root_cuds_object.get(rel=emmo.hasSpatialFirst)
+    first = search_molecule.pop().get(rel=emmo.hasSpatialFirst)
     if len(first) > 1:
         raise_error(file=os.path.basename(__file__),
                     function=map_molecule.__name__,
@@ -1521,6 +1522,7 @@ def map_energies(root_cuds_object: Cuds) -> list:
     object.
     """
 
+    calculations = []
     electronic_energies = []
     electronic_energy_values = []
     search_simulation = \
@@ -1530,20 +1532,14 @@ def map_energies(root_cuds_object: Cuds) -> list:
 
     if not len(search_simulation):
         return
+    
+    # First
+    next_calc = search_simulation[0].get(rel=emmo.hasSpatialFirst)
 
-    first_calculation = search.find_relationships(find_rel=emmo.INVERSE_OF_hasTemporalFirst,
-                                                  root=search_simulation[0],
-                                                  consider_rel=emmo.EMMORelation)
-
-    next_calculation = search.find_relationships(find_rel=emmo.INVERSE_OF_hasTemporalNext,
-                                                 root=search_simulation[0],
-                                                 consider_rel=emmo.hasTemporalNext)
-
-    last_calculation = search.find_relationships(find_rel=emmo.INVERSE_OF_hasTemporalLast,
-                                                 root=search_simulation[0],
-                                                 consider_rel=emmo.hasTemporalLast)
-    calculations = \
-        first_calculation + next_calculation + last_calculation
+    while next_calc:
+        current = next_calc.pop()
+        calculations.append(current)
+        next_calc = current.get(rel=emmo.hasSpatialNext)
 
     for calculation in calculations:
 
@@ -1627,10 +1623,12 @@ def map_results(engine, root_cuds_object: Cuds) -> str:
                 loader_bs.replace_site_types(['A', 'B', 'C'], ['fcc', 'br', 'hcp'])
                 loader_bs.lattice.set_repeat_cell((10, 10))
                 loader_bs.lattice.plot()
-                lattice_file = open("lattice_input.dat", "a")
-                lattice_file.write(str(loader_bs.lattice))
-                iri = arcp_random("./lattice_input.dat")
-                lattice_output = crystallography.UnitCell(iri=iri)
+                
+                file = os.path.join(engine.path, "lattice_input.dat")
+                with open(file, "w+") as lattice_file:
+                    lattice_file.write(str(loader_bs.lattice))
+                uuid = get_upload(file)
+                lattice_output = crystallography.UnitCell(uid=UUID(uuid))
                 search_calculation[0].add(lattice_output, rel=emmo.hasOutput)
 
             elif map_calculation_type(root_cuds_object) == "LandscapeRefinement":
@@ -1643,26 +1641,17 @@ def map_results(engine, root_cuds_object: Cuds) -> str:
                or (map_calculation_type(root_cuds_object) == "GeometryOptimization"):
 
                 # First
-                first_calculation = search.find_relationships(
-                    find_rel=emmo.INVERSE_OF_hasTemporalFirst, root=search_simulation[0],
-                    consider_rel=emmo.EMMORelation)
-                add_AMSenergy_to_object(engine.children[0], first_calculation[0])
+                next_calc = search_simulation[0].get(rel=emmo.hasSpatialFirst)
+                i = 0
 
-                # Next
-                next_calculation = \
-                    search.find_relationships(find_rel=emmo.INVERSE_OF_hasTemporalNext,
-                                              root=search_simulation[0],
-                                              consider_rel=emmo.hasTemporalNext)
-                add_AMSenergy_to_object(engine.children[1], next_calculation[0])
+                while next_calc:
+                    
+                    current = next_calc.pop()
+                    add_AMSenergy_to_object(engine.children[i], current)
+                    i += 1
+                    next_calc = current.get(rel=emmo.hasSpatialNext)
 
-                # Last
-                last_calculation = \
-                    search.find_relationships(find_rel=emmo.INVERSE_OF_hasTemporalLast,
-                                              root=search_simulation[0],
-                                              consider_rel=emmo.hasTemporalLast)
-                add_AMSenergy_to_object(engine.children[2], last_calculation[0])
-
-            tarball = map_tarball(engine, last_calculation[0])
+            tarball = map_tarball(engine, current)
 
     elif isinstance(engine, pz.ZacrosJob):
         search_calculation = search.find_cuds_objects_by_oclass(

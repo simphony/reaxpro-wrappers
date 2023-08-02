@@ -135,18 +135,19 @@ max_time.add(time_unit, rel=emmo.hasReferenceUnit)
 max_time.add(time_float, rel=emmo.hasQuantityValue)
 
 snapshots_float=emmo.Real(hasNumericalData='3.5')
-snapshots = emmo.Snapshots()
+snapshots = emmo.Snapshots(hasSymbolData="on time")
 snapshots.add(snapshots_float, rel=emmo.hasSpatialPart)
 
+CO_gas_species = emmo.GasSpecies()
 molar_fraction_CO = emmo.AmountFraction()
 CO_symbol = emmo.ChemicalElement(hasSymbolData='CO')
-molar_fraction_CO.add(CO_symbol, rel=emmo.hasProperty)
 molar_fraction_float = emmo.Real(hasNumericalData='0.1')
 molar_fraction_CO.add(molar_fraction_float, rel=emmo.hasQuantityValue)
+CO_gas_species.add(molar_fraction_CO, CO_symbol, rel=emmo.hasProperty)
 
 calculation.add(search_mechanism[0], search_lattice[0], \
                 random_seed, temperature, pressure, max_time, snapshots, \
-                molar_fraction_CO, rel=emmo.hasInput)
+                CO_gas_species, rel=emmo.hasInput)
 
 with SimzacrosSession() as sess:
     reaxpro_wrapper3 = cuba.Wrapper(session=sess)

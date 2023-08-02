@@ -1,0 +1,14 @@
+{
+    "force_field": "CHONSFPtClNi",
+    "solver_type": "Direct",
+    "n_expeditions": 30,
+    "n_explorers": 3,
+    "max_energy": 2.0,
+    "max_distance": 3.8,
+    "random_seed": 100,
+    "fixed_region": "surface",
+    "reference_region": "surface",
+    "symmetry_check": "T",
+    "molecule": "4442d5c3-4b61-4b13-9bbb-fdf942776ca6",
+    "lattice": "4442d5c3-4b61-4b13-9bbb-fdf942776ca6"
+}

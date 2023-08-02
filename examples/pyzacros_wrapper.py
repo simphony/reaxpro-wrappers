@@ -52,7 +52,7 @@ max_steps = emmo.MaximumSteps()
 max_steps.add(max_steps_float, rel=emmo.hasSpatialPart)
 
 snapshots_float=emmo.Real(hasNumericalData='0.0005')
-snapshots = emmo.Snapshots()
+snapshots = emmo.Snapshots(hasSymbolData="on time")
 snapshots.add(snapshots_float, rel=emmo.hasSpatialPart)
 
 molar_fraction_CO = emmo.AmountFraction()
