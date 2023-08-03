@@ -46,7 +46,7 @@ def map_function(self, root_cuds_object: Cuds, engine=None) -> tuple:
         else:
             plams_molecule = map_PLAMSMolecule(root_cuds_object)
 
-        plams_settings = map_PLAMSSettings(root_cuds_object)
+        plams_settings = map_PLAMSSettings(self.workdir, root_cuds_object)
 
         return (plams_molecule, plams_settings)
 
@@ -445,7 +445,7 @@ def map_lattice(root_cuds_object: Cuds) -> dict:
     return lattice_data
 
 
-def map_PLAMSSettings(root_cuds_object: Cuds) -> PlamsSettings:
+def map_PLAMSSettings(workdir: str, root_cuds_object: Cuds) -> PlamsSettings:
     """
     Map ontology-defined calculation settings to PlamsSettings() object.
 
@@ -533,13 +533,14 @@ def map_PLAMSSettings(root_cuds_object: Cuds) -> PlamsSettings:
             map_generic_setting(emmo.NeighborCutoff, root_cuds_object)
 
     elif semantic_settings['Calculation'] == 'BindingSites':
+        previous = root_cuds_object.get(rel=emmo.hasSpatialNext.inverse).pop()
 
         syntactic_settings.input.AMS.task = "PESExploration"
-        syntactic_settings.input.AMS.PESExploration.Job = 'ProcessSearch'
+        syntactic_settings.input.AMS.PESExploration.Job = 'BindingSites'
         syntactic_settings.input.AMS.PESExploration.BindingSites.Calculate = 'T'
         syntactic_settings.input.AMS.PESExploration.CalculateFragments = 'F'
         syntactic_settings.input.AMS.PESExploration.LoadEnergyLandscape.Path = \
-            '../../plamsjob/plamsjob'
+            os.path.join(workdir, str(previous.uid))
 
         syntactic_settings.input.ReaxFF.ForceField = \
             map_generic_setting(emmo.ForceFieldIdentifierString, root_cuds_object)
@@ -1569,12 +1570,15 @@ def map_results(engine, root_cuds_object: Cuds) -> str:
     if isinstance(engine, MultiJob):
 
         # in case of several children, outputs will be added in the order of dependencies.
-        search_simulation = \
-            search.find_cuds_object(criterion=lambda x: x.is_a(oclass=emmo.Simulation),
-                                    root=root_cuds_object, rel=cuba.relationship, find_all=True,
-                                    max_depth=1)
+        search_simulation = search.find_cuds_object(
+            criterion=lambda x: x.is_a(oclass=emmo.Simulation) or x.is_a(oclass=emmo.Workflow),
+            root=root_cuds_object,
+            rel=cuba.relationship,
+            find_all=True,
+            max_depth=1
+        )
 
-        if not len(search_simulation):
+        if not search_simulation:
 
             # Attach results to Calculation CUDS object using hasOutput rel.
             search_calculation = \
@@ -1637,21 +1641,66 @@ def map_results(engine, root_cuds_object: Cuds) -> str:
             # TODO elif map_calculation_type(root_cuds_object) == "XXXX":
 
         else:
-            if (map_calculation_type(root_cuds_object) == "WavefunctionOptimization") \
-               or (map_calculation_type(root_cuds_object) == "GeometryOptimization"):
 
-                # First
-                next_calc = search_simulation[0].get(rel=emmo.hasSpatialFirst)
-                i = 0
+            simulation = search_simulation[0]
 
-                while next_calc:
-                    
-                    current = next_calc.pop()
+            # First
+            next_calc = simulation.get(rel=emmo.hasSpatialFirst)
+            i = 0
+
+            while next_calc:
+                current = next_calc.pop()
+                if current.is_a(emmo.WavefunctionOptimization) \
+                        or current.is_a(emmo.GeometryOptimization):
                     add_AMSenergy_to_object(engine.children[i], current)
-                    i += 1
-                    next_calc = current.get(rel=emmo.hasSpatialNext)
 
-            tarball = map_tarball(engine, current)
+                elif current.is_a(emmo.ProcessSearch):
+                    # Print some results as output
+                    print(engine.children[i].results.get_energy_landscape())
+
+                    # Attach Mechanism and Cluster_Expansions to Wrapper object as Output:
+                    loader_ads = pz.RKFLoader(engine.children[i].results)
+                    loader_ads.replace_site_types(['A', 'B', 'C'], ['fcc', 'br', 'hcp'])
+
+                    # 1. Mechanism
+                    mechanism_output = read_mechanism(str(loader_ads.mechanism), read_from_file=False)
+                    current.add(mechanism_output, rel=emmo.hasOutput)
+                    if simulation.is_a(emmo.Simulation):
+                        simulation.add(mechanism_output, rel=emmo.hasOutput)
+
+                    # 2. Cluster
+                    cluster_output = read_cluster_expansion(str(loader_ads.clusterExpansion),
+                                                            read_from_file=False)
+                    for cluster in cluster_output:
+                        current.add(cluster, rel=emmo.hasOutput)
+                        if simulation.is_a(emmo.Simulation):
+                            simulation.add(cluster, rel=emmo.hasOutput)
+
+                    print(loader_ads.clusterExpansion)
+                    print(loader_ads.mechanism)
+                elif current.is_a(emmo.BindingSites):
+                    # Attach UnitCell() with file path to Wrapper object as Output:
+                    loader_bs = pz.RKFLoader(engine.children[i].results)
+                    loader_bs.replace_site_types(['A', 'B', 'C'], ['fcc', 'br', 'hcp'])
+                    loader_bs.lattice.set_repeat_cell((10, 10))
+                    loader_bs.lattice.plot()
+
+                    file = os.path.join(engine.path, "lattice_input.dat")
+                    with open(file, "w+") as lattice_file:
+                        lattice_file.write(str(loader_bs.lattice))
+                    uuid = get_upload(file)
+                    lattice_output = crystallography.UnitCell(uid=UUID(uuid))
+                    current.add(lattice_output, rel=emmo.hasOutput)
+                    if simulation.is_a(emmo.Simulation):
+                        simulation.add(lattice_output, rel=emmo.hasOutput)
+
+                i += 1
+                next_calc = current.get(rel=emmo.hasSpatialNext)
+
+            if simulation.is_a(emmo.Simulation):
+                tarball = map_tarball(engine, simulation)
+            elif simulation.is_a(emmo.Workflow):
+                tarball = map_tarball(engine, current)
 
     elif isinstance(engine, pz.ZacrosJob):
         search_calculation = search.find_cuds_objects_by_oclass(

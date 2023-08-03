@@ -118,9 +118,6 @@ class SimzacrosSession(SimWrapperSession):
                 self.lattice = split[-1]
             else:
                 self.lattice = get_download(str(lattice.uid), as_file=True)
-        else:
-            # lattice loaded from semantic-based script:
-            self.lattice = search_lattice[0].iri[49:]
 
         # Cluster
         search_cluster = \
