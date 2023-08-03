@@ -1695,7 +1695,8 @@ def map_results(engine, root_cuds_object: Cuds) -> str:
                         simulation.add(lattice_output, rel=emmo.hasOutput)
 
                 i += 1
-                next_calc = current.get(rel=emmo.hasSpatialNext)
+                next_calc = current.get(oclass=emmo.AtomisticCalculation, rel=emmo.hasSpatialNext) \
+                    or current.get(oclass=emmo.PostProcessing, rel=emmo.hasSpatialNext)
 
             if simulation.is_a(emmo.Simulation):
                 tarball = map_tarball(engine, simulation)
