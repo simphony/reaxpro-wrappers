@@ -501,10 +501,11 @@ class COPt111MesoscaleModel:
                     crystallography.UnitCell
                 ]:
                 input_cuds = self.pes_exploration.cuds.get(oclass=oclass, rel=emmo.hasInput)
-            self.binding_site.cuds.add(input_cuds.pop(), rel=emmo.hasInput)
+                self.binding_site.cuds.add(input_cuds.pop(), rel=emmo.hasInput)
             workflow.add(self.pes_exploration.cuds, rel=emmo.hasSpatialFirst)
             workflow.add(self.binding_site.cuds, rel=emmo.hasSpatialDirectPart)
             workflow.add(self.zgb_model.cuds, rel=emmo.hasSpatialLast)
+
         file = tempfile.NamedTemporaryFile(suffix=".ttl", delete=False)
         export_cuds(session, file.name)
         self._file = file.name

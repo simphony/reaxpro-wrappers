@@ -2,16 +2,13 @@ from osp.core.namespaces import emmo, cuba, crystallography
 from osp.wrappers.simams.simams_session import SimamsSession
 from osp.wrappers.simzacros.simzacros_session import SimzacrosSession 
 from osp.models.multiscale.co_pt111_meso import COPt111MesoscaleModel
-from osp.core.utils import simple_search as search
-from osp.core.utils import pretty_print, Cuds2dot, export_cuds
 import os
 
 PATH = os.path.dirname(__file__)
 molecule = os.path.join(PATH, "XYZ", "CO_ads+Pt111.xyz")
 lattice = os.path.join(PATH, "XYZ", "CO_ads+Pt111.xyz")
 
-
-# PES Exploration 
+# setup data model
 
 data = {
     "pes_exploration": {
@@ -49,36 +46,38 @@ data = {
 
 model = COPt111MesoscaleModel(**data)
 
+# PES Exploration + Binding Site calculation
+
 with SimamsSession() as sess:
     reaxpro_wrapper1 = cuba.Wrapper(session=sess)
-    reaxpro_wrapper1.add(model.pes_exploration.cuds,
-                        rel=emmo.hasPart)
+    reaxpro_wrapper1.add(model.cuds,
+                        rel=cuba.relationship)
     reaxpro_wrapper1.session.run()
 
-# Binding Site Calculation
 
-with SimamsSession() as sess:
-    reaxpro_wrapper2 = cuba.Wrapper(session=sess)
-    reaxpro_wrapper2.add(model.binding_site.cuds,
-                        rel=emmo.hasPart)
-    reaxpro_wrapper2.session.run()
+# map output from previous calculation to next calculation
 
-# Mesoscopic calculation 
+workflow = reaxpro_wrapper1.get(rel=cuba.relationship).pop()
 
-# pyZacros Mechanism, retrieved from a previous calculation
+process_search = workflow.get(oclass=emmo.ProcessSearch).pop()
 
-search_mechanism = reaxpro_wrapper1.get(oclass=emmo.Calculation).pop().get(oclass=emmo.ChemicalReactionMechanism, rel=emmo.hasOutput)
+binding_sites = workflow.get(oclass=emmo.BindingSites).pop()
 
-search_clusters = reaxpro_wrapper1.get(oclass=emmo.Calculation).pop().get(oclass=emmo.ClusterExpansion, rel=emmo.hasOutput)
+mesocopic = workflow.get(oclass=emmo.MesoscopicCalculation).pop()
 
-search_lattice = reaxpro_wrapper2.get(oclass=emmo.Calculation).pop().get(oclass=crystallography.UnitCell, rel=emmo.hasOutput)
+search_mechanism = process_search.get(oclass=emmo.ChemicalReactionMechanism, rel=emmo.hasOutput)
 
+search_clusters =  process_search.get(oclass=emmo.ClusterExpansion, rel=emmo.hasOutput)
 
-model.zgb_model.cuds.add(*search_mechanism, *search_lattice, *search_clusters, rel=emmo.hasInput)
+search_lattice = binding_sites.get(oclass=crystallography.UnitCell, rel=emmo.hasOutput)
+
+mesocopic.add(*search_mechanism, *search_lattice, *search_clusters, rel=emmo.hasInput)
+
+# Mesoscopic calculation
 
 with SimzacrosSession() as sess:
-    reaxpro_wrapper3 = cuba.Wrapper(session=sess)
-    reaxpro_wrapper3.add(model.zgb_model.cuds,
-                        rel=emmo.hasPart)
-    reaxpro_wrapper3.session.run()
+    reaxpro_wrapper2 = cuba.Wrapper(session=sess)
+    reaxpro_wrapper2.add(workflow,
+                        rel=cuba.relationship)
+    reaxpro_wrapper2.session.run()
 

@@ -5,6 +5,8 @@ from osp.tools.graph_functions import graph_wrapper_dependencies
 from osp.tools.mapping_functions import map_function, map_results
 from scm.plams import init as PlamsInit
 from scm.plams import MultiJob, AMSJob
+import tempfile
+import os
 # from osp.core.utils import pretty_print
 
 
@@ -14,8 +16,12 @@ class SimamsSession(SimWrapperSession):
     def __init__(self, engine=None, **kwargs):
         """Initialise SimamsSession."""
         if engine is None:
-            PlamsInit()
-            self.engine = MultiJob()
+            path = tempfile.mkdtemp()
+            folder = "plams_workdir"
+            jobname = "plamsjob"
+            PlamsInit(path=path, folder = folder)
+            self.workdir = os.path.join(path, folder, jobname)
+            self.engine = MultiJob(name=jobname)
         super().__init__(engine)
 
     def __str__(self):
@@ -51,16 +57,17 @@ class SimamsSession(SimWrapperSession):
 
         # One Calculation without Simulation:
         if list(self.dependencies.keys())[0] == "Calculation":
+            calculation = self.dependencies["Calculation"][0]
             (plams_molecule, plams_settings) = \
-                map_function(self, self.dependencies["Calculation"][0])
-            self.engine.children = [AMSJob(molecule=plams_molecule, settings=plams_settings)]
+                map_function(self, calculation)
+            self.engine.children = [AMSJob(name=str(calculation.uid), molecule=plams_molecule, settings=plams_settings)]
 
         # If Simulation, create a loop of PLAMS jobs according to dependencies:
         elif list(self.dependencies.keys())[0] == "Simulation":
             job_list = []
             for calculation in self.dependencies["Simulation"]["Calculations"]:
                 (plams_molecule, plams_settings) = map_function(self, calculation)
-                job_list.append(AMSJob(molecule=plams_molecule, settings=plams_settings))
+                job_list.append(AMSJob(name=str(calculation.uid), molecule=plams_molecule, settings=plams_settings))
             self.engine.children = job_list
 
     # OVERRIDE
