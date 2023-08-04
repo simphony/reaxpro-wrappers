@@ -8,7 +8,7 @@ PATH = os.path.dirname(__file__)
 molecule = os.path.join(PATH, "XYZ", "CO_ads+Pt111.xyz")
 lattice = os.path.join(PATH, "XYZ", "CO_ads+Pt111.xyz")
 
-# PES Exploration 
+# setup data model
 
 data = {
     "pes_exploration": {
@@ -46,7 +46,7 @@ data = {
 
 model = COPt111MesoscaleModel(**data)
 
-# atomistic simulation
+# PES Exploration + Binding Site calculation
 
 with SimamsSession() as sess:
     reaxpro_wrapper1 = cuba.Wrapper(session=sess)
@@ -57,7 +57,7 @@ with SimamsSession() as sess:
 
 # map output from previous calculation to next calculation
 
-workflow = reaxpro_wrapper1.get(oclass=emmo.Workflow).pop()
+workflow = reaxpro_wrapper1.get(rel=cuba.relationship).pop()
 
 process_search = workflow.get(oclass=emmo.ProcessSearch).pop()
 
