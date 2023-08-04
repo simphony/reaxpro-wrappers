@@ -8,6 +8,8 @@ from osp.core.utils import simple_search as search
 from osp.models.utils.general import get_download
 import scm.pyzacros as pz
 import os
+import tempfile
+from uuid import uuid4
 # from osp.core.utils import pretty_print
 
 
@@ -17,7 +19,11 @@ class SimzacrosSession(SimWrapperSession):
     def __init__(self, engine=None, **kwargs):
         """Initialise SimamsSession."""
         if engine is None:
-            pz.init()
+            path = tempfile.mkdtemp()
+            folder = f"plams-workdir-{uuid4()}"
+            jobname = f"plamsjob-{uuid4()}"
+            self.workdir = os.path.join(path, folder, jobname)            
+            pz.init(path=path, folder=folder)
             self.engine = 'Zacros'
         super().__init__(engine)
 

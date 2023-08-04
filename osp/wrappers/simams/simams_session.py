@@ -7,6 +7,7 @@ from scm.plams import init as PlamsInit
 from scm.plams import MultiJob, AMSJob
 import tempfile
 import os
+from uuid import uuid4
 # from osp.core.utils import pretty_print
 
 
@@ -17,9 +18,9 @@ class SimamsSession(SimWrapperSession):
         """Initialise SimamsSession."""
         if engine is None:
             path = tempfile.mkdtemp()
-            folder = "plams_workdir"
-            jobname = "plamsjob"
-            PlamsInit(path=path, folder = folder)
+            folder = f"plams-workdir-{uuid4()}"
+            jobname = f"plamsjob-{uuid4()}"
+            PlamsInit(path=path, folder=folder)
             self.workdir = os.path.join(path, folder, jobname)
             self.engine = MultiJob(name=jobname)
         super().__init__(engine)
