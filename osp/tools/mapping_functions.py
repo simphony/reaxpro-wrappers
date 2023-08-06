@@ -46,7 +46,8 @@ def map_function(self, root_cuds_object: Cuds, engine=None) -> tuple:
         else:
             plams_molecule = map_PLAMSMolecule(root_cuds_object)
 
-        plams_settings = map_PLAMSSettings(self.workdir, root_cuds_object)
+        path = os.path.join(self.workdir, self.jobname)
+        plams_settings = map_PLAMSSettings(path, root_cuds_object)
 
         return (plams_molecule, plams_settings)
 

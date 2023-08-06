@@ -3,10 +3,9 @@ from osp.core.session import SimWrapperSession
 from osp.core.cuds import Cuds
 from osp.tools.graph_functions import graph_wrapper_dependencies
 from osp.tools.mapping_functions import map_function, map_results
-from scm.plams import init as PlamsInit
+from scm.plams import init, config
 from scm.plams import MultiJob, AMSJob
-import tempfile
-import os
+from uuid import uuid4
 # from osp.core.utils import pretty_print
 
 
@@ -16,12 +15,10 @@ class SimamsSession(SimWrapperSession):
     def __init__(self, engine=None, **kwargs):
         """Initialise SimamsSession."""
         if engine is None:
-            path = tempfile.mkdtemp()
-            folder = "plams_workdir"
-            jobname = "plamsjob"
-            PlamsInit(path=path, folder = folder)
-            self.workdir = os.path.join(path, folder, jobname)
-            self.engine = MultiJob(name=jobname)
+            init()
+            self.workdir = config.get("default_jobmanager").workdir
+            self.jobname = str(uuid4())
+            self.engine = MultiJob(name=self.jobname)
         super().__init__(engine)
 
     def __str__(self):
