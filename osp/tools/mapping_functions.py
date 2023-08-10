@@ -51,7 +51,7 @@ def map_function(self, root_cuds_object: Cuds, engine=None) -> tuple:
 
         return (plams_molecule, plams_settings)
 
-    elif engine == "Zacros":
+    elif self.engine == "Zacros":
 
         software = emmo.Zacros()
         root_cuds_object.add(software, rel=emmo.hasModellingSoftware)

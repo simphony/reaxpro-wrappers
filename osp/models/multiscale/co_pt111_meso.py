@@ -3,7 +3,7 @@ import tempfile
 import warnings
 from enum import Enum
 from pathlib import Path
-from typing import Union, List, TYPE_CHECKING
+from typing import Union, List, TYPE_CHECKING, Optional
 from uuid import UUID
 
 from osp.core.namespaces import emmo, crystallography
@@ -541,3 +541,146 @@ class COPt111MesoscaleModel:
         schema_extra = {
             "example": _get_example_json("co_pt111_meso.json", STANDARD_XYZ)
         }
+
+@dataclass
+class MolarFractionRange:
+    """Range of molecular fractions for adaptive design procedure."""
+
+    name: str = Field(..., description="Name of the Molecule")
+    min: confloat(ge=0.0, le=1.0) = Field(0.2, description="Minimum fraction of the named molecule.")
+    max: confloat(ge=0.0, le=1.0) = Field(0.8, description="Maximum fraction of the named molecule".)
+    num: int = Field(5, description="Number of elements in the range of molar fractions.")
+
+    def __post_init_post_parse__(self):
+        with CoreSession() as session:
+            molecule = emmo.MolecularGeometry()
+            name = emmo.ChemicalName(hasSymbolData=self.name)
+            vector = emmo.Vector()
+            frac = emmo.AmountConcentration()
+            maximum = emmo.Real(hasNumericalData=self.max)
+            minimum = emmo.Real(hasNumericalData=self.min)
+            length = emmo.Real(hasNumericalData=self.num)
+            vector.add(maximum, rel=emmo.hasMaximumValue)
+            vector.add(minimum, rel=emmo.hasMinimumValue)
+            vector.add(length, rel=emmo.hasVectorLength)
+            frac.add(vector, rel=emmo.hasSign)
+            molecule.add(frac, rel=emmo.hasQuantitativeProperty)
+            molecule.add(name, rel=emmo.hasProperty)
+        file = tempfile.NamedTemporaryFile(suffix=".ttl", delete=False)
+        export_cuds(session, file.name)
+        self._file = file.name
+        try:
+            self._uuid = get_upload(file)
+        except Exception as error:
+            self._uuid = None
+            message = (
+                message
+            ) = f"The graph of the model could not be stored at the minio-instance: {error.args}"
+            warnings.warn(message)
+        self._session = session
+
+    @property
+    def session(self) -> "CoreSession":
+        return self._session
+
+    @property
+    def cuds(cls):
+        return cls._session.load(cls._session.root).first()
+
+    @property
+    def uuid(cls):
+        return cls._uuid
+
+    @property
+    def file(cls):
+        return cls._file
+
+
+@dataclass
+class COPt111FullscaleModel:
+    """Pydantic model describing the Full scale for CO oxidation."""
+
+    pes_exploration: PESExploration = Field(
+        ..., description="AMS data model for PESExploration."
+    )
+    binding_site: BindingSite = Field(
+        ...,
+        description="""data model for binding site calculation
+        based on the previous PESExploraion."""
+    )
+    zgb_model: ZGBModel = Field(
+        ..., description="ZGB model for mesoscopic scale."
+    )
+
+    adp: Optional[List[MolarFractionRange]] = Field(
+        ...,
+        description="""List of molar fractions of molecules
+        for the adaptive design procedure"""
+        )
+
+    def __post_init_post_parse__(self):
+        with CoreSession() as session:
+            workflow = emmo.Workflow()
+            self.pes_exploration.cuds.add(self.binding_site.cuds, rel=emmo.hasSpatialNext)
+            self.binding_site.cuds.add(self.zgb_model.cuds, rel=emmo.hasSpatialNext)
+            for oclass in [
+                    emmo.ForceFieldIdentifierString,
+                    emmo.Solver,
+                    emmo.FixedRegion,
+                    emmo.MaximumEnergy,
+                    emmo.NeighborCutoff,
+                    emmo.ReferenceRegion,
+                    emmo.RandomSeed,
+                    emmo.MolecularGeometry,
+                    crystallography.UnitCell
+                ]:
+                input_cuds = self.pes_exploration.cuds.get(oclass=oclass, rel=emmo.hasInput)
+                self.binding_site.cuds.add(input_cuds.pop(), rel=emmo.hasInput)
+            workflow.add(self.pes_exploration.cuds, rel=emmo.hasSpatialFirst)
+            workflow.add(self.binding_site.cuds, rel=emmo.hasSpatialDirectPart)
+            if self.adp:
+                workflow.add(self.zgb_model.cuds, rel=emmo.hasSpatialDirectPart)
+                apd = emmo.AdaptiveDesignProcedure()
+                for fraction in self.apd:
+                    apd.add(fraction, rel=emmo.hasInput)
+                self.zgb_model.cuds.add(apd, rel=emmo.hasSpatialNext)
+                workflow.add(apd, rel=emmo.hasSpatialLast)
+            else:
+                workflow.add(self.zgb_model.cuds, rel=emmo.hasSpatialLast)
+
+        file = tempfile.NamedTemporaryFile(suffix=".ttl", delete=False)
+        export_cuds(session, file.name)
+        self._file = file.name
+        try:
+            self._uuid = get_upload(file)
+        except Exception as error:
+            self._uuid = None
+            message = (
+                message
+            ) = f"The graph of the model could not be stored at the minio-instance: {error.args}"
+            warnings.warn(message)
+        self._session = session
+
+    @property
+    def session(self) -> "CoreSession":
+        return self._session
+
+    @property
+    def cuds(cls):
+        return cls._session.load(cls._session.root).first()
+
+    @property
+    def uuid(cls):
+        return cls._uuid
+
+    @property
+    def file(cls):
+        return cls._file
+
+    class Config:
+        """Pydantic Config"""
+
+        schema_extra = {
+            "example": _get_example_json("co_pt111_full.json", STANDARD_XYZ)
+        }
+
