@@ -6,9 +6,9 @@ from osp.core.cuds import Cuds
 from osp.tools.io_functions import raise_error
 from osp.tools.mapping_functions import map_function, map_results
 from osp.core.utils import simple_search as search
-from osp.models.utils.general import get_download
+from osp.models.utils.general import get_download, get_upload
 from scm.plams import config
-from uuid import uuid4
+from uuid import uuid4, UUID
 import logging
 import scm.pyzacros as pz
 import numpy as np
@@ -32,7 +32,7 @@ class SimzacrosSession(SimWrapperSession):
             self.calculation = None
             self.mechanism = None
             self.cluster = None
-            self.apd = []
+            self.adp = []
 
         super().__init__(engine)
 
@@ -53,12 +53,12 @@ class SimzacrosSession(SimWrapperSession):
         pz_job = pz.ZacrosJob(settings=pz_settings, lattice=pz_lattice,
                               mechanism=pz_mechanism, cluster_expansion=pz_cluster_expansion)
         results = pz_job.run()
-        if self.apd:
+        if self.adp:
             import adaptiveDesignProcedure as adp
 
             def get_rate( conditions ):
 
-                logger.info(f"Requesting conditions: {conditions}")
+                logger.info(f"Requesting conditions for x_CO: {conditions}")
                 #---------------------------------------
                 # Zacros calculation
                 #---------------------------------------
@@ -83,32 +83,29 @@ class SimzacrosSession(SimWrapperSession):
                 #---------------------------------------
                 # Collecting the results
                 #---------------------------------------
-                data = np.nan*np.empty((len(conditions),3))
+                data = np.nan*np.empty((len(conditions),1))
                 results_dict = results.turnover_frequency()
-                results_dict = results.average_coverage(
-                    last=20, update=results_dict
-                )
 
                 for i in range(len(results_dict)):
-                    data[i,0] = results_dict[i]['average_coverage']['O*']
-                    data[i,1] = results_dict[i]['average_coverage']['CO*']
-                    data[i,2] = results_dict[i]['turnover_frequency']['CO2']
+                    data[i,0] = results_dict[i]['turnover_frequency']['CO2']
 
                 return data
-            output_var = [
-                {'name':'ac_O'},
-                {'name':'ac_CO'},
-                {'name':'TOF_CO2'}
-            ]
-
+            output_var = [{'name':'TOF_CO2'}]
+            adp_path = os.path.join(self.workdir,'adp.results')
             adpML = adp.adaptiveDesignProcedure(
-                self.apd, 
+                self.adp, 
                 output_var, 
                 get_rate,
-                outputDir=os.path.join(self.workdir,'adp.results'),
+                outputDir=adp_path,
                 randomState=10
             )
             adpML.createTrainingDataAndML()
+
+            uuid = get_upload(adpML.forestFileForCFD)
+            pkl = emmo.PKLFile(uid=UUID(uuid))
+            self.adp_cuds.add(pkl, rel=emmo.hasOutput)
+
+
         self._tarball = map_results(pz_job, root_cuds_object)
 
         # Attributes to easily access (syntactic) info from results.
@@ -157,13 +154,13 @@ class SimzacrosSession(SimWrapperSession):
                         ' in the Wrapper object.')
                 self._process_calculation(calculation)
             elif calculation.is_a(emmo.AdaptiveDesignProcedure):
-                if self.calculation:
+                if self.adp:
                     raise_error(file=os.path.basename(__file__),
                         function="_apply_added method",
                         type='NameError',
                         message='More than one emmo.AdaptiveDesignProcedure defined'
                         ' in the Wrapper object.')        
-                self._process_apd(calculation)
+                self._process_adp(calculation)
 
     def _process_calculation(self, calculation: Cuds) -> None:
         # Calculation
@@ -213,42 +210,55 @@ class SimzacrosSession(SimWrapperSession):
             self.cluster = search_cluster
 
     def _process_adp(self, calculation: Cuds) -> None:
-
-        for molecule in calculation.get(oclass=emmo.MolecularGeometry, rel=emmo.hasInput):
-            name = molecule.get(oclass=emmo.ChemicalName, rel=emmo.hasProperty)
-            frac = molecule.get(oclass=emmo.AmountConcentration, rel=emmo.hasQuantitativeProperty)
-            if not frac:
-                raise ValueError(f"<{molecule}> does not have any <{emmo.AmountConcentration}>.")
-            elif len(frac) > 1:
-                raise ValueError(f"<{molecule}> has more than 1 <{emmo.AmountConcentration}>.")
-            vec = frac.pop().get(oclass=emmo.Vector, rel=emmo.hasSign)
-            if not vec:
-                raise ValueError(f"<{frac}> does not have any <{emmo.Vector}>.")
-            elif len(frac) > 1:
-                raise ValueError(f"<{frac}> has more than 1 <{emmo.Vector}>.")
-            maximum = vec.pop().get(oclass=emmo.Real, rel=emmo.hasMaximumValue)
-            minimum = vec.pop().get(oclass=emmo.Real, rel=emmo.hasMinimumValue)
-            length = vec.pop().get(oclass=emmo.Real, rel=emmo.hasVectorLength)
-            if not minimum or not maximum or not length:
-                raise ValueError(
-                    f"""Any of the following quantities are empty: 
-                    Minimum {minimum}, maximum: {maximum}, vector length {length}"""
-                    )
-            elif len(minimum) > 1 or len(maximum) > 1 or len(length) > 1:
-                raise ValueError(
-                    f"""Any of the following quantities has more then 1 times:
-                    Minimum {minimum}, maximum: {maximum}, vector length {length}"""
-                    )
-            maximum, minimum, length = maximum.pop(), minimum.pop(), length.pop()
-            self.apd.append(
-                {
-                    "name": f"x_{name.hasSymbolData}",
-                    "min": minimum.hasNumericalData,
-                    "max": maximum.hasNumericalData,
-                    "num": length.hasNumericalData
-                }
-            )
-
+        self.adp_cuds = calculation
+        molecule = calculation.get(oclass=emmo.MolecularGeometry, rel=emmo.hasInput)
+        if not molecule:
+            raise ValueError(f"No <{emmo.MolecularGeometry}> found in <{calculation}>.")
+        elif len(molecule) > 1:
+            raise ValueError(f"More than 1 <{emmo.MolecularGeometry}> found in <{calculation}>.")
+        molecule = molecule.pop()
+        name = molecule.get(oclass=emmo.ChemicalName, rel=emmo.hasProperty)
+        if not name:
+            raise ValueError(f"No <{emmo.ChemicalName}> found in <{molecule}>.")
+        elif len(name) > 1:
+            raise ValueError(f"More than 1 <{emmo.ChemicalName}> found in <{molecule}>.")
+        name = name.pop()
+        if not name.hasSymbolData == "CO":
+            raise ValueError(f"<{molecule}> does not have `CO` as <{name}> via <{emmo.hasSymbolData}>.")
+        frac = molecule.get(oclass=emmo.AmountConcentration, rel=emmo.hasQuantitativeProperty)
+        if not frac:
+            raise ValueError(f"<{molecule}> does not have any <{emmo.AmountConcentration}>.")
+        elif len(frac) > 1:
+            raise ValueError(f"<{molecule}> has more than 1 <{emmo.AmountConcentration}>.")
+        frac = frac.pop()
+        vec = frac.get(oclass=emmo.Vector, rel=emmo.hasSign)
+        if not vec:
+            raise ValueError(f"<{frac}> does not have any <{emmo.Vector}>.")
+        elif len(vec) > 1:
+            raise ValueError(f"<{frac}> has more than 1 <{emmo.Vector}>.")
+        vec = vec.pop()
+        maximum = vec.get(oclass=emmo.Real, rel=emmo.hasMaximumValue)
+        minimum = vec.get(oclass=emmo.Real, rel=emmo.hasMinimumValue)
+        length = vec.get(oclass=emmo.Real, rel=emmo.hasVectorLength)
+        if not minimum or not maximum or not length:
+            raise ValueError(
+                f"""Any of the following quantities are empty: 
+                Minimum {minimum}, maximum: {maximum}, vector length {length}"""
+                )
+        elif len(minimum) > 1 or len(maximum) > 1 or len(length) > 1:
+            raise ValueError(
+                f"""Any of the following quantities has more then 1 times:
+                Minimum {minimum}, maximum: {maximum}, vector length {length}"""
+                )
+        maximum, minimum, length = maximum.pop(), minimum.pop(), length.pop()
+        self.adp.append(
+            {
+                "name": f"x_{name.hasSymbolData}",
+                "min": float(minimum.hasNumericalData),
+                "max": float(maximum.hasNumericalData),
+                "num": int(length.hasNumericalData)
+            }
+        )
 
 
     # OVERRIDE

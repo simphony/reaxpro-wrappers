@@ -18,14 +18,11 @@
         "n_explorers": 4,
         "symmetry_check": "F"
     },
-    "apd": [
-        {
-            "name": "CO",
-            "min": 0.2,
-            "max": 0.8,
-            "num": 5
-        }
-    ],
+    "adp": {
+        "min": 0.2,
+        "max": 0.8,
+        "num": 5
+    },
     "zgb_model": {
         "random_seed": 10,
         "temperature": 273.15,

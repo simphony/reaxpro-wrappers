@@ -18,7 +18,8 @@ from osp.core.session import CoreSession
 from osp.core.utils import export_cuds
 from osp.tools.io_functions import raise_warning
 from osp.core.utils import pretty_print
-from osp.models.utils.general import get_upload, get_download, _get_example_json, _download_file
+from osp.models.utils.general import get_upload, _get_example_json
+from osp.models.multiscale.co_pt111_meso import COMolarFractionRange
 
 
 STANDARD_DATA = [("9a1e6c07-840a-4182-8ed5-60212167aa4b", "lattice_input.dat")]
@@ -502,6 +503,12 @@ class COpyZacrosModel:
     mechanism_input: List[ElementaryStep] = Field(
         ..., description="List of chemical reactions.")
 
+    adp: Optional[COMolarFractionRange] = Field(
+        None,
+        description="""Molar fractions of CO
+        for the adaptive design procedure"""
+        )
+
     @root_validator
     def validate_all(cls, values):
 
@@ -562,8 +569,20 @@ class COpyZacrosModel:
     def __post_init_post_parse__(self):
         with CoreSession() as session:
 
-            calculation = emmo.MesoscopicCalculation()
-            calculation.add(*self._make_model(), rel=emmo.hasInput)
+            if not self.adp:
+
+                calculation = emmo.MesoscopicCalculation()
+                calculation.add(*self._make_model(), rel=emmo.hasInput)
+
+            else:
+                workflow = emmo.Workflow()
+                calculation = emmo.MesoscopicCalculation()
+                calculation.add(*self._make_model(), rel=emmo.hasInput)
+                apd = emmo.AdaptiveDesignProcedure()
+                apd.add(self.adp.cuds, rel=emmo.hasInput)
+                workflow.add(calculation, rel=emmo.hasSpatialFirst)
+                calculation.add(apd, rel=emmo.hasSpatialNext)
+                workflow.add(apd, rel=emmo.hasSpatialLast)
 
         file = tempfile.NamedTemporaryFile(suffix=".ttl", delete=False)
         export_cuds(session, file.name)
