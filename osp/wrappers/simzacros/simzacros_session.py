@@ -8,8 +8,10 @@ from osp.tools.mapping_functions import map_function, map_results
 from osp.core.utils import simple_search as search
 from osp.models.utils.general import get_download, get_upload
 from scm.plams import config
+import multiprocessing
 from uuid import uuid4, UUID
 import logging
+from scm.plams import JobRunner
 import scm.pyzacros as pz
 import numpy as np
 import os
@@ -26,7 +28,12 @@ class SimzacrosSession(SimWrapperSession):
         """Initialise SimamsSession."""
         if engine is None:
             pz.init()
-            config.job.runscript.nproc = int(os.environ.get("REAXPRO_N_PROCESSES")) or 1
+            maxjobs = multiprocessing.cpu_count()
+            n_procs = os.environ.get("REAXPRO_N_PROCESSES") or 1
+            if isinstance(n_procs, str):
+                n_procs = int(n_procs)
+            config.default_jobrunner = JobRunner(parallel=True, maxjobs=maxjobs)
+            config.job.runscript.nproc = n_procs
             self.workdir = config.get("default_jobmanager").workdir
             self.jobname = str(uuid4())
             self.engine = "Zacros"
