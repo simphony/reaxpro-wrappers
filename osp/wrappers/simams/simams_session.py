@@ -3,10 +3,10 @@ from osp.core.session import SimWrapperSession
 from osp.core.cuds import Cuds
 from osp.tools.graph_functions import graph_wrapper_dependencies
 from osp.tools.mapping_functions import map_function, map_results
-from scm.plams import init, config
-from scm.plams import MultiJob, AMSJob
+from scm.plams import MultiJob, AMSJob, init, config, JobRunner
 from uuid import uuid4
 import os
+import multiprocessing
 # from osp.core.utils import pretty_print
 
 
@@ -17,7 +17,12 @@ class SimamsSession(SimWrapperSession):
         """Initialise SimamsSession."""
         if engine is None:
             init()
-            config.job.runscript.nproc = int(os.environ.get("REAXPRO_N_PROCESSES")) or 1
+            maxjobs = multiprocessing.cpu_count()
+            n_procs = os.environ.get("REAXPRO_N_PROCESSES") or 1
+            if isinstance(n_procs, str):
+                n_procs = int(n_procs)
+            config.default_jobrunner = JobRunner(parallel=True, maxjobs=maxjobs)
+            config.job.runscript.nproc = n_procs
             self.workdir = config.get("default_jobmanager").workdir
             self.jobname = str(uuid4())
             self.engine = MultiJob(name=self.jobname)
