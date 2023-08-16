@@ -5,11 +5,11 @@ import os
 os.environ["REAXPRO_MINIO_USER"] = "rootname"
 os.environ["REAXPRO_MINIO_PASSWORD"] = "rootname123"
 os.environ["REAXPRO_MINIO_ENDPOINT"] = "172.17.0.3:9000"
+os.environ["REAXPRO_N_PROCESSES"] = "2"
 
 from osp.models.zacros.co_pyzacros import COpyZacrosModel
 from osp.wrappers.simzacros.simzacros_session import SimzacrosSession
 from osp.core.namespaces import cuba
-from osp.core.utils import import_cuds
 
 
 # alternatively with the standard file. Needs connection to minio!

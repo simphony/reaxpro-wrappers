@@ -26,6 +26,7 @@ class SimzacrosSession(SimWrapperSession):
         """Initialise SimamsSession."""
         if engine is None:
             pz.init()
+            config.job.runscript.nproc = int(os.environ.get("REAXPRO_N_PROCESSES")) or 1
             self.workdir = config.get("default_jobmanager").workdir
             self.jobname = str(uuid4())
             self.engine = "Zacros"
