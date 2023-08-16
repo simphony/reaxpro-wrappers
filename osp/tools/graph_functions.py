@@ -72,12 +72,15 @@ def graph_calculation_dependencies(root_cuds_object: Cuds, oclass: OntologyClass
 
     calculation_list = []
     if root_cuds_object.is_a(emmo.Simulation) or root_cuds_object.is_a(emmo.Workflow):
-        first_calculation = root_cuds_object.get(
-            oclass=oclass, rel=emmo.hasSpatialFirst
-        )
+        first_calculation = \
+            search.find_cuds_object(criterion=lambda x:
+                                    x.is_a(oclass),
+                                    root=root_cuds_object,
+                                    rel=cuba.relationship,
+                                    find_all=True,
+                                    max_depth=1)
     else:
         first_calculation = []
-
 
     if first_calculation:
         current = first_calculation
