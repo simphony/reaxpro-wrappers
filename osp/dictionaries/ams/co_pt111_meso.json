@@ -29,5 +29,10 @@
         "species_numbers": ["on time", 3.5],
         "process_statistics": ["on time", 3.5],
         "max_time": 0.00001
+    },
+    "adp": {
+        "min": 0.2,
+        "max": 0.8,
+        "num": 5
     }
 }

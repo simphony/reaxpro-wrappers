@@ -90,5 +90,10 @@
                       "pre_expon": 2.786e+12,
                       "pe_ratio":  3.231e+07,
                       "activ_eng": 0.52}}
-  ]
+  ],
+  "adp": {
+    "min": 0.2,
+    "max": 0.8,
+    "num": 5
+  }
 }

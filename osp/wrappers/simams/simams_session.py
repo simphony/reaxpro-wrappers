@@ -6,6 +6,7 @@ from osp.tools.mapping_functions import map_function, map_results
 from scm.plams import init, config
 from scm.plams import MultiJob, AMSJob
 from uuid import uuid4
+import os
 # from osp.core.utils import pretty_print
 
 
@@ -16,6 +17,7 @@ class SimamsSession(SimWrapperSession):
         """Initialise SimamsSession."""
         if engine is None:
             init()
+            config.job.runscript.nproc = int(os.environ.get("REAXPRO_N_PROCESSES")) or 1
             self.workdir = config.get("default_jobmanager").workdir
             self.jobname = str(uuid4())
             self.engine = MultiJob(name=self.jobname)

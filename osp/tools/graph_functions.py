@@ -2,6 +2,7 @@
 Functions to graph dependencies between CUDS objects."""
 
 import os
+from osp.core.ontology import OntologyClass
 from osp.core.cuds import Cuds
 from osp.core.utils import simple_search as search
 from osp.tools.io_functions import raise_error
@@ -10,7 +11,7 @@ from typing import List
 # from osp.core.utils import pretty_print
 
 
-def graph_wrapper_dependencies(root_cuds_object: Cuds) -> dict:
+def graph_wrapper_dependencies(root_cuds_object: Cuds, oclass=emmo.AtomisticCalculation) -> dict:
     """
     Check the Simulation/Calculation dependencies in a Wrapper object.
 
@@ -32,7 +33,7 @@ def graph_wrapper_dependencies(root_cuds_object: Cuds) -> dict:
     if len(search_simulation) == 0:
 
 
-        calculation_list = graph_calculation_dependencies(root_cuds_object=root_cuds_object)
+        calculation_list = graph_calculation_dependencies(root_cuds_object, oclass)
 
         wrapper_dependencies = {"Calculation": calculation_list}
 
@@ -40,7 +41,7 @@ def graph_wrapper_dependencies(root_cuds_object: Cuds) -> dict:
     elif len(search_simulation) == 1:
         # Instantiate the dictionary that will contain the dependencies:
 
-        calculation_list = graph_calculation_dependencies(root_cuds_object=search_simulation[0])
+        calculation_list = graph_calculation_dependencies(search_simulation[0], oclass)
         wrapper_dependencies = {
                                     "Simulation": {
                                         "Calculations": calculation_list
@@ -58,7 +59,7 @@ def graph_wrapper_dependencies(root_cuds_object: Cuds) -> dict:
     return wrapper_dependencies
 
 
-def graph_calculation_dependencies(root_cuds_object: Cuds) -> list:
+def graph_calculation_dependencies(root_cuds_object: Cuds, oclass: OntologyClass) -> list:
     """
     Graph dependencies of Calculations in a CUDS object.
 
@@ -71,12 +72,15 @@ def graph_calculation_dependencies(root_cuds_object: Cuds) -> list:
 
     calculation_list = []
     if root_cuds_object.is_a(emmo.Simulation) or root_cuds_object.is_a(emmo.Workflow):
-        first_calculation = root_cuds_object.get(
-            oclass=emmo.AtomisticCalculation, rel=emmo.hasSpatialFirst
-        )
+        first_calculation = \
+            search.find_cuds_object(criterion=lambda x:
+                                    x.is_a(oclass),
+                                    root=root_cuds_object,
+                                    rel=cuba.relationship,
+                                    find_all=True,
+                                    max_depth=1)
     else:
         first_calculation = []
-
 
     if first_calculation:
         current = first_calculation
@@ -84,13 +88,13 @@ def graph_calculation_dependencies(root_cuds_object: Cuds) -> list:
         while current:
              current = current.pop()
              calculation_list.append(current)
-             current = current.get(oclass=emmo.AtomisticCalculation, rel=emmo.hasSpatialNext) \
+             current = current.get(oclass=oclass, rel=emmo.hasSpatialNext) \
                 or current.get(oclass=emmo.PostProcessing, rel=emmo.hasSpatialNext)
 
     else:
         search_calculation = \
             search.find_cuds_object(criterion=lambda x:
-                                    x.is_a(emmo.AtomisticCalculation),
+                                    x.is_a(oclass),
                                     root=root_cuds_object,
                                     rel=cuba.relationship,
                                     find_all=True,
