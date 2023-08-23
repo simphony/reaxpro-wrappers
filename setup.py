@@ -36,7 +36,7 @@ def install_ontology():
             ontology_file.write(response.content)
             ontology_file.flush()
         else:
-            message = f"""Ontology file cannot be fetched from `{url}`. 
+            message = f"""Ontology file cannot be fetched from `{REAXPRO_ONTOLOGY}`.
             Status code: {response.status_code}."""
             raise RuntimeError(message)
 

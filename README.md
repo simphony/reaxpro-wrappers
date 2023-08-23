@@ -15,7 +15,7 @@ It holds wrappers for the [Amsterdam Modeling Suite](https://www.scm.com/amsterd
 - [Installation](#installation)
 - [Example](#example)
 
-## Requiremnts
+## Requirements
 
 If you want to use this wrapper set, make sure you have installed:
 
@@ -34,10 +34,10 @@ For a given engine XXX, there is a folder reaxpro-wrappers/osp/wrappers/simXXX/s
 In the folder reaxpro-wrappers/osp/tools is placed all the tooling for the semantic to syntactic mapping. 
 
 ## Installation
-First of all, you will need to install OSP-core and pyZacros
+First of all, you will need to install OSP-core, plams, AdaptiveDesignProcedure and pyZacros (all except osp-core are not on PyPI yet unfortunately):
 
 ```shell
-(env) user@computer:~/reaxpro-wrappers$ pip install osp-core https://github.com/SCM-NV/pyZacros/archive/refs/tags/v.1.2.zip
+(env) user@computer:~/reaxpro-wrappers$ pip install osp-core https://github.com/SCM-NV/pyZacros/archive/refs/tags/v.1.2.zip https://github.com/mbracconi/adaptiveDesignProcedure/archive/refs/tags/v1.4.0.zip git+https://github.com/SCM-NV/PLAMS@7661960a9db53249a0b77935dacc8a7668c2489b
 ```
 Then, make sure that the wrapper can access the ontology from the [Fraunhofer Gitlab](https://gitlab.cc-asp.fraunhofer.de/) and download it with a given access token (with `read_api` and `read_repository` scopes). 
 

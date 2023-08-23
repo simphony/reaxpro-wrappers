@@ -7,6 +7,8 @@ services:
       context: "."
       args:
         - GITLAB_ACCESS_TOKEN=$GITLAB_ACCESS_TOKEN
+        - WRAPPER_DEPS_EXTRA=$WRAPPER_DEPS_EXTRA
+        - WRAPPER_DEPS_INSTALL=$WRAPPER_DEPS_INSTALL
       target: dev
     tty: True
     entrypoint: /bin/bash
