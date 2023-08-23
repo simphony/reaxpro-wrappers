@@ -39,39 +39,25 @@ First of all, you will need to install OSP-core, plams, AdaptiveDesignProcedure 
 ```shell
 (env) user@computer:~/reaxpro-wrappers$ pip install osp-core https://github.com/SCM-NV/pyZacros/archive/refs/tags/v.1.2.zip https://github.com/mbracconi/adaptiveDesignProcedure/archive/refs/tags/v1.4.0.zip git+https://github.com/SCM-NV/PLAMS@7661960a9db53249a0b77935dacc8a7668c2489b
 ```
-Then, make sure that the wrapper can access the ontology from the [Fraunhofer Gitlab](https://gitlab.cc-asp.fraunhofer.de/) and download it with a given access token (with `read_api` and `read_repository` scopes). 
-
-If you are using Windows, please type:
-
-```shell
-(env) C:\Users\user> set GITLAB_ACCESS_TOKEN=<your-access-token>
-```
-
-If you are using Linux, please type:
-
-```shell
-(env) user@computer:~/reaxpro-wrappers$ export GITLAB_ACCESS_TOKEN=<your-access-token>
-```
 
 Then, finally install the wrapper. Simply type:
 
 ```shell
-(env) user@computer:~/reaxpro-wrappers$ python setup.py install
+(env) user@computer:~/reaxpro-wrappers$ pip install reaxpro-wrappers
 ```
 
-... or:
+... or when the code is cloned from source:
 
 
 ```shell
 (env) user@computer:~/reaxpro-wrappers$ pip install .
 ```
 
-## Example
+## License
 
-The script [ams_wrapper.py](https://gitlab.cc-asp.fraunhofer.de/simphony/wrappers/reaxpro-wrappers/-/blob/master/examples/ams_wrapper.py) provides a simple semantic workflow to run a geometry optimization of a water molecule. 
+This project is licensed under the LGPL-3.0/BSD 3-Clause license. See the LICENSE file for more information.
 
-To run the script:
+## Disclaimer
 
-```shell
-(env) user@computer:~/reaxpro-wrappers$ python ams_wrapper.py 
-```
+Copyright (c) 2014-2023, Netherlands eScience Center (NLeSC) and Fraunhofer-Gesellschaft zur Förderung der angewandten Forschung e.V. acting on behalf of its Fraunhofer IWM.
+
