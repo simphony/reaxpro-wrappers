@@ -30,6 +30,7 @@ jobs:
                   which python
                   python -m pip install osp-core https://github.com/SCM-NV/pyZacros/archive/refs/tags/v.1.2.zip
                   python -m pip install .[develop]
+                  python setup.py install
 
             - name: Run tests
               run: |
