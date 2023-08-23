@@ -4,15 +4,12 @@ import warnings
 from setuptools import setup
 
 PATH = os.path.dirname(__file__)
-GITLABHOST = "gitlab.cc-asp.fraunhofer.de"
-PROJECT_ID = 11172
-ROUTE = "api/v4/projects"
-REGISTRY = "packages/generic/reaxpro-framework"
+HOST = "raw.githubusercontent.com"
+ROUTE = "simphony/reaxpro-framework-ontology"
+VERSION: str = "v1.0.0"
 REAXPRO_ONTOLOGY = "reaxpro-inferred.ttl"
-URL = f"https://{GITLABHOST}/{ROUTE}/{PROJECT_ID}/{REGISTRY}/"
+URL = f"https://{HOST}/{ROUTE}/{VERSION}/{REAXPRO_ONTOLOGY}"
 YML_PATH = "osp.core.ontology.docs"
-ONTOLOGY_VERSION_TAG: str = "v0.1.0"
-REAXPRO_ONTOLOGY: str = URL + ONTOLOGY_VERSION_TAG + "/" + REAXPRO_ONTOLOGY
 REAXPRO_YML: str = f"{YML_PATH}.reaxpro"
 
 
@@ -28,15 +25,12 @@ def install_ontology():
     import yaml
 
     with NamedTemporaryFile(delete=False) as ontology_file:
-        token = os.environ["GITLAB_ACCESS_TOKEN"]
-        headers = {"PRIVATE-TOKEN": token}
-        response = requests.get(REAXPRO_ONTOLOGY, headers=headers)
-
+        response = requests.get(URL)
         if response.status_code == 200:
             ontology_file.write(response.content)
             ontology_file.flush()
         else:
-            message = f"""Ontology file cannot be fetched from `{REAXPRO_ONTOLOGY}`.
+            message = f"""Ontology file cannot be fetched from `{URL}`.
             Status code: {response.status_code}."""
             raise RuntimeError(message)
 
