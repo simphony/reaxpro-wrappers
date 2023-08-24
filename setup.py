@@ -1,16 +1,25 @@
-import os
-import warnings
-
+"""Setup class for SimPhoNy-catalytic"""
 from setuptools import setup
 
-PATH = os.path.dirname(__file__)
-HOST = "raw.githubusercontent.com"
-ROUTE = "simphony/reaxpro-framework-ontology"
+setup()
+
 VERSION: str = "v1.0.0"
-REAXPRO_ONTOLOGY = "reaxpro-inferred.ttl"
-URL = f"https://{HOST}/{ROUTE}/{VERSION}/{REAXPRO_ONTOLOGY}"
-YML_PATH = "osp.core.ontology.docs"
-REAXPRO_YML: str = f"{YML_PATH}.reaxpro"
+BASE = "https://raw.githubusercontent.com/simphony/reaxpro-framework-ontology"
+URL = f"{BASE}/{VERSION}/reaxpro-inferred.ttl"
+CONTENT = f"""identifier: reaxpro
+ontology_file: '{URL}'
+reference_by_label: True
+format: ttl
+namespaces:
+    emmo: http://emmo.info/emmo
+    crystallography: http://emmo.info/domain-crystallography/crystallography
+active_relationships:
+    - http://emmo.info/emmo#EMMO_8c898653_1118_4682_9bbf_6cc334d16a99
+    - http://emmo.info/emmo#EMMO_60577dea_9019_4537_ac41_80b0fb563d41
+    - http://emmo.info/emmo#EMMO_8785be5a_2493_4b12_8f39_31907ab11748
+    - http://emmo.info/emmo#EMMO_52d08d7d_e9e4_43e5_8508_d353e7e3a23a
+default_relationship: http://emmo.info/emmo#EMMO_17e27c22_37e1_468c_9dd7_95e137f73e7f
+"""
 
 
 def install_ontology():
@@ -19,38 +28,12 @@ def install_ontology():
 
     from osp.core.ontology.installation import OntologyInstallationManager
 
+    with NamedTemporaryFile("w", suffix=".yml", delete=False) as yml_file:
+        yml_file.write(CONTENT)
+
     manager = OntologyInstallationManager()
+    manager.install_overwrite(yml_file.name)
 
-    import requests
-    import yaml
-
-    with NamedTemporaryFile(delete=False) as ontology_file:
-        response = requests.get(URL)
-        if response.status_code == 200:
-            ontology_file.write(response.content)
-            ontology_file.flush()
-        else:
-            message = f"""Ontology file cannot be fetched from `{URL}`.
-            Status code: {response.status_code}."""
-            raise RuntimeError(message)
-
-    filepath = os.path.join(PATH, *REAXPRO_YML.split("."))
-
-    with open(f"{filepath}.yml", "r") as file:
-        content = yaml.safe_load(file)
-
-    content["ontology_file"] = ontology_file.name
-
-    with NamedTemporaryFile("w", suffix=".yml", delete=False) as target_yml_file:
-        yaml.dump(content, target_yml_file)
-
-    manager.install_overwrite(target_yml_file.name)
-
-# install wrapper
-setup()
 
 # install ontology
-try:
-    install_ontology()
-except Exception as err:
-    warnings.warn(f"Ontologies were not properly installed: {err}")
+install_ontology()
