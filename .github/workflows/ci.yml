@@ -31,11 +31,7 @@ jobs:
 
             - name: Install package
               run: |
-                  python -m pip install .[tests,pre_commit]
-
-            - name: Run pre-commit
-              run: |
-                  pre-commit run --all-files
+                  python -m pip install .[tests]
 
             - name: Run tests
               run: |
