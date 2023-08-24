@@ -1,5 +1,6 @@
 """Setup class for ReaxPro-wrappers"""
 from setuptools import setup
+import warnings
 
 setup()
 
