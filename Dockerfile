@@ -9,6 +9,8 @@ ENV DEBIAN_FRONTEND noninteractive
 
 # retrieve build args
 ARG GITLAB_ACCESS_TOKEN
+ARG WRAPPER_DEPS_INSTALL
+ARG WRAPPER_DEPS_EXTRA
 
 # install linux-dependencies
 RUN apt update
@@ -19,19 +21,19 @@ WORKDIR /home/reaxpro/reaxpro_wrappers
 COPY osp osp 
 COPY tests tests
 COPY examples examples
-COPY setup.* packageinfo.py README.md ./
+COPY setup.* README.md ./
 RUN chmod -R 0777 .
 
 # # install wrappers and their python-dependencies
 RUN pip install --upgrade pip
-RUN pip install osp-core
-RUN pip install .[develop]
+RUN pip install osp-core $WRAPPER_DEPS_INSTALL
+RUN pip install .[develop] $WRAPPER_DEPS_EXTRA
 
 ################################## target: dev ##################################
 from base as dev
 
-# # install deps for pytests
-RUN pytest tests/test_energy_landscape.py
+# run pytests
+RUN pytest tests/test_energy_landscape_refinement.py
 
 # go /app dir
 WORKDIR /app
