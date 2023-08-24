@@ -1,4 +1,4 @@
-"""Setup class for SimPhoNy-catalytic"""
+"""Setup class for ReaxPro-wrappers"""
 from setuptools import setup
 
 setup()
