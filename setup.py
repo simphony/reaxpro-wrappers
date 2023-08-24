@@ -36,4 +36,7 @@ def install_ontology():
 
 
 # install ontology
-install_ontology()
+try:
+    install_ontology()
+except Exception as err:
+    warnings.warn(f"Ontologies were not properly installed: {err}")
