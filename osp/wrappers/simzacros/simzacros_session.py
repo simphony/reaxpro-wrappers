@@ -30,7 +30,7 @@ class SimzacrosSession(SimWrapperSession):
             pz.init()
             maxjobs = multiprocessing.cpu_count()
             n_procs = os.environ.get("REAXPRO_N_PROCESSES") or 1
-            parallel = os.environ.get("REAXPRO_PARALELL") or False
+            parallel = os.environ.get("REAXPRO_PARALLEL") or False
             if isinstance(n_procs, str):
                 n_procs = int(n_procs)
             if isinstance(parallel, str):
