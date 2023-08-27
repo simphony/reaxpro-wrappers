@@ -30,9 +30,12 @@ class SimzacrosSession(SimWrapperSession):
             pz.init()
             maxjobs = multiprocessing.cpu_count()
             n_procs = os.environ.get("REAXPRO_N_PROCESSES") or 1
+            parallel = os.environ.get("REAXPRO_PARALLEL") or False
             if isinstance(n_procs, str):
                 n_procs = int(n_procs)
-            config.default_jobrunner = JobRunner(parallel=True, maxjobs=maxjobs)
+            if isinstance(parallel, str):
+                n_procs = bool(parallel)
+            config.default_jobrunner = JobRunner(parallel=parallel, maxjobs=maxjobs)
             config.job.runscript.nproc = n_procs
             self.workdir = config.get("default_jobmanager").workdir
             self.jobname = str(uuid4())
