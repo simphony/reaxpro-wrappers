@@ -19,7 +19,7 @@
         "wall_time": 100 
     },
 
-  "lattice_input": {"xyz_file": "9a1e6c07-840a-4182-8ed5-60212167aa4b"},
+  "lattice_input": {"file": "9a1e6c07-840a-4182-8ed5-60212167aa4b"},
 
   "energetics_input": [
     { "name": "CO_Point_brg",

@@ -33,7 +33,7 @@ if TYPE_CHECKING:
 class Lattice(BaseModel):
     """Zacros lattice model."""
 
-    xyz_file: Union[UUID, AnyUrl, Path] = Field(
+    file: Union[UUID, AnyUrl, Path] = Field(
         ...,
         description="""
         UUID of the cache-upload or url/system path to Zacros lattice input."""
@@ -857,16 +857,16 @@ class COpyZacrosModel:
 
     def _make_lattice(self) -> Cuds:
         """Creates CUDS graph for the lattice input"""
-        xyz_file = self.lattice_input.xyz_file
-        if isinstance(xyz_file, UUID):
-            return crystallography.UnitCell(uid=xyz_file)
-        elif isinstance(xyz_file, AnyUrl):
-            return crystallography.UnitCell(iri=str(xyz_file))
-        elif isinstance(xyz_file, Path):
-            if not "file:" in str(xyz_file):
-                iri = f"file://{xyz_file.as_posix()}"
+        file = self.lattice_input.file
+        if isinstance(file, UUID):
+            return crystallography.UnitCell(uid=file)
+        elif isinstance(file, AnyUrl):
+            return crystallography.UnitCell(iri=str(file))
+        elif isinstance(file, Path):
+            if not "file:" in str(file):
+                iri = f"file://{file.as_posix()}"
             else:
-                iri = xyz_file.as_posix()
+                iri = file.as_posix()
             return crystallography.UnitCell(iri=iri)
 
     def _make_energetics(self) -> "List[Cuds]":

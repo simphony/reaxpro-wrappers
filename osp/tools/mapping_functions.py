@@ -11,7 +11,7 @@ from arcp import arcp_random
 from osp.tools.io_functions import raise_error, raise_warning
 from osp.tools.io_functions import read_mechanism, read_cluster_expansion, read_molecule
 from osp.tools.set_functions import AMS_default_setting
-from osp.models.utils.general import get_upload
+from osp.models.utils.general import get_upload, get_download
 from osp.core.utils import simple_search as search
 from osp.core.ontology.oclass import OntologyClass
 from osp.core.cuds import Cuds
@@ -95,36 +95,36 @@ def map_PLAMSMolecule(root_cuds_object: Cuds) -> PlamsMolecule:
     """
 
     dict_molecule = map_molecule(root_cuds_object)
-    dict_lattice = map_lattice(root_cuds_object)
-    syntactic_molecule = PlamsMolecule()
+    #dict_lattice = map_lattice(root_cuds_object)
+    syntactic_molecule = PlamsMolecule(filename=dict_molecule["filename"])
 
-    natoms = len(dict_molecule["atom_symbol"])
+    # natoms = len(dict_molecule["atom_symbol"])
 
-    if "region" in dict_molecule:
+    # if "region" in dict_molecule:
 
-        for ij in range(natoms):
-            syntactic_molecule.add_atom(
-                PlamsAtom(
-                    symbol=dict_molecule["atom_symbol"][ij],
-                    coords=dict_molecule["atom_coordinates"][ij]))
+    #     for ij in range(natoms):
+    #         syntactic_molecule.add_atom(
+    #             PlamsAtom(
+    #                 symbol=dict_molecule["atom_symbol"][ij],
+    #                 coords=dict_molecule["atom_coordinates"][ij]))
 
-        for index, ij in enumerate(syntactic_molecule.atoms):
-            ij.properties.suffix = "region=" + dict_molecule["region"][index]
+    #     for index, ij in enumerate(syntactic_molecule.atoms):
+    #         ij.properties.suffix = "region=" + dict_molecule["region"][index]
 
-    else:
+    # else:
 
-        for ij in range(natoms):
-            syntactic_molecule.add_atom(PlamsAtom(
-                                    symbol=dict_molecule["atom_symbol"][ij],
-                                    coords=dict_molecule["atom_coordinates"][ij]))
+    #     for ij in range(natoms):
+    #         syntactic_molecule.add_atom(PlamsAtom(
+    #                                 symbol=dict_molecule["atom_symbol"][ij],
+    #                                 coords=dict_molecule["atom_coordinates"][ij]))
 
     if "molecular_charge" in dict_molecule:
         syntactic_molecule.properties.charge = dict_molecule["molecular_charge"][0]
 
-    if bool(dict_lattice):
+    # if bool(dict_lattice):
 
-        for ij in dict_lattice['vector_coordinates']:
-            syntactic_molecule.lattice.append(ij)
+    #     for ij in dict_lattice['vector_coordinates']:
+    #         syntactic_molecule.lattice.append(ij)
 
     return syntactic_molecule
 
@@ -281,27 +281,35 @@ def map_molecule(root_cuds_object: Cuds) -> dict:
         raise_error(file=os.path.basename(__file__), function=map_molecule.__name__,
                     type='ValueError', message='Molecule CUDS object missed in the wrapper.')
 
-    molecule_data = {}
-    # Looking for atoms:
-    first = search_molecule.pop().get(rel=emmo.hasSpatialFirst)
-    if len(first) > 1:
-        raise_error(file=os.path.basename(__file__),
-                    function=map_molecule.__name__,
-                    type='ValueError',
-                    message='More than one first spatial atom found in molecule.')
-    elif len(first) == 0:
-        raise_error(file=os.path.basename(__file__),
-                    function=map_molecule.__name__,
-                    type='ValueError',
-                    message='First spatial atom in molecule not found.')
+    molecule = search_molecule.pop()
+    if "file://" in str(molecule.iri):
+        split = str(molecule.iri).split("file://")
+        molecule = split[-1]
     else:
-        atom_list = []
-        current = first
-        while current:
-            current = current.pop()
-            atom_list.append(current)
-            current = current.get(rel=emmo.hasSpatialNext)
-    # Looking for charges:
+        molecule = get_download(str(molecule.uid), as_file=True)
+    molecule_data = {"filename": molecule}
+
+    # molecule_data = {}
+    # # Looking for atoms:
+    # first = search_molecule.pop().get(rel=emmo.hasSpatialFirst)
+    # if len(first) > 1:
+    #     raise_error(file=os.path.basename(__file__),
+    #                 function=map_molecule.__name__,
+    #                 type='ValueError',
+    #                 message='More than one first spatial atom found in molecule.')
+    # elif len(first) == 0:
+    #     raise_error(file=os.path.basename(__file__),
+    #                 function=map_molecule.__name__,
+    #                 type='ValueError',
+    #                 message='First spatial atom in molecule not found.')
+    # else:
+    #     atom_list = []
+    #     current = first
+    #     while current:
+    #         current = current.pop()
+    #         atom_list.append(current)
+    #         current = current.get(rel=emmo.hasSpatialNext)
+    # # Looking for charges:
     search_charge =  \
         search.find_cuds_objects_by_oclass(emmo.ElectricCharge, root_cuds_object,
                                             emmo.hasProperty)
@@ -310,54 +318,55 @@ def map_molecule(root_cuds_object: Cuds) -> dict:
     if search_charge:
         molecular_charge = search_charge[0].get(oclass=emmo.Integer,
                                                 rel=emmo.hasQuantityValue)[0].hasNumericalData
+        molecule_data["molecule_charge"] = [molecular_charge]
 
-    # For each of the atoms, we add labels and positions:
-    for count, iatom in enumerate(atom_list):
+    # # For each of the atoms, we add labels and positions:
+    # for count, iatom in enumerate(atom_list):
 
-        search_label = \
-            search.find_cuds_objects_by_oclass(emmo.ChemicalElement, iatom, emmo.hasPart)
+    #     search_label = \
+    #         search.find_cuds_objects_by_oclass(emmo.ChemicalElement, iatom, emmo.hasPart)
 
-        search_position_vec = \
-            search.find_cuds_objects_by_oclass(emmo.PositionVector, iatom, emmo.hasPart)
+    #     search_position_vec = \
+    #         search.find_cuds_objects_by_oclass(emmo.PositionVector, iatom, emmo.hasPart)
 
-        search_region = \
-            search.find_cuds_objects_by_oclass(emmo.Region, iatom, emmo.hasPart)
+    #     search_region = \
+    #         search.find_cuds_objects_by_oclass(emmo.Region, iatom, emmo.hasPart)
 
-        # Is there any region defined? For EON PES exploration.
-        if search_region:
-            region = search_region[0].hasSymbolData
+    #     # Is there any region defined? For EON PES exploration.
+    #     if search_region:
+    #         region = search_region[0].hasSymbolData
 
-        # Atom coordinates:
-        coordinate_x = \
-            search_position_vec[0].get(oclass=emmo.Real, rel=emmo.hasSpatialFirst)
-        coordinate_y = \
-            search_position_vec[0].get(oclass=emmo.Real, rel=emmo.hasSpatialNext)
-        coordinate_z = \
-            search_position_vec[0].get(oclass=emmo.Real, rel=emmo.hasSpatialLast)
+    #     # Atom coordinates:
+    #     coordinate_x = \
+    #         search_position_vec[0].get(oclass=emmo.Real, rel=emmo.hasSpatialFirst)
+    #     coordinate_y = \
+    #         search_position_vec[0].get(oclass=emmo.Real, rel=emmo.hasSpatialNext)
+    #     coordinate_z = \
+    #         search_position_vec[0].get(oclass=emmo.Real, rel=emmo.hasSpatialLast)
 
-        if count == 0:
-            molecule_data = {
-                'atom_symbol': [search_label[0].hasSymbolData],
-                'atom_coordinates': [[
-                    coordinate_x[0].hasNumericalData,
-                    coordinate_y[0].hasNumericalData,
-                    coordinate_z[0].hasNumericalData
-                ]]
-            }
-            if search_region:
-                molecule_data['region'] = [region]
-            if search_charge:
-                molecule_data['molecular_charge'] = [molecular_charge]
-        else:
-            molecule_data['atom_symbol'].\
-                append(search_label[0].hasSymbolData)
-            molecule_data['atom_coordinates'].\
-                append([coordinate_x[0].hasNumericalData,
-                        coordinate_y[0].hasNumericalData,
-                        coordinate_z[0].hasNumericalData
-                        ])
-            if search_region:
-                molecule_data['region'].append(region)
+    #     if count == 0:
+    #         molecule_data = {
+    #             'atom_symbol': [search_label[0].hasSymbolData],
+    #             'atom_coordinates': [[
+    #                 coordinate_x[0].hasNumericalData,
+    #                 coordinate_y[0].hasNumericalData,
+    #                 coordinate_z[0].hasNumericalData
+    #             ]]
+    #         }
+    #         if search_region:
+    #             molecule_data['region'] = [region]
+    #         if search_charge:
+    #             molecule_data['molecular_charge'] = [molecular_charge]
+    #     else:
+    #         molecule_data['atom_symbol'].\
+    #             append(search_label[0].hasSymbolData)
+    #         molecule_data['atom_coordinates'].\
+    #             append([coordinate_x[0].hasNumericalData,
+    #                     coordinate_y[0].hasNumericalData,
+    #                     coordinate_z[0].hasNumericalData
+    #                     ])
+    #         if search_region:
+    #             molecule_data['region'].append(region)
 
     return molecule_data
 

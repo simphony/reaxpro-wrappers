@@ -14,29 +14,29 @@ example = {
     "pathways": [
       {
         "reactant": {
-          "xyz_file": os.path.join(XYZ_PATH, "state1.xyz"),
+          "file": os.path.join(XYZ_PATH, "state1.xyz"),
           "charge": -1
         },
         "transition": {
-          "xyz_file": os.path.join(XYZ_PATH, "state3.xyz"),
+          "file": os.path.join(XYZ_PATH, "state3.xyz"),
           "charge": -1
         },
         "product": {
-          "xyz_file": os.path.join(XYZ_PATH, "state2.xyz"),
+          "file": os.path.join(XYZ_PATH, "state2.xyz"),
           "charge": -1
         }
       },
       {
         "reactant": {
-          "xyz_file": os.path.join(XYZ_PATH, "state2.xyz"),
+          "file": os.path.join(XYZ_PATH, "state2.xyz"),
           "charge": -1
         },
         "transition": {
-          "xyz_file": os.path.join(XYZ_PATH, "state5.xyz"),
+          "file": os.path.join(XYZ_PATH, "state5.xyz"),
           "charge": -1
         },
         "product": {
-          "xyz_file": os.path.join(XYZ_PATH, "state4.xyz"),
+          "file": os.path.join(XYZ_PATH, "state4.xyz"),
           "charge": -1
         }
       }
