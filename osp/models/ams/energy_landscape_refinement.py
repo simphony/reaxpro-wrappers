@@ -164,20 +164,20 @@ class EnergyLandscapeRefinement:
         else:
             oclass = emmo.MolecularGeometry
         if isinstance(molecule.file, UUID):
-            molecule = oclass(uid=molecule.file)
+            cuds = oclass(uid=molecule.file)
         elif isinstance(molecule.file, AnyUrl):
-            molecule = oclass(iri=molecule.file)
+            cuds = oclass(iri=molecule.file)
         elif isinstance(molecule.file, Path):
             if not "file:" in str(molecule.file):
                 iri = f"file://{molecule.file.as_posix()}"
             else:
                 iri = molecule.file.as_posix()
-            molecule = oclass(iri=iri)
+            cuds = oclass(iri=iri)
         charge = emmo.ElectricCharge()
         integer = emmo.Integer(hasNumericalData=molecule.charge)
         charge.add(integer, rel=emmo.hasQuantityValue)
-        molecule.add(charge, rel=emmo.hasProperty)
-        return molecule
+        cuds.add(charge, rel=emmo.hasProperty)
+        return cuds
 
     @property
     def session(self) -> "CoreSession":

@@ -546,7 +546,6 @@ class COPt111MesoscaleModel:
                     emmo.ReferenceRegion,
                     emmo.RandomSeed,
                     emmo.MolecularGeometry,
-                    crystallography.UnitCell
                 ]:
                 input_cuds = self.pes_exploration.cuds.get(oclass=oclass, rel=emmo.hasInput)
                 self.binding_site.cuds.add(input_cuds.pop(), rel=emmo.hasInput)
