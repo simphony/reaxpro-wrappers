@@ -79,14 +79,14 @@ def test_energy_landscape_models():
     config = {
         "pathways": [
             {
-                "reactant": {"xyz_file": uuids[0], "charge": -1},
-                "transition": {"xyz_file": uuids[2], "charge": -1},
-                "product": {"xyz_file": uuids[1], "charge": -1},
+                "reactant": {"file": uuids[0], "charge": -1},
+                "transition": {"file": uuids[2], "charge": -1},
+                "product": {"file": uuids[1], "charge": -1},
             },
             {
-                "reactant": {"xyz_file": uuids[1], "charge": -1},
-                "transition": {"xyz_file": uuids[4], "charge": -1},
-                "product": {"xyz_file": uuids[3], "charge": -1},
+                "reactant": {"file": uuids[1], "charge": -1},
+                "transition": {"file": uuids[4], "charge": -1},
+                "product": {"file": uuids[3], "charge": -1},
             },
         ]
     }
@@ -105,14 +105,14 @@ def test_energy_landscape_model_filepath():
     config = {
         "pathways": [
             {
-                "reactant": {"xyz_file": state1, "charge": -1},
-                "transition": {"xyz_file": state3, "charge": -1},
-                "product": {"xyz_file": state2, "charge": -1},
+                "reactant": {"file": state1, "charge": -1},
+                "transition": {"file": state3, "charge": -1},
+                "product": {"file": state2, "charge": -1},
             },
             {
-                "reactant": {"xyz_file": state2, "charge": -1},
-                "transition": {"xyz_file": state5, "charge": -1},
-                "product": {"xyz_file": state4, "charge": -1},
+                "reactant": {"file": state2, "charge": -1},
+                "transition": {"file": state5, "charge": -1},
+                "product": {"file": state4, "charge": -1},
             },
         ]
     }
@@ -130,13 +130,13 @@ def test_energy_landscape_model_filepath_wo_transition():
     config = {
         "pathways": [
             {
-                "reactant": {"xyz_file": state1, "charge": -1},
-                "product": {"xyz_file": state2, "charge": -1},
+                "reactant": {"file": state1, "charge": -1},
+                "product": {"file": state2, "charge": -1},
             },
             {
-                "reactant": {"xyz_file": state2, "charge": -1},
-                "transition": {"xyz_file": state5, "charge": -1},
-                "product": {"xyz_file": state4, "charge": -1},
+                "reactant": {"file": state2, "charge": -1},
+                "transition": {"file": state5, "charge": -1},
+                "product": {"file": state4, "charge": -1},
             },
         ]
     }
