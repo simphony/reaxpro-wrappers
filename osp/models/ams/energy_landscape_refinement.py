@@ -148,7 +148,7 @@ class EnergyLandscapeRefinement:
             reactant = cuds_pathways[-1]["product"]
             cuds_pathways.append(
                 {
-                    "product": self._make_molecule(ipathway.reactant),
+                    "product": self._make_molecule(ipathway.product),
                     "reactant": reactant,
                 }
             )
@@ -173,10 +173,11 @@ class EnergyLandscapeRefinement:
             else:
                 iri = molecule.file.as_posix()
             cuds = oclass(iri=iri)
-        charge = emmo.ElectricCharge()
-        integer = emmo.Integer(hasNumericalData=molecule.charge)
-        charge.add(integer, rel=emmo.hasQuantityValue)
-        cuds.add(charge, rel=emmo.hasProperty)
+        if not cuds.get(oclass=emmo.ElectricCharge):
+            charge = emmo.ElectricCharge()
+            integer = emmo.Integer(hasNumericalData=molecule.charge)
+            charge.add(integer, rel=emmo.hasQuantityValue)
+            cuds.add(charge, rel=emmo.hasProperty)
         return cuds
 
     @property
