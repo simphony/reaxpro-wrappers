@@ -61,9 +61,6 @@ class SimzacrosSession(SimWrapperSession):
 
         (pz_settings, pz_lattice, pz_mechanism, pz_cluster_expansion) = \
             map_function(self, root_cuds_object, self.engine)
-        pz_job = pz.ZacrosJob(settings=pz_settings, lattice=pz_lattice,
-                              mechanism=pz_mechanism, cluster_expansion=pz_cluster_expansion)
-        results = pz_job.run()
         if self.adp:
             import adaptiveDesignProcedure as adp
 
@@ -73,6 +70,8 @@ class SimzacrosSession(SimWrapperSession):
                 #---------------------------------------
                 # Zacros calculation
                 #---------------------------------------
+                pz_job = pz.ZacrosJob(settings=pz_settings, lattice=pz_lattice,
+                                    mechanism=pz_mechanism, cluster_expansion=pz_cluster_expansion)
 
                 ps_params = pz.ZacrosParametersScanJob.Parameters()
                 ps_params.add( 'x_CO', 'molar_fraction.CO', [ cond[0] for cond in conditions ] )
@@ -116,6 +115,10 @@ class SimzacrosSession(SimWrapperSession):
             pkl = emmo.PKLFile(uid=UUID(uuid))
             self.adp_cuds.add(pkl, rel=emmo.hasOutput)
 
+        else:
+            pz_job = pz.ZacrosJob(settings=pz_settings, lattice=pz_lattice,
+                                mechanism=pz_mechanism, cluster_expansion=pz_cluster_expansion)
+            results = pz_job.run()
 
         self._tarball = map_results(pz_job, root_cuds_object)
 
