@@ -1,13 +1,7 @@
+import os
 from osp.core.namespaces import emmo, cuba, crystallography
 from osp.wrappers.simams.simams_session import SimamsSession
 from osp.wrappers.simzacros.simzacros_session import SimzacrosSession 
-
-import os
-os.environ["REAXPRO_MINIO_USER"] = "rootname"
-os.environ["REAXPRO_MINIO_PASSWORD"] = "rootname123"
-os.environ["REAXPRO_MINIO_ENDPOINT"] = "172.17.0.3:9000"
-
-
 from osp.models.multiscale.co_pt111_meso import COPt111MesoscaleModel
 
 PATH = os.path.dirname(__file__)
@@ -19,7 +13,6 @@ lattice = os.path.join(PATH, "XYZ", "CO_ads+Pt111.xyz")
 data = {
     "pes_exploration": {
         "molecule": molecule,
-        "lattice": lattice,
         "force_field": 'CHONSFPtClNi',
         "solver_type": 'Direct',
         "n_expeditions": 30,

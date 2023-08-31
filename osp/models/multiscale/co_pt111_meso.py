@@ -11,7 +11,6 @@ from osp.core.session import CoreSession
 from osp.core.utils import export_cuds
 from osp.models.utils.general import (_download_file, _get_example_json,
                                       get_download, get_upload)
-from osp.tools.io_functions import read_lattice, read_molecule
 from pydantic import AnyUrl, Field, confloat, conint, conlist, root_validator
 from pydantic.dataclasses import dataclass
 
@@ -84,11 +83,6 @@ class PESExploration:
         description="""
         UUID of the cache-upload or url/system path to molecule input.""",
     )
-    lattice: Union[UUID, AnyUrl, Path] = Field(
-        ...,
-        description="""
-        UUID of the cache-upload or url/system path to lattica input.""",
-    )
 
     def __post_init_post_parse__(self):
         with CoreSession() as session:
@@ -110,20 +104,15 @@ class PESExploration:
         calculation = emmo.ProcessSearch()
 
         if isinstance(self.molecule, UUID):
-            xyz_file = get_download(str(self.molecule), as_file=True)
+            molecule = emmo.MolecularGeometry(uid=self.molecule)
         elif isinstance(self.molecule, AnyUrl):
-            xyz_file = _download_file(self.molecule, as_file=True)
-        else:
-            xyz_file = self.molecule
-        molecule = read_molecule(xyz_file)
-
-        if isinstance(self.lattice, UUID):
-            xyz_file = get_download(str(self.lattice), as_file=True)
-        elif isinstance(self.lattice, AnyUrl):
-            xyz_file = _download_file(self.lattic, as_file=True)
-        else:
-            xyz_file = self.lattice
-        lattice = read_lattice(xyz_file)
+            molecule = emmo.MolecularGeometry(iri=self.molecule)
+        elif isinstance(self.molecule, Path):
+            if not "file:" in str(self.molecule):
+                iri = f"file://{self.molecule.as_posix()}"
+            else:
+                iri = self.molecule.as_posix()
+            molecule = emmo.MolecularGeometry(iri=iri)
 
         forcefield = emmo[self.force_field.value]()
 
@@ -154,7 +143,6 @@ class PESExploration:
         symmetry_check = emmo.CheckSymmetry(hasNumericalData="T")
         calculation.add(
             molecule,
-            lattice,
             solver,
             fixed_region,
             num_expeditions,
@@ -558,7 +546,6 @@ class COPt111MesoscaleModel:
                     emmo.ReferenceRegion,
                     emmo.RandomSeed,
                     emmo.MolecularGeometry,
-                    crystallography.UnitCell
                 ]:
                 input_cuds = self.pes_exploration.cuds.get(oclass=oclass, rel=emmo.hasInput)
                 self.binding_site.cuds.add(input_cuds.pop(), rel=emmo.hasInput)

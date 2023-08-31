@@ -10,9 +10,7 @@ from pydantic.dataclasses import dataclass
 from osp.core.namespaces import emmo
 from osp.core.session import CoreSession
 from osp.core.utils import export_cuds
-from osp.models.utils.general import (_download_file, _get_example_json,
-                                      get_download, get_upload)
-from osp.tools.io_functions import GeometryType, read_molecule
+from osp.models.utils.general import (_get_example_json, get_upload)
 
 STANDARD_XYZ = [
     ("b66ff7f5-979f-4e38-8ad3-e6bce42145d5", "state1.xyz"),
@@ -30,7 +28,7 @@ if TYPE_CHECKING:
 
 
 class Molecule(BaseModel):
-    xyz_file: Union[UUID, AnyUrl, Path] = Field(
+    file: Union[UUID, AnyUrl, Path] = Field(
         ...,
         description="UUID of the cache-upload or url/system path to xyz file for the pathway of the molecule.",
     )
@@ -52,7 +50,7 @@ class MoleculeReaction(BaseModel):
     @root_validator(allow_reuse=True)
     def validate_all(cls, values):
         if not values.get("transition"):
-            if values["reactant"].xyz_file == values["product"].xyz_file:
+            if values["reactant"].file == values["product"].file:
                 raise ValueError("Reactant and product are the same file references!")
         else:
             for file1, file2 in (
@@ -60,7 +58,7 @@ class MoleculeReaction(BaseModel):
                 ("reactant", "product"),
                 ("transition", "product"),
             ):
-                if values[file1].xyz_file == values[file2].xyz_file:
+                if values[file1].file == values[file2].file:
                     raise ValueError(
                         file1 + " and " + file2 + "are the same file references!"
                     )
@@ -150,7 +148,7 @@ class EnergyLandscapeRefinement:
             reactant = cuds_pathways[-1]["product"]
             cuds_pathways.append(
                 {
-                    "product": self._make_molecule(ipathway.reactant),
+                    "product": self._make_molecule(ipathway.product),
                     "reactant": reactant,
                 }
             )
@@ -161,17 +159,25 @@ class EnergyLandscapeRefinement:
         return cuds_pathways
 
     def _make_molecule(self, molecule: Molecule, TS: bool = False) -> "Cuds":
-        if isinstance(molecule.xyz_file, UUID):
-            xyz_file = get_download(str(molecule.xyz_file), as_file=True)
-        elif isinstance(molecule.xyz_file, AnyUrl):
-            xyz_file = _download_file(molecule.xyz_file, as_file=True)
+        if TS:
+            oclass = emmo.TransitionStateGeometry
         else:
-            xyz_file = molecule.xyz_file
-        cuds = read_molecule(xyz_file, geometry_type=GeometryType.XYZ, TS=TS)
-        charge = emmo.ElectricCharge()
-        integer = emmo.Integer(hasNumericalData=molecule.charge)
-        charge.add(integer, rel=emmo.hasQuantityValue)
-        cuds.add(charge, rel=emmo.hasProperty)
+            oclass = emmo.MolecularGeometry
+        if isinstance(molecule.file, UUID):
+            cuds = oclass(uid=molecule.file)
+        elif isinstance(molecule.file, AnyUrl):
+            cuds = oclass(iri=molecule.file)
+        elif isinstance(molecule.file, Path):
+            if not "file:" in str(molecule.file):
+                iri = f"file://{molecule.file.as_posix()}"
+            else:
+                iri = molecule.file.as_posix()
+            cuds = oclass(iri=iri)
+        if not cuds.get(oclass=emmo.ElectricCharge):
+            charge = emmo.ElectricCharge()
+            integer = emmo.Integer(hasNumericalData=molecule.charge)
+            charge.add(integer, rel=emmo.hasQuantityValue)
+            cuds.add(charge, rel=emmo.hasProperty)
         return cuds
 
     @property
