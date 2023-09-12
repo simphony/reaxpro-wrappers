@@ -578,19 +578,19 @@ def map_PLAMSSettings(workdir: str, root_cuds_object: Cuds) -> PlamsSettings:
         syntactic_settings.input.AMS.PESExploration.RandomSeed = \
             map_generic_setting(emmo.RandomSeed, root_cuds_object)
 
-        syntactic_settings.input.AMS.PESExploration.BindingSites.NeighborCutoff = \
-            map_generic_setting(emmo.NeighborCutoff, root_cuds_object)
+        #syntactic_settings.input.AMS.PESExploration.BindingSites.NeighborCutoff = \
+        #    map_generic_setting(emmo.NeighborCutoff, root_cuds_object)
 
         # Hardcoded defaults
         if map_generic_setting(emmo.CheckSymmetry, root_cuds_object) == 'F':
             syntactic_settings.input.AMS.PESExploration.LoadEnergyLandscape.GenerateSymmetryImages = 'T'
             syntactic_settings.input.AMS.PESExploration.BindingSites.DistanceDifference = 0.1
             syntactic_settings.input.AMS.PESExploration.StructureComparison.\
-                DistanceDifference = '0.1'
+                DistanceDifference = 0.2
             syntactic_settings.input.AMS.PESExploration.StructureComparison.\
-                EnergyDifference = '0.05'
+                EnergyDifference = 0.05
             syntactic_settings.input.AMS.PESExploration.StructureComparison.\
-                NeighborCutoff = '2.5'
+                NeighborCutoff = 2.5
 
     elif semantic_settings['Calculation'] == "StationaryPointCalculation":
         syntactic_settings.input.AMS.task = "TransitionStateSearch"
