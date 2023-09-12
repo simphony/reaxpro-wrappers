@@ -25,7 +25,7 @@ data = {
         "symmetry_check": 'T',
         },
     "binding_site": {
-        "n_expeditions": 1,
+        "n_expeditions": 30,
         "n_explorers": 4,
         "symmetry_check": 'F'
     },

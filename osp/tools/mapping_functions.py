@@ -546,6 +546,7 @@ def map_PLAMSSettings(workdir: str, root_cuds_object: Cuds) -> PlamsSettings:
         syntactic_settings.input.AMS.task = "PESExploration"
         syntactic_settings.input.AMS.PESExploration.Job = 'BindingSites'
         syntactic_settings.input.AMS.PESExploration.BindingSites.Calculate = 'T'
+        syntactic_settings.input.AMS.PESExploration.DynamicSeedStates = 'T'
         syntactic_settings.input.AMS.PESExploration.CalculateFragments = 'F'
         syntactic_settings.input.AMS.PESExploration.LoadEnergyLandscape.Path = \
             os.path.join(workdir, str(previous.uid))
@@ -582,7 +583,8 @@ def map_PLAMSSettings(workdir: str, root_cuds_object: Cuds) -> PlamsSettings:
 
         # Hardcoded defaults
         if map_generic_setting(emmo.CheckSymmetry, root_cuds_object) == 'F':
-            syntactic_settings.input.AMS.PESExploration.GenerateSymmetryImages = 'T'
+            syntactic_settings.input.AMS.PESExploration.LoadEnergyLandscape.GenerateSymmetryImages = 'T'
+            syntactic_settings.input.AMS.PESExploration.BindingSites.DistanceDifference = 0.1
             syntactic_settings.input.AMS.PESExploration.StructureComparison.\
                 DistanceDifference = '0.1'
             syntactic_settings.input.AMS.PESExploration.StructureComparison.\
