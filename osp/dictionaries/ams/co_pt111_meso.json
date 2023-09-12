@@ -4,7 +4,7 @@
         "force_field": "CHONSFPtClNi",
         "solver_type": "Direct",
         "n_expeditions": 30,
-        "n_explorers": 3,
+        "n_explorers": 4,
         "max_energy": 2.0,
         "max_distance": 3.8,
         "random_seed": 100, 

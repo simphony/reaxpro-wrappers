@@ -140,7 +140,7 @@ class PESExploration:
         ref_region = emmo.ReferenceRegion(hasSymbolData=self.reference_region)
         random_seed = emmo.RandomSeed(hasNumericalData=self.random_seed)
 
-        symmetry_check = emmo.CheckSymmetry(hasNumericalData="T")
+        symmetry_check = emmo.CheckSymmetry(hasNumericalData=self.symmetry_check)
         calculation.add(
             molecule,
             solver,

@@ -497,13 +497,10 @@ def map_PLAMSSettings(workdir: str, root_cuds_object: Cuds) -> PlamsSettings:
     elif semantic_settings['Calculation'] == 'ProcessSearch':
 
         syntactic_settings.input.AMS.task = "PESExploration"
-
-        if semantic_settings['Calculation'] == 'ProcessSearch':
-
-            syntactic_settings.input.ams.PESExploration.Job = 'ProcessSearch'
-            syntactic_settings.input.AMS.PESExploration.CalculateFragments = 'T'
-            syntactic_settings.input.AMS.PESExploration.BindingSites.Calculate = 'T'
-            syntactic_settings.input.AMS.PESExploration.DynamicSeedStates = 'T'
+        syntactic_settings.input.ams.PESExploration.Job = 'ProcessSearch'
+        syntactic_settings.input.AMS.PESExploration.CalculateFragments = 'T'
+        syntactic_settings.input.AMS.PESExploration.BindingSites.Calculate = 'T'
+        syntactic_settings.input.AMS.PESExploration.DynamicSeedStates = 'T'
 
         syntactic_settings.input.ReaxFF.ForceField = \
             map_generic_setting(emmo.ForceFieldIdentifierString, root_cuds_object)
@@ -532,9 +529,10 @@ def map_PLAMSSettings(workdir: str, root_cuds_object: Cuds) -> PlamsSettings:
         if map_generic_setting(emmo.CheckSymmetry, root_cuds_object) == 'T':
 
             # Hardcoded defaults
-            syntactic_settings.input.AMS.PESExploration.StructureComparison.DistanceDifference = 0.1
+            syntactic_settings.input.AMS.PESExploration.StructureComparison.DistanceDifference = 0.2
             syntactic_settings.input.AMS.PESExploration.StructureComparison.EnergyDifference = 0.05
             syntactic_settings.input.AMS.PESExploration.StructureComparison.NeighborCutoff = 2.5
+            syntactic_settings.input.AMS.PESExploration.BindingSites.DistanceDifference = 0.1
 
         syntactic_settings.input.AMS.PESExploration.RandomSeed = \
             map_generic_setting(emmo.RandomSeed, root_cuds_object)
