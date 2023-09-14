@@ -6,7 +6,6 @@
         "n_expeditions": 30,
         "n_explorers": 4,
         "max_energy": 2.0,
-        "max_distance": 3.8,
         "random_seed": 100, 
         "fixed_region":"surface", 
         "reference_region": "surface",
