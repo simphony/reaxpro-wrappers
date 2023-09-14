@@ -531,7 +531,7 @@ def map_PLAMSSettings(workdir: str, root_cuds_object: Cuds) -> PlamsSettings:
             # Hardcoded defaults
             syntactic_settings.input.AMS.PESExploration.StructureComparison.DistanceDifference = 0.2
             syntactic_settings.input.AMS.PESExploration.StructureComparison.EnergyDifference = 0.05
-            syntactic_settings.input.AMS.PESExploration.StructureComparison.NeighborCutoff = 2.5
+            syntactic_settings.input.AMS.PESExploration.StructureComparison.NeighborCutoff = 2.4
             syntactic_settings.input.AMS.PESExploration.BindingSites.DistanceDifference = 0.1
 
         syntactic_settings.input.AMS.PESExploration.RandomSeed = \
@@ -590,7 +590,7 @@ def map_PLAMSSettings(workdir: str, root_cuds_object: Cuds) -> PlamsSettings:
             syntactic_settings.input.AMS.PESExploration.StructureComparison.\
                 EnergyDifference = 0.05
             syntactic_settings.input.AMS.PESExploration.StructureComparison.\
-                NeighborCutoff = 2.5
+                NeighborCutoff = 2.4
 
     elif semantic_settings['Calculation'] == "StationaryPointCalculation":
         syntactic_settings.input.AMS.task = "TransitionStateSearch"
