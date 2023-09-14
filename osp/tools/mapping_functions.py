@@ -537,8 +537,8 @@ def map_PLAMSSettings(workdir: str, root_cuds_object: Cuds) -> PlamsSettings:
         syntactic_settings.input.AMS.PESExploration.RandomSeed = \
             map_generic_setting(emmo.RandomSeed, root_cuds_object)
 
-        syntactic_settings.input.AMS.PESExploration.BindingSites.NeighborCutoff = \
-            map_generic_setting(emmo.NeighborCutoff, root_cuds_object)
+        # syntactic_settings.input.AMS.PESExploration.BindingSites.NeighborCutoff = \
+        #     map_generic_setting(emmo.NeighborCutoff, root_cuds_object)
 
     elif semantic_settings['Calculation'] == 'BindingSites':
         previous = root_cuds_object.get(rel=emmo.hasSpatialNext.inverse).pop()
