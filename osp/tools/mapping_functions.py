@@ -65,6 +65,8 @@ def map_function(self, root_cuds_object: Cuds, engine=None) -> tuple:
             # otherwise, use default location
             input_job = pz.ZacrosJob.load_external(self.input_path)
             pz_mechanism = input_job.mechanism
+        print("###############")
+        print(pz_mechanism)
 
         if hasattr(self, 'lattice'):
             pz_lattice = pz.Lattice(fileName=self.lattice)

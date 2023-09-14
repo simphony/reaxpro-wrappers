@@ -23,7 +23,7 @@ class SimamsSession(SimWrapperSession):
             if isinstance(n_procs, str):
                 n_procs = int(n_procs)
             if isinstance(parallel, str):
-                n_procs = bool(parallel)
+                parallel = bool(parallel)
             config.default_jobrunner = JobRunner(parallel=parallel, maxjobs=maxjobs)
             config.job.runscript.nproc = n_procs
             self.workdir = config.get("default_jobmanager").workdir
