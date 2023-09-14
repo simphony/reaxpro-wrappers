@@ -550,7 +550,8 @@ class COPt111MesoscaleModel:
                     emmo.MolecularGeometry,
                 ]:
                 input_cuds = self.pes_exploration.cuds.get(oclass=oclass, rel=emmo.hasInput)
-                self.binding_site.cuds.add(input_cuds.pop(), rel=emmo.hasInput)
+                if input_cuds:
+                    self.binding_site.cuds.add(input_cuds.pop(), rel=emmo.hasInput)
             workflow.add(self.pes_exploration.cuds, rel=emmo.hasSpatialFirst)
             workflow.add(self.binding_site.cuds, rel=emmo.hasSpatialDirectPart)
             if self.adp:
