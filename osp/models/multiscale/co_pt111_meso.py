@@ -155,7 +155,7 @@ class PESExploration:
             distance_unit = emmo.Ångström(hasSymbolData="Å")
             max_distance.add(distance_value, rel=emmo.hasQuantityValue)
             max_distance.add(distance_unit, rel=emmo.hasReferenceUnit)
-        calculation.add(max_distance, rel=emmo.hasInput)
+            calculation.add(max_distance, rel=emmo.hasInput)
 
         return calculation
 
