@@ -6,7 +6,7 @@ import scm.pyzacros as pz
 from scm.plams import MultiJob, AMSJob
 from scm.plams import Settings as PlamsSettings
 from scm.plams import Molecule as PlamsMolecule
-from scm.plams import Atom as PlamsAtom
+# from scm.plams import Atom as PlamsAtom
 from arcp import arcp_random
 from osp.tools.io_functions import raise_error, raise_warning
 from osp.tools.io_functions import read_mechanism, read_cluster_expansion, read_molecule
@@ -60,13 +60,11 @@ def map_function(self, root_cuds_object: Cuds, engine=None) -> tuple:
 
         if hasattr(self, 'mechanism'):
             # if mechanism is read from CUDS graph
-            pz_mechanism = map_PyZacrosMechanism(self.mechanism)
+            pz_mechanism = pz.Mechanism(fileName=self.mechanism)
         else:
             # otherwise, use default location
             input_job = pz.ZacrosJob.load_external(self.input_path)
             pz_mechanism = input_job.mechanism
-        print("###############")
-        print(pz_mechanism)
 
         if hasattr(self, 'lattice'):
             pz_lattice = pz.Lattice(fileName=self.lattice)
@@ -74,7 +72,7 @@ def map_function(self, root_cuds_object: Cuds, engine=None) -> tuple:
             pz_lattice = input_job.lattice
 
         if hasattr(self, 'cluster'):
-            pz_cluster_expansions = map_PyZacrosClusterExpansion(self.cluster)
+            pz_cluster_expansions = pz.ClusterExpansion(fileName=self.cluster)
         else:
             pz_cluster_expansions = input_job.cluster_expansion
 
@@ -1620,14 +1618,25 @@ def map_results(engine, root_cuds_object: Cuds) -> str:
                 loader_ads.replace_site_types(['A', 'B', 'C'], ['fcc', 'br', 'hcp'])
 
                 # 1. Mechanism
-                mechanism_output = read_mechanism(str(loader_ads.mechanism), read_from_file=False)
+                with tempfile.NamedTemporaryFile(suffix=".dat") as file:
+                    file.write(str(loader_ads.mechanism))
+                    uuid = get_upload(file)
+                mechanism_output = emmo.ChemicalReactionMechanism(uid=UUID(uuid))
+                mechanism_output = read_mechanism(
+                    str(loader_ads.mechanism), read_from_file=False, cuds=mechanism_output
+                )
                 search_calculation[0].add(mechanism_output, rel=emmo.hasOutput)
 
                 # 2. Cluster
-                cluster_output = read_cluster_expansion(str(loader_ads.clusterExpansion),
-                                                        read_from_file=False)
-                for cluster in cluster_output:
-                    search_calculation[0].add(cluster, rel=emmo.hasOutput)
+                with tempfile.NamedTemporaryFile(suffix=".dat") as file:
+                    file.write(str(loader_ads.clusterExpansion))
+                    uuid = get_upload(file)
+                cluster = emmo.ClusterExpansion(uid=UUID(uuid))
+                #cluster_output = read_cluster_expansion(str(loader_ads.clusterExpansion),
+                #                                        read_from_file=False, cuds=cluster_output)
+                #for cluster in cluster_output:
+                #    search_calculation[0].add(cluster, rel=emmo.hasOutput)
+                search_calculation[0].add(cluster, rel=emmo.hasOutput)
 
                 print(loader_ads.clusterExpansion)
                 print(loader_ads.mechanism)
@@ -1639,11 +1648,10 @@ def map_results(engine, root_cuds_object: Cuds) -> str:
                 loader_bs.replace_site_types(['A', 'B', 'C'], ['fcc', 'br', 'hcp'])
                 loader_bs.lattice.set_repeat_cell((10, 10))
                 loader_bs.lattice.plot()
-                
-                file = os.path.join(engine.path, "lattice_input.dat")
-                with open(file, "w+") as lattice_file:
-                    lattice_file.write(str(loader_bs.lattice))
-                uuid = get_upload(file)
+
+                with tempfile.NamedTemporaryFile(suffix=".dat") as file:
+                    file.write(str(loader_bs.lattice))
+                    uuid = get_upload(file)
                 lattice_output = crystallography.UnitCell(uid=UUID(uuid))
                 search_calculation[0].add(lattice_output, rel=emmo.hasOutput)
 
@@ -1675,21 +1683,37 @@ def map_results(engine, root_cuds_object: Cuds) -> str:
                     loader_ads.replace_site_types(['A', 'B', 'C'], ['fcc', 'br', 'hcp'])
 
                     # 1. Mechanism
-                    mechanism_output = read_mechanism(str(loader_ads.mechanism), read_from_file=False)
+                    # 1. Mechanism
+                    with tempfile.NamedTemporaryFile(suffix=".dat") as file:
+                        file.write(str(loader_ads.mechanism))
+                        uuid = get_upload(file)
+                    mechanism_output = emmo.ChemicalReactionMechanism(uid=UUID(uuid))
+                    mechanism_output = read_mechanism(
+                        str(loader_ads.mechanism), read_from_file=False, cuds=mechanism_output
+                    )
                     current.add(mechanism_output, rel=emmo.hasOutput)
                     if simulation.is_a(emmo.Simulation):
                         simulation.add(mechanism_output, rel=emmo.hasOutput)
 
                     # 2. Cluster
-                    cluster_output = read_cluster_expansion(str(loader_ads.clusterExpansion),
-                                                            read_from_file=False)
-                    for cluster in cluster_output:
-                        current.add(cluster, rel=emmo.hasOutput)
-                        if simulation.is_a(emmo.Simulation):
-                            simulation.add(cluster, rel=emmo.hasOutput)
+                    with tempfile.NamedTemporaryFile(suffix=".dat") as file:
+                        file.write(str(loader_ads.clusterExpansion))
+                        uuid = get_upload(file)
+                    cluster = emmo.ClusterExpansion(uid=UUID(uuid))
+                    #cluster_output = read_cluster_expansion(str(loader_ads.clusterExpansion),
+                    #                                        read_from_file=False, cuds=cluster_output)
+                    current.add(cluster, rel=emmo.hasOutput)
+                    if simulation.is_a(emmo.Simulation):
+                        simulation.add(cluster, rel=emmo.hasOutput)
+
+                    # for cluster in cluster_output:
+                    #     current.add(cluster, rel=emmo.hasOutput)
+                    #     if simulation.is_a(emmo.Simulation):
+                    #         simulation.add(cluster, rel=emmo.hasOutput)
 
                     print(loader_ads.clusterExpansion)
                     print(loader_ads.mechanism)
+
                 elif current.is_a(emmo.BindingSites):
                     # Attach UnitCell() with file path to Wrapper object as Output:
                     loader_bs = pz.RKFLoader(engine.children[i].results)
@@ -1697,10 +1721,9 @@ def map_results(engine, root_cuds_object: Cuds) -> str:
                     loader_bs.lattice.set_repeat_cell((10, 10))
                     loader_bs.lattice.plot()
 
-                    file = os.path.join(engine.path, "lattice_input.dat")
-                    with open(file, "w+") as lattice_file:
-                        lattice_file.write(str(loader_bs.lattice))
-                    uuid = get_upload(file)
+                    with tempfile.NamedTemporaryFile(suffix=".dat") as file:
+                        file.write(str(loader_bs.lattice))
+                        uuid = get_upload(file)
                     lattice_output = crystallography.UnitCell(uid=UUID(uuid))
                     current.add(lattice_output, rel=emmo.hasOutput)
                     if simulation.is_a(emmo.Simulation):

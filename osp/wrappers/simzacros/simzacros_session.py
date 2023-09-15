@@ -193,7 +193,12 @@ class SimzacrosSession(SimWrapperSession):
                         message='More than one emmo.ChemicalReactionMechanism defined'
                         ' in the Wrapper object.')
         if search_mechanism:
-            self.mechanism = search_mechanism[0]
+            meachism = search_mechanism.pop()
+            if "file://" in str(meachism.iri):
+                split = str(meachism.iri).split("file://")
+                self.mechanism = split[-1]
+            else:
+                self.mechanism = get_download(str(meachism.uid), as_file=True)
 
         # Lattice
         search_lattice = \
@@ -221,7 +226,13 @@ class SimzacrosSession(SimWrapperSession):
             search.find_cuds_objects_by_oclass(emmo.ClusterExpansion,
                                                self.calculation, emmo.hasInput)
         if search_cluster:
-            self.cluster = search_cluster
+            cluster = search_cluster.pop()
+            if "file://" in str(cluster.iri):
+                split = str(cluster.iri).split("file://")
+                self.cluster = split[-1]
+            else:
+                self.cluster = get_download(str(cluster.uid), as_file=True)
+
 
     def _process_adp(self, calculation: Cuds) -> None:
         self.adp_cuds = calculation
