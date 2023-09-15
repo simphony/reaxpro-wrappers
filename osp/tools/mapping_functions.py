@@ -1618,7 +1618,7 @@ def map_results(engine, root_cuds_object: Cuds) -> str:
                 loader_ads.replace_site_types(['A', 'B', 'C'], ['fcc', 'br', 'hcp'])
 
                 # 1. Mechanism
-                with tempfile.NamedTemporaryFile(suffix=".dat") as file:
+                with tempfile.NamedTemporaryFile(mode = 'w', suffix=".dat") as file:
                     file.write(str(loader_ads.mechanism))
                     uuid = get_upload(file)
                 mechanism_output = emmo.ChemicalReactionMechanism(uid=UUID(uuid))
@@ -1628,7 +1628,7 @@ def map_results(engine, root_cuds_object: Cuds) -> str:
                 search_calculation[0].add(mechanism_output, rel=emmo.hasOutput)
 
                 # 2. Cluster
-                with tempfile.NamedTemporaryFile(suffix=".dat") as file:
+                with tempfile.NamedTemporaryFile(mode = 'w', suffix=".dat") as file:
                     file.write(str(loader_ads.clusterExpansion))
                     uuid = get_upload(file)
                 cluster = emmo.ClusterExpansion(uid=UUID(uuid))
@@ -1649,7 +1649,7 @@ def map_results(engine, root_cuds_object: Cuds) -> str:
                 loader_bs.lattice.set_repeat_cell((10, 10))
                 loader_bs.lattice.plot()
 
-                with tempfile.NamedTemporaryFile(suffix=".dat") as file:
+                with tempfile.NamedTemporaryFile(mode = 'w', suffix=".dat") as file:
                     file.write(str(loader_bs.lattice))
                     uuid = get_upload(file)
                 lattice_output = crystallography.UnitCell(uid=UUID(uuid))
@@ -1683,8 +1683,7 @@ def map_results(engine, root_cuds_object: Cuds) -> str:
                     loader_ads.replace_site_types(['A', 'B', 'C'], ['fcc', 'br', 'hcp'])
 
                     # 1. Mechanism
-                    # 1. Mechanism
-                    with tempfile.NamedTemporaryFile(suffix=".dat") as file:
+                    with tempfile.NamedTemporaryFile(mode = 'w', suffix=".dat") as file:
                         file.write(str(loader_ads.mechanism))
                         uuid = get_upload(file)
                     mechanism_output = emmo.ChemicalReactionMechanism(uid=UUID(uuid))
@@ -1696,7 +1695,7 @@ def map_results(engine, root_cuds_object: Cuds) -> str:
                         simulation.add(mechanism_output, rel=emmo.hasOutput)
 
                     # 2. Cluster
-                    with tempfile.NamedTemporaryFile(suffix=".dat") as file:
+                    with tempfile.NamedTemporaryFile(mode = 'w', suffix=".dat") as file:
                         file.write(str(loader_ads.clusterExpansion))
                         uuid = get_upload(file)
                     cluster = emmo.ClusterExpansion(uid=UUID(uuid))
@@ -1721,7 +1720,7 @@ def map_results(engine, root_cuds_object: Cuds) -> str:
                     loader_bs.lattice.set_repeat_cell((10, 10))
                     loader_bs.lattice.plot()
 
-                    with tempfile.NamedTemporaryFile(suffix=".dat") as file:
+                    with tempfile.NamedTemporaryFile(mode = 'w', suffix=".dat") as file:
                         file.write(str(loader_bs.lattice))
                         uuid = get_upload(file)
                     lattice_output = crystallography.UnitCell(uid=UUID(uuid))
