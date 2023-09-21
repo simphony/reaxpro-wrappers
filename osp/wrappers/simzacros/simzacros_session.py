@@ -61,6 +61,10 @@ class SimzacrosSession(SimWrapperSession):
 
         (pz_settings, pz_lattice, pz_mechanism, pz_cluster_expansion) = \
             map_function(self, root_cuds_object, self.engine)
+        print("################")
+        print(pz_mechanism.gas_species())
+        print("##################")
+        print(pz_settings.molar_fraction.keys())
         if self.adp:
             import adaptiveDesignProcedure as adp
 
