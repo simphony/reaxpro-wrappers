@@ -67,6 +67,8 @@ class SimzacrosSession(SimWrapperSession):
         print(pz_settings.molar_fraction.keys())
         if self.adp:
             import adaptiveDesignProcedure as adp
+            pz_job = pz.ZacrosJob(settings=pz_settings, lattice=pz_lattice,
+                                mechanism=pz_mechanism, cluster_expansion=pz_cluster_expansion)
 
             def get_rate( conditions ):
 
@@ -74,8 +76,6 @@ class SimzacrosSession(SimWrapperSession):
                 #---------------------------------------
                 # Zacros calculation
                 #---------------------------------------
-                pz_job = pz.ZacrosJob(settings=pz_settings, lattice=pz_lattice,
-                                    mechanism=pz_mechanism, cluster_expansion=pz_cluster_expansion)
 
                 ps_params = pz.ZacrosParametersScanJob.Parameters()
                 ps_params.add( 'x_CO', 'molar_fraction.CO', [ cond[0] for cond in conditions ] )
