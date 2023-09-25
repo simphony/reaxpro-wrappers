@@ -1702,9 +1702,9 @@ def map_results(engine, root_cuds_object: Cuds) -> str:
                     #     file.write(str(loader_ads.clusterExpansion))
                     #     uuid = get_upload(file)
                     # cluster = emmo.ClusterExpansion(uid=UUID(uuid))
-                    current.add(cluster, rel=emmo.hasOutput)
-                    if simulation.is_a(emmo.Simulation):
-                        simulation.add(cluster, rel=emmo.hasOutput)
+                    #current.add(cluster, rel=emmo.hasOutput)
+                    #if simulation.is_a(emmo.Simulation):
+                    #    simulation.add(cluster, rel=emmo.hasOutput)
 
                     cluster_output = read_cluster_expansion(str(loader_ads.clusterExpansion),
                                                            read_from_file=False, cuds=cluster_output)
