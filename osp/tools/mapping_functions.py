@@ -72,7 +72,8 @@ def map_function(self, root_cuds_object: Cuds, engine=None) -> tuple:
             pz_lattice = input_job.lattice
 
         if hasattr(self, 'cluster'):
-            pz_cluster_expansions = pz.ClusterExpansion(fileName=self.cluster)
+            pz_cluster_expansions = map_PyZacrosClusterExpansion(self.cluster)
+            #pz_cluster_expansions = pz.ClusterExpansion(fileName=self.cluster)
         else:
             pz_cluster_expansions = input_job.cluster_expansion
 
