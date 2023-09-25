@@ -197,12 +197,13 @@ class SimzacrosSession(SimWrapperSession):
                         message='More than one emmo.ChemicalReactionMechanism defined'
                         ' in the Wrapper object.')
         if search_mechanism:
-            meachism = search_mechanism.pop()
-            if "file://" in str(meachism.iri):
-                split = str(meachism.iri).split("file://")
-                self.mechanism = split[-1]
-            else:
-                self.mechanism = get_download(str(meachism.uid), as_file=True)
+            self.mechanism = search_mechanism[0]
+            # meachism = search_mechanism.pop()
+            # if "file://" in str(meachism.iri):
+            #     split = str(meachism.iri).split("file://")
+            #     self.mechanism = split[-1]
+            # else:
+            #     self.mechanism = get_download(str(meachism.uid), as_file=True)
 
         # Lattice
         search_lattice = \

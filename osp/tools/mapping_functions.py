@@ -60,7 +60,8 @@ def map_function(self, root_cuds_object: Cuds, engine=None) -> tuple:
 
         if hasattr(self, 'mechanism'):
             # if mechanism is read from CUDS graph
-            pz_mechanism = pz.Mechanism(fileName=self.mechanism)
+            #pz_mechanism = pz.Mechanism(fileName=self.mechanism)
+            pz_mechanism = map_PyZacrosMechanism(self.mechanism)
         else:
             # otherwise, use default location
             input_job = pz.ZacrosJob.load_external(self.input_path)
