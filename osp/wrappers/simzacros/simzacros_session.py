@@ -231,7 +231,7 @@ class SimzacrosSession(SimWrapperSession):
             search.find_cuds_objects_by_oclass(emmo.ClusterExpansion,
                                                self.calculation, emmo.hasInput)
         if search_cluster:
-            self.cluster = search_cluster[0]
+            self.cluster = search_cluster
             # cluster = search_cluster.pop()
             # if "file://" in str(cluster.iri):
             #     split = str(cluster.iri).split("file://")
