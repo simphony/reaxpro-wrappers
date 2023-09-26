@@ -1115,7 +1115,7 @@ def map_PyZacrosSettings(root_cuds_object: Cuds) -> pz.Settings:
         search.find_cuds_objects_by_oclass(emmo.ProcessStatistics, root_cuds_object, emmo.hasInput)
 
     if search_process_statistics:
-        process_statistics = float(map_generic_setting(emmo.ProcessStatistics, root_cuds_object))
+        process_statistics = map_generic_setting(emmo.ProcessStatistics, root_cuds_object)
         syntactic_settings.process_statistics = (
             search_process_statistics[0].hasSymbolData.replace("on ", ""), process_statistics)
 
@@ -1124,7 +1124,7 @@ def map_PyZacrosSettings(root_cuds_object: Cuds) -> pz.Settings:
         search.find_cuds_objects_by_oclass(emmo.SpeciesNumbers, root_cuds_object, emmo.hasInput)
 
     if search_species_numbers:
-        species_numbers = float(map_generic_setting(emmo.SpeciesNumbers, root_cuds_object))
+        species_numbers = map_generic_setting(emmo.SpeciesNumbers, root_cuds_object)
         syntactic_settings.species_numbers = (
             search_species_numbers[0].hasSymbolData.replace("on ", ""), species_numbers)
 
