@@ -68,7 +68,7 @@ class SimzacrosSession(SimWrapperSession):
         if self.adp:
             import adaptiveDesignProcedure as adp
             pz_job = pz.ZacrosJob(settings=pz_settings, lattice=pz_lattice,
-                                mechanism=pz_mechanism, cluster_expansion=pz_cluster_expansion)
+                                  mechanism=pz_mechanism, cluster_expansion=pz_cluster_expansion)
 
             def get_rate( conditions ):
 
@@ -220,6 +220,9 @@ class SimzacrosSession(SimWrapperSession):
                         ' in the Wrapper object.')
         if search_lattice:
             lattice = search_lattice.pop()
+            print("####")
+            print("found lattice id")
+            print(lattice.uid)
             if "file://" in str(lattice.iri):
                 split = str(lattice.iri).split("file://")
                 self.lattice = split[-1]
