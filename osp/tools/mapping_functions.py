@@ -1655,11 +1655,9 @@ def map_results(engine, root_cuds_object: Cuds) -> str:
 
                 with tempfile.NamedTemporaryFile(mode = 'w', suffix=".dat") as file:
                     file.write(str(loader_bs.lattice))
+                    file.seek(0)
                     uuid = get_upload(file)
                 lattice_output = crystallography.UnitCell(uid=UUID(uuid))
-                print("###")
-                print("lattice id:", lattice_output.uid)
-                print(loader_bs.lattice)
                 search_calculation[0].add(lattice_output, rel=emmo.hasOutput)
 
             elif map_calculation_type(root_cuds_object) == "LandscapeRefinement":
@@ -1737,9 +1735,6 @@ def map_results(engine, root_cuds_object: Cuds) -> str:
                         file.seek(0)
                         uuid = get_upload(file)
                     lattice_output = crystallography.UnitCell(uid=UUID(uuid))
-                    print("###")
-                    print("lattice id:", lattice_output.uid)
-                    print(loader_bs.lattice)
                     current.add(lattice_output, rel=emmo.hasOutput)
                     if simulation.is_a(emmo.Simulation):
                         simulation.add(lattice_output, rel=emmo.hasOutput)

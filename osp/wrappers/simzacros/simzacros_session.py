@@ -61,10 +61,6 @@ class SimzacrosSession(SimWrapperSession):
 
         (pz_settings, pz_lattice, pz_mechanism, pz_cluster_expansion) = \
             map_function(self, root_cuds_object, self.engine)
-        print("################")
-        print(pz_mechanism.gas_species())
-        print("##################")
-        print(pz_settings.molar_fraction.keys())
         if self.adp:
             import adaptiveDesignProcedure as adp
             pz_job = pz.ZacrosJob(settings=pz_settings, lattice=pz_lattice,
@@ -101,10 +97,10 @@ class SimzacrosSession(SimWrapperSession):
                 results_dict = results.turnover_frequency()
 
                 for i in range(len(results_dict)):
-                    data[i,0] = results_dict[i]['turnover_frequency']['CO2']
+                    data[i,0] = results_dict[i]['turnover_frequency']['CO']
 
                 return data
-            output_var = [{'name':'TOF_CO2'}]
+            output_var = [{'name':'TOF_CO'}]
             adp_path = os.path.join(self.workdir,'adp.results')
             adpML = adp.adaptiveDesignProcedure(
                 self.adp, 
@@ -220,9 +216,6 @@ class SimzacrosSession(SimWrapperSession):
                         ' in the Wrapper object.')
         if search_lattice:
             lattice = search_lattice.pop()
-            print("####")
-            print("found lattice id")
-            print(lattice.uid)
             if "file://" in str(lattice.iri):
                 split = str(lattice.iri).split("file://")
                 self.lattice = split[-1]
