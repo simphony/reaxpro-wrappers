@@ -79,7 +79,7 @@ class SimzacrosSession(SimWrapperSession):
 
                 ps_params = pz.ZacrosParametersScanJob.Parameters()
                 ps_params.add( 'x_CO', 'molar_fraction.CO', [ cond[0] for cond in conditions ] )
-                ps_params.add( 'x_O2', 'molar_fraction.O2', lambda params: 1.0-params['x_CO'] )
+                #ps_params.add( 'x_O2', 'molar_fraction.O2', lambda params: 1.0-params['x_CO'] )
 
                 ps_job = pz.ZacrosParametersScanJob( reference=pz_job, parameters=ps_params )
 
