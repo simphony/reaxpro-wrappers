@@ -61,6 +61,8 @@ class SimzacrosSession(SimWrapperSession):
 
         (pz_settings, pz_lattice, pz_mechanism, pz_cluster_expansion) = \
             map_function(self, root_cuds_object, self.engine)
+        print("### settings")
+        print(pz_settings)
         if self.adp:
             import adaptiveDesignProcedure as adp
             pz_job = pz.ZacrosJob(settings=pz_settings, lattice=pz_lattice,
