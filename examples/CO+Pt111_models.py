@@ -78,6 +78,8 @@ search_lattice = binding_sites.get(oclass=crystallography.UnitCell, rel=emmo.has
 mesocopic.add(*search_mechanism, *search_lattice, *search_clusters, rel=emmo.hasInput)
 
 # Mesoscopic calculation
+from osp.core.utils import export_cuds
+export_cuds(mesocopic.session, "export.ttl")
 
 with SimzacrosSession() as sess:
     reaxpro_wrapper2 = cuba.Wrapper(session=sess)
