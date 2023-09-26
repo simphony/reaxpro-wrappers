@@ -43,7 +43,7 @@ class SimzacrosSession(SimWrapperSession):
             self.calculation = None
             self.mechanism = None
             self.cluster = None
-            self.adp = []
+            self.adp = ()
 
         super().__init__(engine)
 
@@ -278,13 +278,13 @@ class SimzacrosSession(SimWrapperSession):
                 Minimum {minimum}, maximum: {maximum}, vector length {length}"""
                 )
         maximum, minimum, length = maximum.pop(), minimum.pop(), length.pop()
-        self.adp.append(
+        self.adp = (
             {
                 "name": f"x_{name.hasSymbolData}",
                 "min": float(minimum.hasNumericalData),
                 "max": float(maximum.hasNumericalData),
                 "num": int(length.hasNumericalData)
-            }
+            },
         )
 
 
