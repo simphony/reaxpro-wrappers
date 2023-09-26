@@ -98,7 +98,8 @@ class SimzacrosSession(SimWrapperSession):
 
                 for i in range(len(results_dict)):
                     data[i,0] = results_dict[i]['turnover_frequency']['CO']
-
+                print("### result data")
+                print(data)
                 return data
             output_var = ({'name':'TOF_CO'}, )
             adp_path = os.path.join(self.workdir,'adp.results')
