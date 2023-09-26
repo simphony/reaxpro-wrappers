@@ -777,7 +777,7 @@ def _get_real_or_array(oclass: OntologyClass):
     real = oclass.get(oclass=emmo.Real, rel=emmo.hasSpatialPart)
     array = oclass.get(oclass=emmo.Array, rel=emmo.hasSpatialPart)
     if real:
-        return [real[0].hasNumericalData]
+        return [float(real[0].hasNumericalData)]
     else:
         reals = array[0].get(oclass=emmo.Real, rel=emmo.hasSpatialPart)
         if reals:
@@ -1117,7 +1117,7 @@ def map_PyZacrosSettings(root_cuds_object: Cuds) -> pz.Settings:
     if search_process_statistics:
         process_statistics = map_generic_setting(emmo.ProcessStatistics, root_cuds_object)
         syntactic_settings.process_statistics = (
-            search_process_statistics[0].hasSymbolData.replace("on ", ""), process_statistics)
+            search_process_statistics[0].hasSymbolData.replace("on ", ""), *process_statistics)
 
     # Search species_numbers:
     search_species_numbers = \
@@ -1126,7 +1126,7 @@ def map_PyZacrosSettings(root_cuds_object: Cuds) -> pz.Settings:
     if search_species_numbers:
         species_numbers = map_generic_setting(emmo.SpeciesNumbers, root_cuds_object)
         syntactic_settings.species_numbers = (
-            search_species_numbers[0].hasSymbolData.replace("on ", ""), species_numbers)
+            search_species_numbers[0].hasSymbolData.replace("on ", ""), *species_numbers)
 
     # Search max_steps:
     search_max_steps = search.find_cuds_objects_by_oclass(emmo.MaximumSteps, root_cuds_object,
