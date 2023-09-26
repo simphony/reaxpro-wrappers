@@ -100,7 +100,7 @@ class SimzacrosSession(SimWrapperSession):
                     data[i,0] = results_dict[i]['turnover_frequency']['CO']
 
                 return data
-            output_var = [{'name':'TOF_CO'}, ]
+            output_var = ({'name':'TOF_CO'}, )
             adp_path = os.path.join(self.workdir,'adp.results')
             adpML = adp.adaptiveDesignProcedure(
                 self.adp, 
