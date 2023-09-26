@@ -1734,6 +1734,7 @@ def map_results(engine, root_cuds_object: Cuds) -> str:
 
                     with tempfile.NamedTemporaryFile(mode = 'w', suffix=".dat") as file:
                         file.write(str(loader_bs.lattice))
+                        file.seek(0)
                         uuid = get_upload(file)
                     lattice_output = crystallography.UnitCell(uid=UUID(uuid))
                     print("###")
