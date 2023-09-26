@@ -1728,7 +1728,7 @@ def map_results(engine, root_cuds_object: Cuds) -> str:
                     # Attach UnitCell() with file path to Wrapper object as Output:
                     loader_bs = pz.RKFLoader(engine.children[i].results)
                     loader_bs.replace_site_types(['A', 'B', 'C'], ['fcc', 'br', 'hcp'])
-                    loader_ads.replace_site_types( ['N33','N221','N331'], ['fcc','br','hcp'] )
+                    loader_bs.replace_site_types( ['N33','N221','N331'], ['fcc','br','hcp'] )
                     loader_bs.lattice.set_repeat_cell((10, 10))
                     loader_bs.lattice.plot()
 
