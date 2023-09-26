@@ -773,6 +773,17 @@ def map_model_type(root_cuds_object: Cuds) -> str:
         return ""
 
 
+def _get_real_or_array(oclass: OntologyClass):
+    real = oclass.get(oclass=emmo.Real, rel=emmo.hasSpatialPart)
+    array = oclass.get(oclass=emmo.Array, rel=emmo.hasSpatialPart)
+    if real:
+        return [real[0].hasNumericalData]
+    else:
+        reals = array[0].get(oclass=emmo.Real, rel=emmo.hasSpatialPart)
+        if reals:
+            reals = [float(real.hasNumericalData) for real in reals]
+            return [min(reals), max(reals)]
+
 def map_generic_setting(emmo_class: OntologyClass, root_cuds_object: Cuds, ) -> str:
     """Generic function to search for a parameter inside CUDS object.
 
@@ -842,7 +853,7 @@ def map_generic_setting(emmo_class: OntologyClass, root_cuds_object: Cuds, ) -> 
 
             pressure = float(search_emmo_class[0].get(oclass=emmo.Real,
                                                       rel=emmo.hasPart)[0].hasNumericalData)
-            pressure = pressure/100000
+            #pressure = pressure/100000
 
             return pressure
 
@@ -859,16 +870,13 @@ def map_generic_setting(emmo_class: OntologyClass, root_cuds_object: Cuds, ) -> 
                                              rel=emmo.hasPart))[0].hasNumericalData
 
         elif search_emmo_class[0].is_a(emmo.Snapshots):
-            return (search_emmo_class[0].get(oclass=emmo.Real,
-                                             rel=emmo.hasSpatialPart))[0].hasNumericalData
+            return _get_real_or_array(search_emmo_class[0])
 
         elif search_emmo_class[0].is_a(emmo.ProcessStatistics):
-            return (search_emmo_class[0].get(oclass=emmo.Real,
-                                             rel=emmo.hasSpatialPart))[0].hasNumericalData
+            return _get_real_or_array(search_emmo_class[0])
 
         elif search_emmo_class[0].is_a(emmo.SpeciesNumbers):
-            return (search_emmo_class[0].get(oclass=emmo.Real,
-                                             rel=emmo.hasSpatialPart))[0].hasNumericalData
+            return _get_real_or_array(search_emmo_class[0])
 
     else:
         raise_error(file=os.path.basename(__file__),
@@ -1100,7 +1108,7 @@ def map_PyZacrosSettings(root_cuds_object: Cuds) -> pz.Settings:
         snapshots = float(map_generic_setting(emmo.Snapshots, root_cuds_object))
         search_snapshots[0].hasSymbolData.replace("on ", "")
         syntactic_settings.snapshots = (search_snapshots[0].hasSymbolData.replace("on ", ""),
-                                        snapshots)
+                                        *snapshots)
 
     # Search process_statistics:
     search_process_statistics = \
