@@ -1736,6 +1736,9 @@ def map_results(engine, root_cuds_object: Cuds) -> str:
                         file.write(str(loader_bs.lattice))
                         uuid = get_upload(file)
                     lattice_output = crystallography.UnitCell(uid=UUID(uuid))
+                    print("###")
+                    print("lattice id:", lattice_output.uid)
+                    print(loader_bs.lattice)
                     current.add(lattice_output, rel=emmo.hasOutput)
                     if simulation.is_a(emmo.Simulation):
                         simulation.add(lattice_output, rel=emmo.hasOutput)
