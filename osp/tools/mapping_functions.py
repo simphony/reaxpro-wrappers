@@ -1105,7 +1105,7 @@ def map_PyZacrosSettings(root_cuds_object: Cuds) -> pz.Settings:
                                                           root_cuds_object, emmo.hasInput)
 
     if search_snapshots:
-        snapshots = float(map_generic_setting(emmo.Snapshots, root_cuds_object))
+        snapshots = map_generic_setting(emmo.Snapshots, root_cuds_object)
         search_snapshots[0].hasSymbolData.replace("on ", "")
         syntactic_settings.snapshots = (search_snapshots[0].hasSymbolData.replace("on ", ""),
                                         *snapshots)
