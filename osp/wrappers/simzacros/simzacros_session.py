@@ -61,8 +61,6 @@ class SimzacrosSession(SimWrapperSession):
 
         (pz_settings, pz_lattice, pz_mechanism, pz_cluster_expansion) = \
             map_function(self, root_cuds_object, self.engine)
-        print("### settings")
-        print(pz_settings)
         if self.adp:
             import adaptiveDesignProcedure as adp
             pz_job = pz.ZacrosJob(settings=pz_settings, lattice=pz_lattice,
@@ -77,7 +75,6 @@ class SimzacrosSession(SimWrapperSession):
 
                 ps_params = pz.ZacrosParametersScanJob.Parameters()
                 ps_params.add( 'x_CO', 'molar_fraction.CO', [ cond[0] for cond in conditions ] )
-                #ps_params.add( 'x_O2', 'molar_fraction.O2', lambda params: 1.0-params['x_CO'] )
 
                 ps_job = pz.ZacrosParametersScanJob( reference=pz_job, parameters=ps_params )
 
@@ -100,8 +97,6 @@ class SimzacrosSession(SimWrapperSession):
 
                 for i in range(len(results_dict)):
                     data[i,0] = results_dict[i]['turnover_frequency']['CO']
-                print("### result data")
-                print(data)
                 return data
             output_var = ({'name':'TOF_CO'}, )
             adp_path = os.path.join(self.workdir,'adp.results')
