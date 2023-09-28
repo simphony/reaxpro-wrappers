@@ -118,20 +118,19 @@ class SimzacrosSession(SimWrapperSession):
                                 mechanism=pz_mechanism, cluster_expansion=pz_cluster_expansion)
             results = pz_job.run()
 
+            # Attributes to easily access (syntactic) info from results.
+            self.get_reaction_network = results.get_reaction_network()
+            self.provided_quantities_names = results.provided_quantities_names()
+            self.provided_quantities = results.provided_quantities()
+            self.number_of_lattice_sites = results.number_of_lattice_sites()
+            self.gas_species_names = results.gas_species_names()
+            self.surface_species_names = results.surface_species_names()
+            self.site_type_names = results.site_type_names()
+            self.number_of_snapshots = results.number_of_snapshots()
+            self.number_of_process_statistics = results.number_of_process_statistics()
+            self.elementary_steps_names = results.elementary_steps_names()
+
         self._tarball = map_results(pz_job, root_cuds_object)
-
-        # Attributes to easily access (syntactic) info from results.
-        self.get_reaction_network = results.get_reaction_network()
-        self.provided_quantities_names = results.provided_quantities_names()
-        self.provided_quantities = results.provided_quantities()
-        self.number_of_lattice_sites = results.number_of_lattice_sites()
-        self.gas_species_names = results.gas_species_names()
-        self.surface_species_names = results.surface_species_names()
-        self.site_type_names = results.site_type_names()
-        self.number_of_snapshots = results.number_of_snapshots()
-        self.number_of_process_statistics = results.number_of_process_statistics()
-        self.elementary_steps_names = results.elementary_steps_names()
-
     # OVERRIDE
     def _load_from_backend(self, uids, expired=None):
         """Load the cuds object from the simulation engine."""
