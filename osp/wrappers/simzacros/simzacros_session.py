@@ -112,8 +112,7 @@ class SimzacrosSession(SimWrapperSession):
             uuid = get_upload(adpML.forestFileForCFD)
             pkl = emmo.PKLFile(uid=UUID(uuid))
             self.adp_cuds.add(pkl, rel=emmo.hasOutput)
-            path = os.path.join(self.workdir, self.jobname)
-            self._tarball = map_results(pz_job, root_cuds_object, path=path)
+            self._tarball = map_results(pz_job, root_cuds_object, path=self.workdir)
 
         else:
             pz_job = pz.ZacrosJob(settings=pz_settings, lattice=pz_lattice,
