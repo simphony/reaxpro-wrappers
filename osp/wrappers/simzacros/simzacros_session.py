@@ -43,7 +43,7 @@ class SimzacrosSession(SimWrapperSession):
             self.calculation = None
             self.mechanism = None
             self.cluster = None
-            self.adp = []
+            self.adp = ()
 
         super().__init__(engine)
 
@@ -61,11 +61,10 @@ class SimzacrosSession(SimWrapperSession):
 
         (pz_settings, pz_lattice, pz_mechanism, pz_cluster_expansion) = \
             map_function(self, root_cuds_object, self.engine)
-        pz_job = pz.ZacrosJob(settings=pz_settings, lattice=pz_lattice,
-                              mechanism=pz_mechanism, cluster_expansion=pz_cluster_expansion)
-        results = pz_job.run()
         if self.adp:
             import adaptiveDesignProcedure as adp
+            pz_job = pz.ZacrosJob(settings=pz_settings, lattice=pz_lattice,
+                                  mechanism=pz_mechanism, cluster_expansion=pz_cluster_expansion)
 
             def get_rate( conditions ):
 
@@ -76,7 +75,6 @@ class SimzacrosSession(SimWrapperSession):
 
                 ps_params = pz.ZacrosParametersScanJob.Parameters()
                 ps_params.add( 'x_CO', 'molar_fraction.CO', [ cond[0] for cond in conditions ] )
-                ps_params.add( 'x_O2', 'molar_fraction.O2', lambda params: 1.0-params['x_CO'] )
 
                 ps_job = pz.ZacrosParametersScanJob( reference=pz_job, parameters=ps_params )
 
@@ -98,10 +96,9 @@ class SimzacrosSession(SimWrapperSession):
                 results_dict = results.turnover_frequency()
 
                 for i in range(len(results_dict)):
-                    data[i,0] = results_dict[i]['turnover_frequency']['CO2']
-
+                    data[i,0] = results_dict[i]['turnover_frequency']['CO']
                 return data
-            output_var = [{'name':'TOF_CO2'}]
+            output_var = ({'name':'TOF_CO'}, )
             adp_path = os.path.join(self.workdir,'adp.results')
             adpML = adp.adaptiveDesignProcedure(
                 self.adp, 
@@ -116,6 +113,10 @@ class SimzacrosSession(SimWrapperSession):
             pkl = emmo.PKLFile(uid=UUID(uuid))
             self.adp_cuds.add(pkl, rel=emmo.hasOutput)
 
+        else:
+            pz_job = pz.ZacrosJob(settings=pz_settings, lattice=pz_lattice,
+                                mechanism=pz_mechanism, cluster_expansion=pz_cluster_expansion)
+            results = pz_job.run()
 
         self._tarball = map_results(pz_job, root_cuds_object)
 
@@ -191,6 +192,12 @@ class SimzacrosSession(SimWrapperSession):
                         ' in the Wrapper object.')
         if search_mechanism:
             self.mechanism = search_mechanism[0]
+            # meachism = search_mechanism.pop()
+            # if "file://" in str(meachism.iri):
+            #     split = str(meachism.iri).split("file://")
+            #     self.mechanism = split[-1]
+            # else:
+            #     self.mechanism = get_download(str(meachism.uid), as_file=True)
 
         # Lattice
         search_lattice = \
@@ -219,6 +226,13 @@ class SimzacrosSession(SimWrapperSession):
                                                self.calculation, emmo.hasInput)
         if search_cluster:
             self.cluster = search_cluster
+            # cluster = search_cluster.pop()
+            # if "file://" in str(cluster.iri):
+            #     split = str(cluster.iri).split("file://")
+            #     self.cluster = split[-1]
+            # else:
+            #     self.cluster = get_download(str(cluster.uid), as_file=True)
+
 
     def _process_adp(self, calculation: Cuds) -> None:
         self.adp_cuds = calculation
@@ -262,13 +276,13 @@ class SimzacrosSession(SimWrapperSession):
                 Minimum {minimum}, maximum: {maximum}, vector length {length}"""
                 )
         maximum, minimum, length = maximum.pop(), minimum.pop(), length.pop()
-        self.adp.append(
+        self.adp = (
             {
                 "name": f"x_{name.hasSymbolData}",
                 "min": float(minimum.hasNumericalData),
                 "max": float(maximum.hasNumericalData),
                 "num": int(length.hasNumericalData)
-            }
+            },
         )
 
 

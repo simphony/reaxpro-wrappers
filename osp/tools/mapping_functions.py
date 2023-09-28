@@ -6,7 +6,7 @@ import scm.pyzacros as pz
 from scm.plams import MultiJob, AMSJob
 from scm.plams import Settings as PlamsSettings
 from scm.plams import Molecule as PlamsMolecule
-from scm.plams import Atom as PlamsAtom
+# from scm.plams import Atom as PlamsAtom
 from arcp import arcp_random
 from osp.tools.io_functions import raise_error, raise_warning
 from osp.tools.io_functions import read_mechanism, read_cluster_expansion, read_molecule
@@ -60,6 +60,7 @@ def map_function(self, root_cuds_object: Cuds, engine=None) -> tuple:
 
         if hasattr(self, 'mechanism'):
             # if mechanism is read from CUDS graph
+            #pz_mechanism = pz.Mechanism(fileName=self.mechanism)
             pz_mechanism = map_PyZacrosMechanism(self.mechanism)
         else:
             # otherwise, use default location
@@ -73,6 +74,7 @@ def map_function(self, root_cuds_object: Cuds, engine=None) -> tuple:
 
         if hasattr(self, 'cluster'):
             pz_cluster_expansions = map_PyZacrosClusterExpansion(self.cluster)
+            #pz_cluster_expansions = pz.ClusterExpansion(fileName=self.cluster)
         else:
             pz_cluster_expansions = input_job.cluster_expansion
 
@@ -497,13 +499,10 @@ def map_PLAMSSettings(workdir: str, root_cuds_object: Cuds) -> PlamsSettings:
     elif semantic_settings['Calculation'] == 'ProcessSearch':
 
         syntactic_settings.input.AMS.task = "PESExploration"
-
-        if semantic_settings['Calculation'] == 'ProcessSearch':
-
-            syntactic_settings.input.ams.PESExploration.Job = 'ProcessSearch'
-            syntactic_settings.input.AMS.PESExploration.CalculateFragments = 'T'
-            syntactic_settings.input.AMS.PESExploration.BindingSites.Calculate = 'T'
-            syntactic_settings.input.AMS.PESExploration.DynamicSeedStates = 'T'
+        syntactic_settings.input.ams.PESExploration.Job = 'ProcessSearch'
+        syntactic_settings.input.AMS.PESExploration.CalculateFragments = 'T'
+        syntactic_settings.input.AMS.PESExploration.BindingSites.Calculate = 'T'
+        syntactic_settings.input.AMS.PESExploration.DynamicSeedStates = 'T'
 
         syntactic_settings.input.ReaxFF.ForceField = \
             map_generic_setting(emmo.ForceFieldIdentifierString, root_cuds_object)
@@ -532,15 +531,16 @@ def map_PLAMSSettings(workdir: str, root_cuds_object: Cuds) -> PlamsSettings:
         if map_generic_setting(emmo.CheckSymmetry, root_cuds_object) == 'T':
 
             # Hardcoded defaults
-            syntactic_settings.input.AMS.PESExploration.StructureComparison.DistanceDifference = 0.1
+            syntactic_settings.input.AMS.PESExploration.StructureComparison.DistanceDifference = 0.2
             syntactic_settings.input.AMS.PESExploration.StructureComparison.EnergyDifference = 0.05
-            syntactic_settings.input.AMS.PESExploration.StructureComparison.NeighborCutoff = 2.5
+            syntactic_settings.input.AMS.PESExploration.StructureComparison.NeighborCutoff = 2.4
+            syntactic_settings.input.AMS.PESExploration.BindingSites.DistanceDifference = 0.1
 
         syntactic_settings.input.AMS.PESExploration.RandomSeed = \
             map_generic_setting(emmo.RandomSeed, root_cuds_object)
 
-        syntactic_settings.input.AMS.PESExploration.BindingSites.NeighborCutoff = \
-            map_generic_setting(emmo.NeighborCutoff, root_cuds_object)
+        # syntactic_settings.input.AMS.PESExploration.BindingSites.NeighborCutoff = \
+        #     map_generic_setting(emmo.NeighborCutoff, root_cuds_object)
 
     elif semantic_settings['Calculation'] == 'BindingSites':
         previous = root_cuds_object.get(rel=emmo.hasSpatialNext.inverse).pop()
@@ -548,6 +548,7 @@ def map_PLAMSSettings(workdir: str, root_cuds_object: Cuds) -> PlamsSettings:
         syntactic_settings.input.AMS.task = "PESExploration"
         syntactic_settings.input.AMS.PESExploration.Job = 'BindingSites'
         syntactic_settings.input.AMS.PESExploration.BindingSites.Calculate = 'T'
+        syntactic_settings.input.AMS.PESExploration.DynamicSeedStates = 'T'
         syntactic_settings.input.AMS.PESExploration.CalculateFragments = 'F'
         syntactic_settings.input.AMS.PESExploration.LoadEnergyLandscape.Path = \
             os.path.join(workdir, str(previous.uid))
@@ -579,18 +580,19 @@ def map_PLAMSSettings(workdir: str, root_cuds_object: Cuds) -> PlamsSettings:
         syntactic_settings.input.AMS.PESExploration.RandomSeed = \
             map_generic_setting(emmo.RandomSeed, root_cuds_object)
 
-        syntactic_settings.input.AMS.PESExploration.BindingSites.NeighborCutoff = \
-            map_generic_setting(emmo.NeighborCutoff, root_cuds_object)
+        #syntactic_settings.input.AMS.PESExploration.BindingSites.NeighborCutoff = \
+        #    map_generic_setting(emmo.NeighborCutoff, root_cuds_object)
 
         # Hardcoded defaults
         if map_generic_setting(emmo.CheckSymmetry, root_cuds_object) == 'F':
-            syntactic_settings.input.AMS.PESExploration.GenerateSymmetryImages = 'T'
+            syntactic_settings.input.AMS.PESExploration.LoadEnergyLandscape.GenerateSymmetryImages = 'T'
+            syntactic_settings.input.AMS.PESExploration.BindingSites.DistanceDifference = 0.1
             syntactic_settings.input.AMS.PESExploration.StructureComparison.\
-                DistanceDifference = '0.1'
+                DistanceDifference = 0.2
             syntactic_settings.input.AMS.PESExploration.StructureComparison.\
-                EnergyDifference = '0.05'
+                EnergyDifference = 0.05
             syntactic_settings.input.AMS.PESExploration.StructureComparison.\
-                NeighborCutoff = '2.5'
+                NeighborCutoff = 2.4
 
     elif semantic_settings['Calculation'] == "StationaryPointCalculation":
         syntactic_settings.input.AMS.task = "TransitionStateSearch"
@@ -771,6 +773,17 @@ def map_model_type(root_cuds_object: Cuds) -> str:
         return ""
 
 
+def _get_real_or_array(oclass: OntologyClass):
+    real = oclass.get(oclass=emmo.Real, rel=emmo.hasSpatialPart)
+    array = oclass.get(oclass=emmo.Array, rel=emmo.hasSpatialPart)
+    if real:
+        return [float(real[0].hasNumericalData)]
+    else:
+        reals = array[0].get(oclass=emmo.Real, rel=emmo.hasSpatialPart)
+        if reals:
+            reals = [float(real.hasNumericalData) for real in reals]
+            return [min(reals), max(reals)]
+
 def map_generic_setting(emmo_class: OntologyClass, root_cuds_object: Cuds, ) -> str:
     """Generic function to search for a parameter inside CUDS object.
 
@@ -840,7 +853,7 @@ def map_generic_setting(emmo_class: OntologyClass, root_cuds_object: Cuds, ) -> 
 
             pressure = float(search_emmo_class[0].get(oclass=emmo.Real,
                                                       rel=emmo.hasPart)[0].hasNumericalData)
-            pressure = pressure/100000
+            #pressure = pressure/100000
 
             return pressure
 
@@ -857,16 +870,13 @@ def map_generic_setting(emmo_class: OntologyClass, root_cuds_object: Cuds, ) -> 
                                              rel=emmo.hasPart))[0].hasNumericalData
 
         elif search_emmo_class[0].is_a(emmo.Snapshots):
-            return (search_emmo_class[0].get(oclass=emmo.Real,
-                                             rel=emmo.hasSpatialPart))[0].hasNumericalData
+            return _get_real_or_array(search_emmo_class[0])
 
         elif search_emmo_class[0].is_a(emmo.ProcessStatistics):
-            return (search_emmo_class[0].get(oclass=emmo.Real,
-                                             rel=emmo.hasSpatialPart))[0].hasNumericalData
+            return _get_real_or_array(search_emmo_class[0])
 
         elif search_emmo_class[0].is_a(emmo.SpeciesNumbers):
-            return (search_emmo_class[0].get(oclass=emmo.Real,
-                                             rel=emmo.hasSpatialPart))[0].hasNumericalData
+            return _get_real_or_array(search_emmo_class[0])
 
     else:
         raise_error(file=os.path.basename(__file__),
@@ -1095,28 +1105,28 @@ def map_PyZacrosSettings(root_cuds_object: Cuds) -> pz.Settings:
                                                           root_cuds_object, emmo.hasInput)
 
     if search_snapshots:
-        snapshots = float(map_generic_setting(emmo.Snapshots, root_cuds_object))
+        snapshots = map_generic_setting(emmo.Snapshots, root_cuds_object)
         search_snapshots[0].hasSymbolData.replace("on ", "")
         syntactic_settings.snapshots = (search_snapshots[0].hasSymbolData.replace("on ", ""),
-                                        snapshots)
+                                        *snapshots)
 
     # Search process_statistics:
     search_process_statistics = \
         search.find_cuds_objects_by_oclass(emmo.ProcessStatistics, root_cuds_object, emmo.hasInput)
 
     if search_process_statistics:
-        process_statistics = float(map_generic_setting(emmo.ProcessStatistics, root_cuds_object))
+        process_statistics = map_generic_setting(emmo.ProcessStatistics, root_cuds_object)
         syntactic_settings.process_statistics = (
-            search_process_statistics[0].hasSymbolData.replace("on ", ""), process_statistics)
+            search_process_statistics[0].hasSymbolData.replace("on ", ""), *process_statistics)
 
     # Search species_numbers:
     search_species_numbers = \
         search.find_cuds_objects_by_oclass(emmo.SpeciesNumbers, root_cuds_object, emmo.hasInput)
 
     if search_species_numbers:
-        species_numbers = float(map_generic_setting(emmo.SpeciesNumbers, root_cuds_object))
+        species_numbers = map_generic_setting(emmo.SpeciesNumbers, root_cuds_object)
         syntactic_settings.species_numbers = (
-            search_species_numbers[0].hasSymbolData.replace("on ", ""), species_numbers)
+            search_species_numbers[0].hasSymbolData.replace("on ", ""), *species_numbers)
 
     # Search max_steps:
     search_max_steps = search.find_cuds_objects_by_oclass(emmo.MaximumSteps, root_cuds_object,
@@ -1616,16 +1626,28 @@ def map_results(engine, root_cuds_object: Cuds) -> str:
                 # Attach Mechanism and Cluster_Expansions to Wrapper object as Output:
                 loader_ads = pz.RKFLoader(engine.children[0].results)
                 loader_ads.replace_site_types(['A', 'B', 'C'], ['fcc', 'br', 'hcp'])
+                loader_ads.replace_site_types( ['N33','N221','N331'], ['fcc','br','hcp'] )
 
                 # 1. Mechanism
-                mechanism_output = read_mechanism(str(loader_ads.mechanism), read_from_file=False)
+                with tempfile.NamedTemporaryFile(mode = 'w', suffix=".dat") as file:
+                    file.write(str(loader_ads.mechanism))
+                    uuid = get_upload(file)
+                mechanism_output = emmo.ChemicalReactionMechanism(uid=UUID(uuid))
+                mechanism_output = read_mechanism(
+                    str(loader_ads.mechanism), read_from_file=False, cuds=mechanism_output
+                )
                 search_calculation[0].add(mechanism_output, rel=emmo.hasOutput)
 
                 # 2. Cluster
-                cluster_output = read_cluster_expansion(str(loader_ads.clusterExpansion),
-                                                        read_from_file=False)
-                for cluster in cluster_output:
-                    search_calculation[0].add(cluster, rel=emmo.hasOutput)
+                with tempfile.NamedTemporaryFile(mode = 'w', suffix=".dat") as file:
+                    file.write(str(loader_ads.clusterExpansion))
+                    uuid = get_upload(file)
+                cluster = emmo.ClusterExpansion(uid=UUID(uuid))
+                #cluster_output = read_cluster_expansion(str(loader_ads.clusterExpansion),
+                #                                        read_from_file=False, cuds=cluster_output)
+                #for cluster in cluster_output:
+                #    search_calculation[0].add(cluster, rel=emmo.hasOutput)
+                search_calculation[0].add(cluster, rel=emmo.hasOutput)
 
                 print(loader_ads.clusterExpansion)
                 print(loader_ads.mechanism)
@@ -1635,13 +1657,14 @@ def map_results(engine, root_cuds_object: Cuds) -> str:
                 # Attach UnitCell() with file path to Wrapper object as Output:
                 loader_bs = pz.RKFLoader(engine.children[0].results)
                 loader_bs.replace_site_types(['A', 'B', 'C'], ['fcc', 'br', 'hcp'])
+                loader_ads.replace_site_types( ['N33','N221','N331'], ['fcc','br','hcp'] )
                 loader_bs.lattice.set_repeat_cell((10, 10))
                 loader_bs.lattice.plot()
-                
-                file = os.path.join(engine.path, "lattice_input.dat")
-                with open(file, "w+") as lattice_file:
-                    lattice_file.write(str(loader_bs.lattice))
-                uuid = get_upload(file)
+
+                with tempfile.NamedTemporaryFile(mode = 'w', suffix=".dat") as file:
+                    file.write(str(loader_bs.lattice))
+                    file.seek(0)
+                    uuid = get_upload(file)
                 lattice_output = crystallography.UnitCell(uid=UUID(uuid))
                 search_calculation[0].add(lattice_output, rel=emmo.hasOutput)
 
@@ -1671,16 +1694,34 @@ def map_results(engine, root_cuds_object: Cuds) -> str:
                     # Attach Mechanism and Cluster_Expansions to Wrapper object as Output:
                     loader_ads = pz.RKFLoader(engine.children[i].results)
                     loader_ads.replace_site_types(['A', 'B', 'C'], ['fcc', 'br', 'hcp'])
+                    loader_ads.replace_site_types( ['N33','N221','N331'], ['fcc','br','hcp'] )
 
                     # 1. Mechanism
-                    mechanism_output = read_mechanism(str(loader_ads.mechanism), read_from_file=False)
+                    with tempfile.NamedTemporaryFile(mode = 'w', suffix=".dat") as file:
+                        file.write(str(loader_ads.mechanism))
+                        uuid = get_upload(file)
+                    mechanism_output = emmo.ChemicalReactionMechanism(uid=UUID(uuid))
+                    mechanism_output = read_mechanism(
+                        str(loader_ads.mechanism), read_from_file=False, cuds=mechanism_output
+                    )
                     current.add(mechanism_output, rel=emmo.hasOutput)
                     if simulation.is_a(emmo.Simulation):
                         simulation.add(mechanism_output, rel=emmo.hasOutput)
 
                     # 2. Cluster
+                    # with tempfile.NamedTemporaryFile(mode = 'w', suffix=".dat") as file:
+                    #     file.write(str(loader_ads.clusterExpansion))
+                    #     uuid = get_upload(file)
+                    # cluster = emmo.ClusterExpansion(uid=UUID(uuid))
+                    #current.add(cluster, rel=emmo.hasOutput)
+                    #if simulation.is_a(emmo.Simulation):
+                    #    simulation.add(cluster, rel=emmo.hasOutput)
+
+                    # cluster_output = read_cluster_expansion(str(loader_ads.clusterExpansion),
+                    #                                        read_from_file=False, cuds=cluster_output)
+
                     cluster_output = read_cluster_expansion(str(loader_ads.clusterExpansion),
-                                                            read_from_file=False)
+                                                           read_from_file=False)
                     for cluster in cluster_output:
                         current.add(cluster, rel=emmo.hasOutput)
                         if simulation.is_a(emmo.Simulation):
@@ -1688,17 +1729,19 @@ def map_results(engine, root_cuds_object: Cuds) -> str:
 
                     print(loader_ads.clusterExpansion)
                     print(loader_ads.mechanism)
+
                 elif current.is_a(emmo.BindingSites):
                     # Attach UnitCell() with file path to Wrapper object as Output:
                     loader_bs = pz.RKFLoader(engine.children[i].results)
                     loader_bs.replace_site_types(['A', 'B', 'C'], ['fcc', 'br', 'hcp'])
+                    loader_bs.replace_site_types( ['N33','N221','N331'], ['fcc','br','hcp'] )
                     loader_bs.lattice.set_repeat_cell((10, 10))
                     loader_bs.lattice.plot()
 
-                    file = os.path.join(engine.path, "lattice_input.dat")
-                    with open(file, "w+") as lattice_file:
-                        lattice_file.write(str(loader_bs.lattice))
-                    uuid = get_upload(file)
+                    with tempfile.NamedTemporaryFile(mode = 'w', suffix=".dat") as file:
+                        file.write(str(loader_bs.lattice))
+                        file.seek(0)
+                        uuid = get_upload(file)
                     lattice_output = crystallography.UnitCell(uid=UUID(uuid))
                     current.add(lattice_output, rel=emmo.hasOutput)
                     if simulation.is_a(emmo.Simulation):

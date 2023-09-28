@@ -67,8 +67,8 @@ class PESExploration:
                                        By default an appropriate number of explorers are executed in parallel.""",
     )
     max_energy: confloat(gt=0.0) = Field(2.0, description="Maximum energy in eV")
-    max_distance: confloat(gt=0.0) = Field(
-        3.8, description="Maximum distance cutoff from neighbors in Ångström"
+    max_distance: Optional[confloat(gt=0.0)] = Field(
+        None, description="Maximum distance cutoff from neighbors in Ångström"
     )
     random_seed: conint(ge=1) = Field(100, description="Random seed.")
     fixed_region: str = Field("surface", description="Fixed region of lattice.")
@@ -131,16 +131,10 @@ class PESExploration:
         max_energy.add(energy_value, rel=emmo.hasQuantityValue)
         max_energy.add(energy_unit, rel=emmo.hasReferenceUnit)
 
-        max_distance = emmo.NeighborCutoff()
-        distance_value = emmo.Real(hasNumericalData=self.max_distance)
-        distance_unit = emmo.Ångström(hasSymbolData="Å")
-        max_distance.add(distance_value, rel=emmo.hasQuantityValue)
-        max_distance.add(distance_unit, rel=emmo.hasReferenceUnit)
-
         ref_region = emmo.ReferenceRegion(hasSymbolData=self.reference_region)
         random_seed = emmo.RandomSeed(hasNumericalData=self.random_seed)
 
-        symmetry_check = emmo.CheckSymmetry(hasNumericalData="T")
+        symmetry_check = emmo.CheckSymmetry(hasNumericalData=self.symmetry_check)
         calculation.add(
             molecule,
             solver,
@@ -149,12 +143,20 @@ class PESExploration:
             forcefield,
             num_explorers,
             max_energy,
-            max_distance,
             ref_region,
             random_seed,
             symmetry_check,
             rel=emmo.hasInput,
         )
+
+        if self.max_distance:
+            max_distance = emmo.NeighborCutoff()
+            distance_value = emmo.Real(hasNumericalData=self.max_distance)
+            distance_unit = emmo.Ångström(hasSymbolData="Å")
+            max_distance.add(distance_value, rel=emmo.hasQuantityValue)
+            max_distance.add(distance_unit, rel=emmo.hasReferenceUnit)
+            calculation.add(max_distance, rel=emmo.hasInput)
+
         return calculation
 
     @property
@@ -548,7 +550,8 @@ class COPt111MesoscaleModel:
                     emmo.MolecularGeometry,
                 ]:
                 input_cuds = self.pes_exploration.cuds.get(oclass=oclass, rel=emmo.hasInput)
-                self.binding_site.cuds.add(input_cuds.pop(), rel=emmo.hasInput)
+                if input_cuds:
+                    self.binding_site.cuds.add(input_cuds.pop(), rel=emmo.hasInput)
             workflow.add(self.pes_exploration.cuds, rel=emmo.hasSpatialFirst)
             workflow.add(self.binding_site.cuds, rel=emmo.hasSpatialDirectPart)
             if self.adp:

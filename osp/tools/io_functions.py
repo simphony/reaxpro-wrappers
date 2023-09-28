@@ -419,7 +419,7 @@ def lattice_from_xyz(filename: str) -> crystallography.UnitCell:
 
 
 def read_mechanism(
-    filename: str, read_from_file: bool = True
+    filename: str, read_from_file: bool = True, cuds=None,
 ) -> emmo.ChemicalReactionMechanism:
     """
     Create emmo.ChemicalReactionMechanism from a Zacros-formatted .dat file.
@@ -429,7 +429,7 @@ def read_mechanism(
     :param return: emmo.ChemicalReactionMechanism with all the semantic information.
     """
 
-    mechanism = emmo.ChemicalReactionMechanism()
+    mechanism = cuds or emmo.ChemicalReactionMechanism()
 
     if read_from_file is True:
         dat = open(filename, "r")
@@ -598,7 +598,7 @@ def read_mechanism(
     return mechanism
 
 
-def read_cluster_expansion(filename: str, read_from_file: bool = True) -> list:
+def read_cluster_expansion(filename: str, read_from_file: bool = True, cuds=None) -> list:
     """
     Create a [emmo.ClusterExpansion] list from a Zacros-formatted .dat file.
 
@@ -622,7 +622,7 @@ def read_cluster_expansion(filename: str, read_from_file: bool = True) -> list:
         if params:
 
             if params[0] == "cluster":
-                cluster = emmo.ClusterExpansion()
+                cluster = cuds or emmo.ClusterExpansion()
 
             if params[0] == "sites":
                 num_of_sites = int(params[1])

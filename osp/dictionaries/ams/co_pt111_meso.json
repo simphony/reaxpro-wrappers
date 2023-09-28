@@ -4,16 +4,15 @@
         "force_field": "CHONSFPtClNi",
         "solver_type": "Direct",
         "n_expeditions": 30,
-        "n_explorers": 3,
+        "n_explorers": 4,
         "max_energy": 2.0,
-        "max_distance": 3.8,
         "random_seed": 100, 
         "fixed_region":"surface", 
         "reference_region": "surface",
         "symmetry_check": "T"
         },
     "binding_site": {
-        "n_expeditions": 1,
+        "n_expeditions": 30,
         "n_explorers": 4,
         "symmetry_check": "F"
     },
@@ -24,14 +23,14 @@
         "n_gas_species": 1,                                                                                                       
         "gas_specs_names": ["CO"],
         "gas_molar_fracs": [0.1],
-        "snapshots": ["on time", 3.5],
+        "snapshots": ["on logtime", 1e-8, 3.5],
         "species_numbers": ["on time", 3.5],
         "process_statistics": ["on time", 3.5],
         "max_time": 0.00001
     },
     "adp": {
-        "min": 0.2,
-        "max": 0.8,
-        "num": 5
+        "min": 0.001,
+        "max": 0.999,
+        "num": 6
     }
 }
