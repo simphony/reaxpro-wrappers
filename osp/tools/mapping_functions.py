@@ -1577,7 +1577,7 @@ def map_energies(root_cuds_object: Cuds) -> list:
     return electronic_energy_values
 
 
-def map_results(engine, root_cuds_object: Cuds) -> str:
+def map_results(engine, root_cuds_object: Cuds, path:str=None) -> str:
     """
     Add main results to the Cuds (Wrapper) object.
 
@@ -1760,7 +1760,7 @@ def map_results(engine, root_cuds_object: Cuds) -> str:
         search_calculation = search.find_cuds_objects_by_oclass(
                                    emmo.MesoscopicCalculation, root_cuds_object,
                                    rel=cuba.relationship)
-        tarball = map_tarball(engine, search_calculation[0])
+        tarball = map_tarball(engine, search_calculation[0], path=path)
 
     else:
         raise_error(file=os.path.basename(__file__), function=map_results.__name__,
