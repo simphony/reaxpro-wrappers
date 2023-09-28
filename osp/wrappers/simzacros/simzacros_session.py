@@ -65,6 +65,7 @@ class SimzacrosSession(SimWrapperSession):
             import adaptiveDesignProcedure as adp
             pz_job = pz.ZacrosJob(settings=pz_settings, lattice=pz_lattice,
                                   mechanism=pz_mechanism, cluster_expansion=pz_cluster_expansion)
+            pz_job.path = self.workdir
 
             def get_rate( conditions ):
 
@@ -113,6 +114,8 @@ class SimzacrosSession(SimWrapperSession):
             pkl = emmo.PKLFile(uid=UUID(uuid))
             self.adp_cuds.add(pkl, rel=emmo.hasOutput)
 
+            self._tarball = map_results(pz_job, root_cuds_object)
+
         else:
             pz_job = pz.ZacrosJob(settings=pz_settings, lattice=pz_lattice,
                                 mechanism=pz_mechanism, cluster_expansion=pz_cluster_expansion)
@@ -130,7 +133,7 @@ class SimzacrosSession(SimWrapperSession):
             self.number_of_process_statistics = results.number_of_process_statistics()
             self.elementary_steps_names = results.elementary_steps_names()
 
-        self._tarball = map_results(pz_job, root_cuds_object)
+            self._tarball = map_results(pz_job, root_cuds_object)
     # OVERRIDE
     def _load_from_backend(self, uids, expired=None):
         """Load the cuds object from the simulation engine."""
