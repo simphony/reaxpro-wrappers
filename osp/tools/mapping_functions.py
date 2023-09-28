@@ -1901,9 +1901,10 @@ def map_tarball(engine, root_cuds_object, path=None) -> str:
 
     :return str: file system path to tarball
    """
+    path = path or engine.path
 
     tar = tempfile.NamedTemporaryFile().name
-    shutil.make_archive(tar, "tar", engine.path)
+    shutil.make_archive(tar, "tar", path)
     tar_file = f"{tar}.tar"
 
     print(f"Job output dumped to {tar_file}")

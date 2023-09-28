@@ -65,7 +65,6 @@ class SimzacrosSession(SimWrapperSession):
             import adaptiveDesignProcedure as adp
             pz_job = pz.ZacrosJob(settings=pz_settings, lattice=pz_lattice,
                                   mechanism=pz_mechanism, cluster_expansion=pz_cluster_expansion)
-            pz_job.path = self.workdir
 
             def get_rate( conditions ):
 
@@ -113,8 +112,8 @@ class SimzacrosSession(SimWrapperSession):
             uuid = get_upload(adpML.forestFileForCFD)
             pkl = emmo.PKLFile(uid=UUID(uuid))
             self.adp_cuds.add(pkl, rel=emmo.hasOutput)
-
-            self._tarball = map_results(pz_job, root_cuds_object)
+            path = os.path.join(self.workdir, self.jobname)
+            self._tarball = map_results(pz_job, root_cuds_object, path=self.path)
 
         else:
             pz_job = pz.ZacrosJob(settings=pz_settings, lattice=pz_lattice,
