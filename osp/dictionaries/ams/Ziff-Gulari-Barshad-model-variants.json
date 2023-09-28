@@ -10,9 +10,9 @@
         "n_surf_species":   3,  
         "surf_specs_names": ["O*", "CO*", "CO2*"],
         "surf_specs_dent": [1, 1, 2],
-        "snapshots": ["on time", 0.0005],
-        "process_statistics": ["on time", 0.0005],
-        "species_numbers": ["on time", 0.0005],
+        "snapshots": ["on logtime", 1e-8, 3.5],
+        "process_statistics": ["on time", 3.5],
+        "species_numbers": ["on time", 3.5],
         "event_report": "off",
         "max_steps": "infinity",
         "max_time": 200.0,
@@ -92,8 +92,8 @@
                       "activ_eng": 0.52}}
   ],
   "adp": {
-    "min": 0.2,
-    "max": 0.8,
-    "num": 5
+    "min": 0.001,
+    "max": 0.999,
+    "num": 6
   }
 }
